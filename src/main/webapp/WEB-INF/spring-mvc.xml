@@ -79,4 +79,12 @@
 		<property name="exposeSpringMacroHelpers" value="true"></property>
 		<property name="requestContextAttribute" value="request"></property>
 	</bean>
+
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="propertyEditorRegistrars">
+			<list>
+				<bean class="com.shnlng.bcast.base.spring.CustomDateEditorRegister" />
+			</list>
+		</property>
+	</bean>
 </beans>

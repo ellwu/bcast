@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd
         				http://www.springframework.org/schema/context 
@@ -12,10 +10,10 @@
 						http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-						
+
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
-	<bean id="dataSource"
+<!-- 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${db.driver}">
 		</property>
@@ -23,7 +21,31 @@
 		</property>
 		<property name="username" value="${db.username}"></property>
 		<property name="password" value="${db.password}"></property>
+	</bean> -->
+
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="poolName" value="springHikariCP" />
+		<property name="connectionTestQuery" value="SELECT 1" />
+		<property name="dataSourceClassName" value="${hibernate.dataSourceClassName}" />
+		<property name="maximumPoolSize" value="${hibernate.hikari.maximumPoolSize}" />
+		<property name="idleTimeout" value="${hibernate.hikari.idleTimeout}" />
+
+		<property name="dataSourceProperties">
+			<props>
+				<prop key="driverClassName">${db.driver}</prop>
+				<prop key="url">${db.url}</prop>
+				<prop key="username">${db.username}</prop>
+				<prop key="password">${db.password}</prop>
+			</props>
+		</property>
 	</bean>
+
+	<!-- HikariCP configuration -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
@@ -61,6 +83,6 @@
 			</props>
 		</property>
 	</bean>
-	
+
 	<jpa:repositories base-package="com.shnlng.bcast"></jpa:repositories>
 </beans>

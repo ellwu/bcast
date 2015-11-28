@@ -58,48 +58,48 @@ create table t_menus(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('79a627c7f9654d69954ef5ff756c175a','M_ROOT','顶级菜单',null,10,null,0);
+	values('79a627c7f9654d69954ef5ff756c175a','M_ROOT','顶级菜单',null,0,null,0);
 
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('eaafa50f51844514bf7107d9c6e26359','M_BUS','商户管理','79a627c7f9654d69954ef5ff756c175a',10,null,0);
+	values('eaafa50f51844514bf7107d9c6e26359','M_BUS','商户管理','79a627c7f9654d69954ef5ff756c175a',10000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('4de1a7d8526a40b4bcc3aa15dd2f821c','M_DEV','设备管理','79a627c7f9654d69954ef5ff756c175a',20,null,0);
+	values('4de1a7d8526a40b4bcc3aa15dd2f821c','M_DEV','设备管理','79a627c7f9654d69954ef5ff756c175a',20000,null,0);
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('1c32b4ff6c8b48268749e50b91603465','M_ADV','广告管理','79a627c7f9654d69954ef5ff756c175a',30,null,0);
+	values('1c32b4ff6c8b48268749e50b91603465','M_ADV','广告管理','79a627c7f9654d69954ef5ff756c175a',30000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('42784df28fb14578ad15262199f688fd','M_ADV_SUP','广告商管理','1c32b4ff6c8b48268749e50b91603465',10,null,0);
+	values('42784df28fb14578ad15262199f688fd','M_ADV_SUP','广告商管理','1c32b4ff6c8b48268749e50b91603465',31000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('525125e92cc348ac8be2eb504f0ca1a5','M_ADV_RES','广告资源管理','1c32b4ff6c8b48268749e50b91603465',20,null,0);
+	values('525125e92cc348ac8be2eb504f0ca1a5','M_ADV_RES','广告资源管理','1c32b4ff6c8b48268749e50b91603465',32000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('976e48f7f5634229953d10cb708860b1','M_ADV_CAST','广告投放管理','1c32b4ff6c8b48268749e50b91603465',30,null,0);
+	values('976e48f7f5634229953d10cb708860b1','M_ADV_CAST','广告投放管理','1c32b4ff6c8b48268749e50b91603465',33000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('81f8105f8f6f4501ab53cd4b7f3bf42a','M_ADV_SEQ','广告播放序列','1c32b4ff6c8b48268749e50b91603465',40,null,0);
+	values('81f8105f8f6f4501ab53cd4b7f3bf42a','M_ADV_SEQ','广告播放序列','1c32b4ff6c8b48268749e50b91603465',34000,null,0);
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('c039dc4cfc84431db0b30a3005ab13bf','M_BI','统计分析','79a627c7f9654d69954ef5ff756c175a',40,null,0);
+	values('c039dc4cfc84431db0b30a3005ab13bf','M_BI','统计分析','79a627c7f9654d69954ef5ff756c175a',40000,null,0);
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('95e69d004bd249fb8f322544d9580ff6','M_SYS','系统管理','79a627c7f9654d69954ef5ff756c175a',50,null,0);
+	values('95e69d004bd249fb8f322544d9580ff6','M_SYS','系统管理','79a627c7f9654d69954ef5ff756c175a',50000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('8abf98df55d8453ebaeb91edcce6b58d','M_SYS_USER','用户管理','95e69d004bd249fb8f322544d9580ff6',10,null,0);
+	values('8abf98df55d8453ebaeb91edcce6b58d','M_SYS_USER','用户管理','95e69d004bd249fb8f322544d9580ff6',51000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('2ecf8f58b6a54bb99d8c7dd8fdf54818','M_SYS_AUTH','权限管理','95e69d004bd249fb8f322544d9580ff6',20,null,0);	
+	values('2ecf8f58b6a54bb99d8c7dd8fdf54818','M_SYS_AUTH','权限管理','95e69d004bd249fb8f322544d9580ff6',52000,null,0);	
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('7bc9d96a5e0842efad3457645e22ab1a','M_SYS_AUTH_MENU','菜单管理','2ecf8f58b6a54bb99d8c7dd8fdf54818',10,'aed515fee3d14457a39af9b6517c8c68',0);	
+	values('7bc9d96a5e0842efad3457645e22ab1a','M_SYS_AUTH_MENU','菜单管理','2ecf8f58b6a54bb99d8c7dd8fdf54818',52100,'aed515fee3d14457a39af9b6517c8c68',0);	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('35759031fca744e6ba514455dc2b2f38','M_SYS_AUTH_ROLE','角色管理','2ecf8f58b6a54bb99d8c7dd8fdf54818',20,null,0);	
+	values('35759031fca744e6ba514455dc2b2f38','M_SYS_AUTH_ROLE','角色管理','2ecf8f58b6a54bb99d8c7dd8fdf54818',52200,null,0);	
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('11e8b8f65b034756b6030c148b3e75a0','M_SYS_LOK','数据字典','95e69d004bd249fb8f322544d9580ff6',30,null,0);
+	values('11e8b8f65b034756b6030c148b3e75a0','M_SYS_LOK','数据字典','95e69d004bd249fb8f322544d9580ff6',53000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('70fce8f8ccb542b88d50141268c27f7d','M_SYS_LOK_CA','字典类型','11e8b8f65b034756b6030c148b3e75a0',10,null,0);
+	values('70fce8f8ccb542b88d50141268c27f7d','M_SYS_LOK_CA','字典类型','11e8b8f65b034756b6030c148b3e75a0',53100,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('03490a7795ac44369ae724023c313b12','M_SYS_LOK_VS','字典值','11e8b8f65b034756b6030c148b3e75a0',20,null,0);
+	values('03490a7795ac44369ae724023c313b12','M_SYS_LOK_VS','字典值','11e8b8f65b034756b6030c148b3e75a0',53200,null,0);
 
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('887f192a7132480a8cdc71abb6506c3c','M_SYS_PROFILE','系统参数','95e69d004bd249fb8f322544d9580ff6',40,'0ec29df240fa41d59dbdf4f8d0a7b06b',0);
+	values('887f192a7132480a8cdc71abb6506c3c','M_SYS_PROFILE','系统参数','95e69d004bd249fb8f322544d9580ff6',54000,'0ec29df240fa41d59dbdf4f8d0a7b06b',0);
 
 drop table if exists t_user_roles;
 

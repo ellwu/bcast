@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.shnlng.bcast.system.entity.MenuEo;
@@ -17,38 +15,7 @@ public class MenuSo {
 	private static final Logger logger = Logger.getLogger(MenuSo.class);
 
 	@Autowired
-	private MenuRepo menuRepository;
-
-	public MenuEo saveMenu(MenuEo menu) {
-		logger.debug("enter save menu");
-
-		MenuEo result = menuRepository.save(menu);
-
-		logger.debug("leave save menu");
-		return result;
-	}
-	
-	public boolean deleteMenu(MenuEo menu) {
-		logger.debug("enter delete menu");
-		
-		if(menu == null || menu.getId() == null){
-			return false;
-		}
-
-		menuRepository.delete(menu.getId());
-
-		logger.debug("leave delete menu");
-		return true;
-	}
-
-	public MenuEo getMenu(String key) {
-		logger.debug("enter getMenu");
-
-		MenuEo menuTree = menuRepository.findByKey(key);
-
-		logger.debug("leave getMenu");
-		return menuTree;
-	}
+	public MenuRepo menuRepository;
 
 	public MenuEo getMenuTree(String key) {
 		logger.debug("enter getMenuTree");
@@ -83,14 +50,5 @@ public class MenuSo {
 		}
 
 		logger.debug("leave setChildMenus");
-	}
-
-	public Page<MenuEo> getAllMenus(Pageable pageable) {
-		logger.debug("enter getAllMenus pageable");
-
-		Page<MenuEo> pageMenus = menuRepository.findAll(pageable);
-
-		logger.debug("leave getAllMenus pageable");
-		return pageMenus;
 	}
 }

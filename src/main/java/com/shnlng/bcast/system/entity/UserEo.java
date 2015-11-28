@@ -6,9 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Version;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "t_users")
@@ -30,15 +30,15 @@ public class UserEo {
 	@Column(name = "version")
 	private long version;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "creation_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")   
+	@Column(name = "creation_time")
 	private Date creationTime;
 
 	@Column(name = "created_by")
 	private String createdBy;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")   
+	@Column(name = "update_time")
 	private Date updateTime;
 
 	@Column(name = "updated_by")
