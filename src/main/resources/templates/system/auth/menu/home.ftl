@@ -11,7 +11,7 @@
 		<script src="${base}/js/angular.js"></script>
 	</head>
 	<body>
-		<div ng-app="myApp" ng-controller="menusCtl">
+		<div ng-app="myApp" ng-controller="appCtl">
 			<@html.topMenu/>
 			
 			<@html.content>
@@ -55,10 +55,10 @@
 					  	<table class="table table-bordered">
 							<thead> 
 								<tr> 
-									<th>Key</th> 
-									<th>Prompt</th> 
-									<th>Sequence</th> 
-									<th>Action</th>
+									<th><@spring.message "menu.key.head"/></th> 
+									<th><@spring.message "menu.prompt.head"/></th> 
+									<th><@spring.message "menu.sequence.head"/></th> 
+									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
 							<tbody> 
@@ -80,108 +80,11 @@
 					</div>
 				</div>
 				
-				<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-				   <div class="modal-dialog modal-lg">
-				      <div class="modal-content">
-				         <div class="modal-header">
-				            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				            <h4 class="modal-title" id="createModalLabel"><@spring.message "prompt.create"/></h4>
-				         </div>
-				         <div class="modal-body">           
-				         	<div class="alert alert-danger" role="alert" ng-hide="createOk">{{ createMsg }}</div> 
-							<form role="form" id="createForm" class="form-horizontal">
-							   <div class="form-group">
-							      <label class="col-sm-2 control-label" for="key">Key</label>
-							      <div class="col-sm-10">
-							        <input type="text" class="form-control" id="key" ng-model="createItem.key" name="key" placeholder="<@spring.message "menu.key"/>">
-							   	  </div>
-							   </div>
-							   <div class="form-group">
-							      <label class="col-sm-2 control-label"  for="prompt">Prompt</label>
-							      <div class="col-sm-10">
-							        <input type="text" class="form-control" id="prompt" ng-model="createItem.prompt" name="prompt" placeholder="<@spring.message "menu.key"/>">
-							   	  </div>
-							   </div>
-							   <div class="form-group">
-							      <label class="col-sm-2 control-label"  for="sequence">Sequence</label>
-							      <div class="col-sm-2">
-							        <input type="text" class="form-control" id="sequence" ng-model="createItem.sequence" name="sequence" placeholder="<@spring.message "menu.key"/>">
-							      </div>
-							      <label class="col-sm-2 control-label"  for="parentId">Parent</label>
-							      <div class="col-sm-4">
-							        <select class="form-control" id="parentId" name="parentId" ng-model="createItem.parentId" ng-options="o.id as o.prompt for o in options"></select>
-							      </div>
-							   </div>							   
-							</form>
-				         </div>
-				         <div class="modal-footer">
-				            <button type="button" class="btn btn-default" data-dismiss="modal"><@spring.message "prompt.close"/></button>
-				            <button type="button" class="btn btn-primary" ng-click="createConfirm()"><@spring.message "prompt.create"/></button>
-				         </div>
-				      </div>
-					</div>
-				</div>
+				<#include "/system/auth/menu/create.ftl"/>
 				
-				<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-				   <div class="modal-dialog modal-lg">
-				      <div class="modal-content">
-				         <div class="modal-header">
-				            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				            <h4 class="modal-title" id="editModalLabel"><@spring.message "prompt.edit"/></h4>
-				         </div>
-				         <div class="modal-body">       
-				         	<div class="alert alert-danger" role="alert" ng-hide="editOk">{{ editMsg }}</div>      
-							<form role="form" id="editForm" class="form-horizontal">
-							   <div class="form-group">
-							      <label class="col-sm-2 control-label" for="key">Key</label>
-							      <div class="col-sm-10">
-							        <input type="text" class="form-control" id="key" ng-model="editItem.key" name="key" placeholder="<@spring.message "menu.key"/>">
-							   	  </div>
-							   </div>
-							   <div class="form-group">
-							      <label class="col-sm-2 control-label"  for="prompt">Prompt</label>
-							      <div class="col-sm-10">
-							        <input type="text" class="form-control" id="prompt" ng-model="editItem.prompt" name="prompt" placeholder="<@spring.message "menu.key"/>">
-							   	  </div>
-							   </div>
-							   <div class="form-group">
-							      <label class="col-sm-2 control-label"  for="sequence">Sequence</label>
-							      <div class="col-sm-2">
-							        <input type="text" class="form-control" id="sequence" ng-model="editItem.sequence" name="sequence" placeholder="<@spring.message "menu.key"/>">
-							      </div>
-							      <label class="col-sm-2 control-label"  for="parentId">Parent</label>
-							      <div class="col-sm-4">
-							        <select class="form-control" id="parentId" name="parentId" ng-model="editItem.parentId" ng-options="o.id as o.prompt for o in options"></select>
-							      </div>
-							   </div>							   
-							</form>
-				         </div>
-				         <div class="modal-footer">
-				            <button type="button" class="btn btn-default" data-dismiss="modal"><@spring.message "prompt.close"/></button>
-				            <button type="button" class="btn btn-primary" ng-click="editConfirm()"><@spring.message "prompt.edit"/></button>
-				         </div>
-				      </div>
-					</div>
-				</div>
+				<#include "/system/auth/menu/edit.ftl"/>
 				
-				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-				   <div class="modal-dialog modal-sm">
-				      <div class="modal-content">
-				         <div class="modal-header">
-				            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				            <h4 class="modal-title" id="deleteModalLabel"><@spring.message "menu.home.editMenu"/></h4>
-				         </div>
-				         <div class="modal-body">  
-				         	<div class="alert alert-danger" role="alert" ng-hide="deleteOk">{{ deleteMsg }}</div>  
-							<p><@spring.message "prompt.delete.confirm"/> "{{deleteItem.prompt}}" ?</p>
-				         </div>
-				         <div class="modal-footer">
-				            <button type="button" class="btn btn-default" data-dismiss="modal"><@spring.message "prompt.close"/></button>
-				            <button type="button" class="btn btn-primary" ng-click="deleteConfirm()"><@spring.message "prompt.confirm"/></button>
-				         </div>
-				      </div>
-					</div>
-				</div>
+				<#include "/system/auth/menu/delete.ftl"/>
 				
 			</@html.content>
 			

@@ -1,11 +1,13 @@
 package com.shnlng.bcast.system.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,7 +35,7 @@ public class ProfileCo {
 		logger.debug("enter home");
 
 		logger.debug("enter home");
-		return "/system/auth/profile/home";
+		return "/system/profile/home";
 	}
 
 	@RequestMapping("/list")
@@ -41,7 +43,7 @@ public class ProfileCo {
 	public Page<ProfileEo> list(Pageable pageable) {
 		logger.debug("enter list");
 
-		Page<ProfileEo> result = profileRepo.findAll(pageable);
+		Page<ProfileEo> result = profileRepo.findAll(pageable); // .findAll(pageable);
 
 		logger.debug("leave list");
 		return result;
@@ -49,15 +51,15 @@ public class ProfileCo {
 
 	@RequestMapping("/delete")
 	@ResponseBody
-	public Map<String, Object> delete(HttpServletRequest req, HttpServletResponse resp, ProfileEo p) {
-		logger.debug("enter delete");
+	public Map<String, Object> delete(HttpServletRequest req, HttpServletResponse resp, ProfileEo profile) {
+		logger.debug("enter delete profile");
 
 		Map<String, Object> result = new HashMap<String, Object>();
 
 		RequestContext requestContext = new RequestContext(req);
 
-		if (p == null || p.getId() == null) {
-			logger.debug("input empty");
+		if (profile == null || profile.getId() == null) {
+			logger.debug("profile input empty");
 
 			result.put("msg", requestContext.getMessage("profile.delete.error"));
 			result.put("status", false);
@@ -66,78 +68,95 @@ public class ProfileCo {
 
 		try {
 			
-			profileRepo.delete(p.getId());
+			profileRepo.delete(profile);
 			
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 
-			result.put("msg", requestContext.getMessage("profile.delete.ok"));
-			result.put("status", true);
+			result.put("msg", requestContext.getMessage("profile.delete.error"));
+			result.put("status", false);
 			return result;
 		}
+		result.put("msg", requestContext.getMessage("profile.delete.ok"));
+		result.put("status", true);
 
-		logger.debug("leave delete");
+		logger.debug("enter delete profile");
 		return result;
 	}
 
 	@RequestMapping("/create")
 	@ResponseBody
-	public Map<String, Object> create(HttpServletRequest req, HttpServletResponse resp, ProfileEo p) {
-		logger.debug("enter create");
+	public Map<String, Object> create(HttpServletRequest req, HttpServletResponse resp, ProfileEo profile) {
+		logger.debug("enter create profile");
 
 		Map<String, Object> result = new HashMap<String, Object>();
 
 		RequestContext requestContext = new RequestContext(req);
 
-		if (p == null) {
-			logger.debug("input empty");
+		if (profile == null) {
+			logger.debug("profile input empty");
 
 			result.put("msg", requestContext.getMessage("profile.create.error"));
 			result.put("status", false);
 			return result;
 		}
 
-		p.setId(IdGen.id32());
+		profile.setId(IdGen.id32());
+		
+		try {
+			profile.setCreationTime(new Date());
+			
+			profileRepo.save(profile);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 
-		ProfileEo savedEo = profileRepo.save(p);
-		if (savedEo != null) {
-
-			result.put("msg", requestContext.getMessage("profile.create.ok"));
-			result.put("status", true);
+			result.put("msg", requestContext.getMessage("profile.create.error"));
+			result.put("status", false);
 			return result;
 		}
 
-		logger.debug("leave create");
+		result.put("msg", requestContext.getMessage("profile.create.ok"));
+		result.put("status", true);
+
+		logger.debug("leave create profile");
 		return result;
 	}
 	
-	@RequestMapping("/update")
+	@RequestMapping("/edit")
 	@ResponseBody
-	public Map<String, Object> update(HttpServletRequest req, HttpServletResponse resp, ProfileEo p) {
-		logger.debug("enter update");
+	public Map<String, Object> edit(HttpServletRequest req, HttpServletResponse resp, ProfileEo profile) {
+		logger.debug("enter edit profile");
 
 		Map<String, Object> result = new HashMap<String, Object>();
 
 		RequestContext requestContext = new RequestContext(req);
 
-		if (p == null) {
-			logger.debug("input empty");
+		if (profile == null || StringUtils.isEmpty(profile.getId())) {
+			logger.debug("profile input empty");
 
-			result.put("msg", requestContext.getMessage("profile.create.error"));
+			result.put("msg", requestContext.getMessage("profile.edit.error"));
 			result.put("status", false);
 			return result;
 		}
 
-		p.setId(IdGen.id32());
+		try {
+			profile.setUpdateTime(new Date());
+			
+			profileRepo.save(profile);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 
-		ProfileEo savedEo = profileRepo.save(p);
-		if (savedEo != null) {
-
-			result.put("msg", requestContext.getMessage("profile.create.ok"));
-			result.put("status", true);
+			result.put("msg", requestContext.getMessage("profile.edit.error"));
+			result.put("status", false);
 			return result;
 		}
 
-		logger.debug("leave update");
+		result.put("msg", requestContext.getMessage("profile.edit.ok"));
+		result.put("status", true);
+
+		logger.debug("leave edit profile");
 		return result;
 	}
 }

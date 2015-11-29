@@ -36,7 +36,7 @@ public class MenuCo {
 	@ResponseBody
 	public MenuEo findMenu(@RequestParam String key) {
 		logger.debug("enter findMenu");
-
+		
 		logger.debug("find menu " + key);
 		MenuEo menu = menuService.menuRepository.findByKey(key);
 

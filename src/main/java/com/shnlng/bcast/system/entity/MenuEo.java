@@ -1,6 +1,7 @@
 package com.shnlng.bcast.system.entity;
 
 import java.util.Date;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "t_menus")
-public class MenuEo {
+public class MenuEo implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "menu_id")
 	private String id;

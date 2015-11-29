@@ -3,7 +3,7 @@
 <#assign base=request.contextPath/>
 
 var app = angular.module('myApp', []);
-app.controller('menusCtl', function($scope, $http) {
+app.controller('appCtl', function($scope, $http) {
 	$scope.noTopMsg = true;
 	$scope.topMsg = "";
 	
@@ -49,13 +49,19 @@ app.controller('menusCtl', function($scope, $http) {
 	//pageable table end
 	
 	//select option values begin
-	$scope.options = [];
+	$scope.options = {};
 	
 	$scope.optionsInit = function(){
 		var optionsUrl = "${base}/menu/options.do";
 	    
 	    $http.get(optionsUrl).success(function (response) {
-	    	$scope.options = response;
+	    	$scope.options.parentOptions = response;
+	    });
+	    
+	    optionsUrl = "${base}/func/options.do";
+	    
+	    $http.get(optionsUrl).success(function (response) {
+	    	$scope.options.funcOptions = response;
 	    });
 	};
 	

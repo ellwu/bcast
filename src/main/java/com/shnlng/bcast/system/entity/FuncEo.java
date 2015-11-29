@@ -1,5 +1,6 @@
 package com.shnlng.bcast.system.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,7 +12,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "t_funcs")
-public class FuncEo {
+public class FuncEo implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "func_id")
 	private String id;
@@ -44,6 +47,15 @@ public class FuncEo {
 
 	@Column(name = "updated_by")
 	private String updatedBy;
+	
+	public FuncEo() {
+	}
+	
+	public FuncEo(String id, String key, String prompt) {
+		this.id = id;
+		this.key = key;
+		this.prompt = prompt;
+	}
 
 	public Date getCreationTime() {
 		return creationTime;

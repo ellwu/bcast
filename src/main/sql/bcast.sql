@@ -82,21 +82,30 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('95e69d004bd249fb8f322544d9580ff6','M_SYS','系统管理','79a627c7f9654d69954ef5ff756c175a',50000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('8abf98df55d8453ebaeb91edcce6b58d','M_SYS_USER','用户管理','95e69d004bd249fb8f322544d9580ff6',51000,null,0);
+	values('8abf98df55d8453ebaeb91edcce6b58d','M_SYS_USER','用户管理','95e69d004bd249fb8f322544d9580ff6',51000,'54b98d09e0d24feaa53d277f9027806a',0);
+	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('2ecf8f58b6a54bb99d8c7dd8fdf54818','M_SYS_AUTH','权限管理','95e69d004bd249fb8f322544d9580ff6',52000,null,0);	
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('7bc9d96a5e0842efad3457645e22ab1a','M_SYS_AUTH_MENU','菜单管理','2ecf8f58b6a54bb99d8c7dd8fdf54818',52100,'aed515fee3d14457a39af9b6517c8c68',0);	
+	values('7bc9d96a5e0842efad3457645e22ab1a','M_SYS_AUTH_MENU','菜单','2ecf8f58b6a54bb99d8c7dd8fdf54818',52100,'aed515fee3d14457a39af9b6517c8c68',0);	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('35759031fca744e6ba514455dc2b2f38','M_SYS_AUTH_ROLE','角色管理','2ecf8f58b6a54bb99d8c7dd8fdf54818',52200,null,0);	
+	values('35759031fca744e6ba514455dc2b2f38','M_SYS_AUTH_ROLE','角色','2ecf8f58b6a54bb99d8c7dd8fdf54818',52200,'ca8ab14b5bfb4d139965f60b4bf1fecd',0);		
+insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
+	values('fdf5ab3aacce47f8b5e76dafc76d61fe','M_SYS_AUTH_FUNC','功能','2ecf8f58b6a54bb99d8c7dd8fdf54818',52300,'4a29c61bdaa7446b8d52f216c0b4e5ff',0);		
+insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
+	values('489ab30eef5148548a833fce98af4e5e','M_SYS_AUTH_USERROLE','用户角色','2ecf8f58b6a54bb99d8c7dd8fdf54818',52400,'e27534cc870347f183d5c8d151b08eb6',0);	
+insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
+	values('bb2ed3d2bf684dc7934ee66a3e43763c','M_SYS_AUTH_ROLEMENU','角色菜单','2ecf8f58b6a54bb99d8c7dd8fdf54818',52500,'1bcc070eaced40f08b8d40f95ab85e73',0);	
+	
+	
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('11e8b8f65b034756b6030c148b3e75a0','M_SYS_LOK','数据字典','95e69d004bd249fb8f322544d9580ff6',53000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('70fce8f8ccb542b88d50141268c27f7d','M_SYS_LOK_CA','字典类型','11e8b8f65b034756b6030c148b3e75a0',53100,null,0);
+	values('70fce8f8ccb542b88d50141268c27f7d','M_SYS_LOK_CA','类型','11e8b8f65b034756b6030c148b3e75a0',53100,'2deb71cdaecf40dabe1a99cc6f31dd67',0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('03490a7795ac44369ae724023c313b12','M_SYS_LOK_VS','字典值','11e8b8f65b034756b6030c148b3e75a0',53200,null,0);
+	values('03490a7795ac44369ae724023c313b12','M_SYS_LOK_VS','值','11e8b8f65b034756b6030c148b3e75a0',53200,'103a70039a184cdfa15bbbd53dbf9a70',0);
 
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('887f192a7132480a8cdc71abb6506c3c','M_SYS_PROFILE','系统参数','95e69d004bd249fb8f322544d9580ff6',54000,'0ec29df240fa41d59dbdf4f8d0a7b06b',0);
@@ -160,6 +169,20 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('aed515fee3d14457a39af9b6517c8c68', 'F_MENU_HOME', 'Menu Home', '/menu/home.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('0ec29df240fa41d59dbdf4f8d0a7b06b', 'F_PROFILE_HOME', 'Profile Home', '/profile/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('54b98d09e0d24feaa53d277f9027806a', 'F_USER_HOME', 'User Home', '/user/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('4a29c61bdaa7446b8d52f216c0b4e5ff', 'F_FUNC_HOME', 'Func Home', '/func/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)	
+	values('ca8ab14b5bfb4d139965f60b4bf1fecd', 'F_ROLE_HOME', 'Role Home', '/role/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('e27534cc870347f183d5c8d151b08eb6', 'F_USERROLE_HOME', 'User Role Home', '/userRole/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('1bcc070eaced40f08b8d40f95ab85e73', 'F_ROLEMENU_HOME', 'Role Menu Home', '/roleMenu/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('2deb71cdaecf40dabe1a99cc6f31dd67', 'F_CATEGORY_HOME', 'Category Home', '/category/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('103a70039a184cdfa15bbbd53dbf9a70', 'F_LOOKUP_HOME', 'Lookup Home', '/lookup/home.do', 0);
 
 drop table if exists t_profiles;
 
@@ -219,21 +242,6 @@ random ids:
 
 
 
-
-
-
-
-
-54b98d09e0d24feaa53d277f9027806a
-4a29c61bdaa7446b8d52f216c0b4e5ff
-fdf5ab3aacce47f8b5e76dafc76d61fe
-ca8ab14b5bfb4d139965f60b4bf1fecd
-e27534cc870347f183d5c8d151b08eb6
-489ab30eef5148548a833fce98af4e5e
-1bcc070eaced40f08b8d40f95ab85e73
-bb2ed3d2bf684dc7934ee66a3e43763c
-2deb71cdaecf40dabe1a99cc6f31dd67
-103a70039a184cdfa15bbbd53dbf9a70
 227eb0ca23a34297a80dbc214c875ba7
 247551f60e3b4b4888681d275c3805e2
 355bb18abab24faa8590a058f188d7ac

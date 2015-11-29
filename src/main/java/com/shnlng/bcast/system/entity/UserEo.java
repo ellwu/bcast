@@ -1,5 +1,6 @@
 package com.shnlng.bcast.system.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +13,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "t_users")
-public class UserEo {
+public class UserEo implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name = "user_id")
 	private String id;
@@ -30,19 +32,27 @@ public class UserEo {
 	@Column(name = "version")
 	private long version;
 
-	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")   
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "creation_time")
 	private Date creationTime;
 
 	@Column(name = "created_by")
 	private String createdBy;
 
-	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")   
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "update_time")
 	private Date updateTime;
 
 	@Column(name = "updated_by")
 	private String updatedBy;
+
+	public UserEo() {
+	}
+
+	public UserEo(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 	public Date getCreationTime() {
 		return creationTime;
