@@ -28,31 +28,32 @@
 			<bean id="pageableResovler"
 				class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
 		</mvc:argument-resolvers>
+		<mvc:message-converters>
+			<bean id="mappingJacksonHttpMessageConverter"
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+				<property name="objectMapper">
+					<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+						<property name="dateFormat">
+							<bean class="java.text.SimpleDateFormat">
+								<constructor-arg index="0" type="java.lang.String"
+									value="yyyy-MM-dd HH:mm:ss" />
+							</bean>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</mvc:message-converters>
 	</mvc:annotation-driven>
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="messages" />
 		<property name="useCodeAsDefaultMessage" value="true" />
-	</bean>
-
-	<bean id="mappingJacksonHttpMessageConverter"
-		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>application/json;charset=UTF-8</value>
-			</list>
-		</property>
-		<property name="objectMapper">
-			<bean class="com.fasterxml.jackson.databind.ObjectMapper">
-				<property name="dateFormat">
-					<bean class="java.text.SimpleDateFormat">
-						<constructor-arg index="0" type="java.lang.String"
-							value="yyyy-MM-dd HH:mm:ss" />
-					</bean>
-				</property>
-			</bean>
-		</property>
 	</bean>
 
 	<bean id="freemarkerConfig"

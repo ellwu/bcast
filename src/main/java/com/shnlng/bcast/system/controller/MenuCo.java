@@ -1,5 +1,6 @@
 package com.shnlng.bcast.system.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,7 +57,7 @@ public class MenuCo {
 	public Page<MenuEo> list(Pageable pageable) {
 		logger.debug("enter list");
 
-		Page<MenuEo> result = menuService.menuRepository.findAllPaged(pageable); //.findAll(pageable);
+		Page<MenuEo> result = menuService.menuRepository.findAllPaged(pageable); // .findAll(pageable);
 
 		logger.debug("leave list");
 		return result;
@@ -78,8 +80,17 @@ public class MenuCo {
 			return result;
 		}
 
-		menuService.menuRepository.delete(menu);
+		try {
+			
+			menuService.menuRepository.delete(menu);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 
+			result.put("msg", requestContext.getMessage("menu.delete.error"));
+			result.put("status", false);
+			return result;
+		}
 		result.put("msg", requestContext.getMessage("menu.delete.ok"));
 		result.put("status", true);
 
@@ -105,13 +116,61 @@ public class MenuCo {
 		}
 
 		menu.setId(IdGen.id32());
+		
+		try {
+			menu.setCreationTime(new Date());
+			
+			menuService.menuRepository.save(menu);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 
-		menuService.menuRepository.save(menu);
+			result.put("msg", requestContext.getMessage("menu.create.error"));
+			result.put("status", false);
+			return result;
+		}
 
 		result.put("msg", requestContext.getMessage("menu.create.ok"));
 		result.put("status", true);
 
 		logger.debug("leave create menu");
+		return result;
+	}
+	
+	@RequestMapping("/edit")
+	@ResponseBody
+	public Map<String, Object> edit(HttpServletRequest req, HttpServletResponse resp, MenuEo menu) {
+		logger.debug("enter edit menu");
+
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		RequestContext requestContext = new RequestContext(req);
+
+		if (menu == null || StringUtils.isEmpty(menu.getId())) {
+			logger.debug("menu input empty");
+
+			result.put("msg", requestContext.getMessage("menu.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+
+		try {
+			menu.setUpdateTime(new Date());
+			
+			menuService.menuRepository.save(menu);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+
+			result.put("msg", requestContext.getMessage("menu.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+
+		result.put("msg", requestContext.getMessage("menu.edit.ok"));
+		result.put("status", true);
+
+		logger.debug("leave edit menu");
 		return result;
 	}
 

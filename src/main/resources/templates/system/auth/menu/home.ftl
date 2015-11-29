@@ -129,19 +129,30 @@
 				            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				            <h4 class="modal-title" id="editModalLabel"><@spring.message "prompt.edit"/></h4>
 				         </div>
-				         <div class="modal-body">            
-							<form role="form" id="editForm">
+				         <div class="modal-body">       
+				         	<div class="alert alert-danger" role="alert" ng-hide="editOk">{{ editMsg }}</div>      
+							<form role="form" id="editForm" class="form-horizontal">
 							   <div class="form-group">
-							      <label for="key">Key</label>
-							      <input type="text" class="form-control" ng-model="hello" id="key" name="key" placeholder="请输入名称"/>
+							      <label class="col-sm-2 control-label" for="key">Key</label>
+							      <div class="col-sm-10">
+							        <input type="text" class="form-control" id="key" ng-model="editItem.key" name="key" placeholder="<@spring.message "menu.key"/>">
+							   	  </div>
 							   </div>
 							   <div class="form-group">
-							      <label for="prompt">Prompt</label>
-							      <input type="text" class="form-control" id="prompt" name="prompt" placeholder="请输入名称"/>
+							      <label class="col-sm-2 control-label"  for="prompt">Prompt</label>
+							      <div class="col-sm-10">
+							        <input type="text" class="form-control" id="prompt" ng-model="editItem.prompt" name="prompt" placeholder="<@spring.message "menu.key"/>">
+							   	  </div>
 							   </div>
 							   <div class="form-group">
-							      <label for="sequence">Sequence</label>
-							      <input type="text" class="form-control" id="sequence" name="sequence" placeholder="请输入名称"/>
+							      <label class="col-sm-2 control-label"  for="sequence">Sequence</label>
+							      <div class="col-sm-2">
+							        <input type="text" class="form-control" id="sequence" ng-model="editItem.sequence" name="sequence" placeholder="<@spring.message "menu.key"/>">
+							      </div>
+							      <label class="col-sm-2 control-label"  for="parentId">Parent</label>
+							      <div class="col-sm-4">
+							        <select class="form-control" id="parentId" name="parentId" ng-model="editItem.parentId" ng-options="o.id as o.prompt for o in options"></select>
+							      </div>
 							   </div>							   
 							</form>
 				         </div>
@@ -174,183 +185,7 @@
 				
 			</@html.content>
 			
-			<script>
-				var app = angular.module('myApp', []);
-				app.controller('menusCtl', function($scope, $http) {
-					$scope.noTopMsg = true;
-					$scope.topMsg = "";
-					
-					$scope.showTopMsg = function(msg){
-						$scope.topMsg = msg;
-						$scope.noTopMsg = false;
-						
-						setTimeout(function(){
-							$scope.noTopMsg = true;
-						}, 2000);
-					};
-				
-					//pageable table begin
-					$scope.pageIndex = 0;
-					$scope.pageSize = 10;
-					
-					$scope.getData = function(){
-						var listUrl = "${base}/menu/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
-					    
-					    $http.get(listUrl).success(function (response) {
-					    	$scope.page = response;
-					    });
-				    };
-				    
-				    $scope.getData();
-				    		
-			    	$scope.next = function(){
-			    		$scope.pageIndex += 1;
-			    		$scope.getData();
-			    	};
-			    	
-			    	$scope.previous = function(){
-			    		$scope.pageIndex -= 1;
-			    		$scope.getData();
-			    	};
-			    	
-			    	$scope.perPage = function(size){
-			    		$scope.pageSize = size;
-			    		$scope.pageIndex = 0;
-			    		
-			    		$scope.getData();
-			    	};
-			    	//pageable table end
-			    	
-			    	//select option values begin
-			    	$scope.options = [];
-			    	
-			    	$scope.optionsInit = function(){
-			    		var optionsUrl = "${base}/menu/options.do";
-					    
-					    $http.get(optionsUrl).success(function (response) {
-					    	$scope.options = response;
-					    });
-			    	};
-			    	
-			    	//select option values end
-			    	
-			    	//create action begin
-			    	$scope.createItem = {};
-			    	$scope.createMsg = "";
-			    	$scope.createOk = true;
-			    	
-			    	$scope.create = function(item){
-			    		$("#createModal").modal("show");
-			    		
-			    		$scope.optionsInit();
-			    	};
-			    	
-			    	$scope.createConfirm = function(){
-			    		$.ajax({
-			    			cache: true,
-			    			type: 'POST',
-			    			url: "${base}/menu/create.do",
-			    			data: $scope.createItem,
-			    			async: false,
-			    			error: function(req){
-			    				$scope.createOk = false;
-			    				$scope.createMsg = "Internal error. Please contact your administrator.";
-			    			},
-			    			success: function(data){
-			    				if(data.status){
-			    					$("#createModal").modal('hide');
-			    					
-			    					$scope.createOk = true;
-			    					$scope.getData();
-			    					
-			    					$scope.showTopMsg(data.msg);
-			    				}else{
-			    					$scope.createMsg = data.msg;
-			    					$scope.createOk = false;
-			    				}
-			    			}
-			    		});
-			    	};
-			    	//create action end
-			    	
-			    	//edit action begin
-			    	$scope.editItem = {};
-			    	$scope.editMsg = "";
-			    	$scope.editOk = true;
-			    	
-			    	$scope.edit = function(item){
-			    		$scope.editItem = item;
-			    		
-			    		$("#editModal").modal("show");
-			    	};
-			    	
-			    	$scope.editConfirm = function(){
-			    		
-			    		$.ajax({
-			    			cache: true,
-			    			type: 'POST',
-			    			url: "${base}/menu/edit.do",
-			    			data: $scope.editItem,
-			    			async: false,
-			    			error: function(req){
-			    				$scope.editOk = false;
-			    				$scope.editMsg = "Internal error. Please contact your administrator.";
-			    			},
-			    			success: function(data){
-			    				if(data.status){
-			    					$("#editModal").modal('hide');
-			    					$scope.getData();
-			    				}else{
-			    					$scope.editMsg = data.msg;
-			    					$scope.editOk = false;
-			    				}
-			    			}
-			    		});
-			    	};
-			    	
-			    	//edit action end
-			    	
-			    	//delete action begin
-			    	$scope.deleteItem = {};
-			    	$scope.deleteMsg = "";
-			    	$scope.deleteOk = true;
-			    	
-			    	$scope.delete = function(item){
-			    		$scope.deleteItem = item;
-			    		
-			    		$("#deleteModal").modal("show");
-			    	};
-			    	
-			    	$scope.deleteConfirm = function(){
-			    		console.info($scope.deleteItem);
-			    		
-			    		$.ajax({
-			    			cache: true,
-			    			type: 'POST',
-			    			url: "${base}/menu/delete.do",
-			    			data: $scope.deleteItem,
-			    			async: false,
-			    			error: function(req){
-			    				$scope.deleteOk = false;
-			    				$scope.deleteMsg = "Internal error. Please contact your administrator.";
-			    			},
-			    			success: function(data){
-			    				if(data.status){
-			    					$("#deleteModal").modal('hide');
-			    					$scope.getData();
-			    					
-			    					$scope.showTopMsg(data.msg);
-			    				}else{
-			    					$scope.deleteMsg = data.msg;
-			    					$scope.deleteOk = false;
-			    				}
-			    			}
-			    		});
-			    	};
-			    	
-			    	//delete action end
-				});
-			</script>
+			<script src="${base}/res.do?path=/system/auth/menu/home.js"></script>
 		</div>
 	</body>
 </html>
