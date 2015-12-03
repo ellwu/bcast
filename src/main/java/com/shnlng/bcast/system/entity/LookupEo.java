@@ -50,6 +50,15 @@ public class LookupEo implements Serializable {
 	@Column(name = "updated_by")
 	private String updatedBy;
 
+	public LookupEo() {
+	}
+
+	public LookupEo(String key, String value, String desc) {
+		this.key = key;
+		this.value = value;
+		this.desc = desc;
+	}
+
 	public String getId() {
 		return id;
 	}

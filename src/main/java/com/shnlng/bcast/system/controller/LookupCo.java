@@ -2,6 +2,7 @@ package com.shnlng.bcast.system.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,8 +55,7 @@ public class LookupCo {
 
 	@RequestMapping(path = "/delete", consumes = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> delete(HttpServletRequest req, HttpServletResponse resp,
-			@RequestBody LookupEo lookup) {
+	public Map<String, Object> delete(HttpServletRequest req, HttpServletResponse resp, @RequestBody LookupEo lookup) {
 		logger.debug("enter delete lookup");
 
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -89,8 +89,7 @@ public class LookupCo {
 
 	@RequestMapping(path = "/create", consumes = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> create(HttpServletRequest req, HttpServletResponse resp,
-			@RequestBody LookupEo lookup) {
+	public Map<String, Object> create(HttpServletRequest req, HttpServletResponse resp, @RequestBody LookupEo lookup) {
 		logger.debug("enter create lookup");
 
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -129,8 +128,7 @@ public class LookupCo {
 
 	@RequestMapping(path = "/edit", consumes = "application/json", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> edit(HttpServletRequest req, HttpServletResponse resp,
-			@RequestBody LookupEo lookup) {
+	public Map<String, Object> edit(HttpServletRequest req, HttpServletResponse resp, @RequestBody LookupEo lookup) {
 		logger.debug("enter edit lookup");
 
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -147,7 +145,7 @@ public class LookupCo {
 
 		try {
 			lookup.setUpdateTime(new Date());
-			
+
 			lookupRepo.save(lookup);
 
 		} catch (Exception e) {
@@ -162,6 +160,17 @@ public class LookupCo {
 		result.put("status", true);
 
 		logger.debug("leave edit lookup");
+		return result;
+	}
+
+	@RequestMapping("/values")
+	@ResponseBody
+	public List<LookupEo> values(String categoryKey) {
+		logger.debug("enter values");
+
+		List<LookupEo> result = lookupRepo.findByCategoryKey(categoryKey);
+
+		logger.debug("leave values");
 		return result;
 	}
 }

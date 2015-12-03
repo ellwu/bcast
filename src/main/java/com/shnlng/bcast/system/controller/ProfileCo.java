@@ -67,9 +67,9 @@ public class ProfileCo {
 		}
 
 		try {
-			
+
 			profileRepo.delete(profile);
-			
+
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
@@ -102,12 +102,12 @@ public class ProfileCo {
 		}
 
 		profile.setId(IdGen.id32());
-		
+
 		try {
 			profile.setCreationTime(new Date());
-			
+
 			profileRepo.save(profile);
-			
+
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
@@ -122,7 +122,7 @@ public class ProfileCo {
 		logger.debug("leave create profile");
 		return result;
 	}
-	
+
 	@RequestMapping("/edit")
 	@ResponseBody
 	public Map<String, Object> edit(HttpServletRequest req, HttpServletResponse resp, ProfileEo profile) {
@@ -142,9 +142,9 @@ public class ProfileCo {
 
 		try {
 			profile.setUpdateTime(new Date());
-			
+
 			profileRepo.save(profile);
-			
+
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
@@ -158,5 +158,16 @@ public class ProfileCo {
 
 		logger.debug("leave edit profile");
 		return result;
+	}
+
+	@RequestMapping("/value")
+	@ResponseBody
+	public String value(String key) {
+		logger.debug("enter value");
+
+		String value = profileRepo.findValueByKey(key);
+
+		logger.debug("enter value");
+		return value;
 	}
 }
