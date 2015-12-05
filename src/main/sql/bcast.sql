@@ -1,7 +1,6 @@
 use demo;
 
 drop table if exists t_users;
-
 create table t_users(
 	user_id char(32) not null,
 	user_name varchar(100) not null,
@@ -20,8 +19,7 @@ insert into t_users(user_id, user_name, user_password, version)
 insert into t_users(user_id, user_name, user_password, version)
 	values('2013cd8e0d8d40e6adc9e0e2e9d35bc2', 'q', 'q', 0);
 	
-drop table if exists t_roles;
-	
+drop table if exists t_roles;	
 create table t_roles(
 	role_id char(32) not null,
 	role_name varchar(100) not null,
@@ -39,8 +37,7 @@ insert into t_roles(role_id, role_name, version)
 insert into t_roles(role_id, role_name, version)
 	values('69813f5d391945b5921a520dc0b2d4cc','user', 0);
 
-drop table if exists t_menus;
-	
+drop table if exists t_menus;	
 create table t_menus(
 	menu_id char(32) not null,
 	menu_key char(30) not null,
@@ -111,7 +108,6 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 	values('887f192a7132480a8cdc71abb6506c3c','M_SYS_PROFILE','系统参数','95e69d004bd249fb8f322544d9580ff6',54000,'0ec29df240fa41d59dbdf4f8d0a7b06b',0);
 
 drop table if exists t_user_roles;
-
 create table t_user_roles(
 	ur_id char(32) not null,
 	ur_user_id char(32) not null,
@@ -131,7 +127,6 @@ insert into t_user_roles(ur_id, ur_user_id, ur_role_id, version)
 	values('463f2ca5ccd04a239656074efb00e5a4','2013cd8e0d8d40e6adc9e0e2e9d35bc2', '69813f5d391945b5921a520dc0b2d4cc', 0);
 
 drop table if exists t_role_menus;
-
 create table t_role_menus(
 	rm_id char(32) not null,
 	rm_role_id char(32) not null,
@@ -150,7 +145,6 @@ insert into t_role_menus(rm_id, rm_role_id, rm_menu_id, version)
 	values('4d73b5adc6074c1fa4a912b02dccd9e6', '69813f5d391945b5921a520dc0b2d4cc', '95e69d004bd249fb8f322544d9580ff6', 0);
 
 drop table if exists t_funcs;
-
 create table t_funcs(
 	func_id char(32) not null,
 	func_key char(30) not null,
@@ -185,7 +179,6 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('103a70039a184cdfa15bbbd53dbf9a70', 'F_LOOKUP_HOME', 'Lookup Home', '/lookup/home.do', 0);
 
 drop table if exists t_profiles;
-
 create table t_profiles(
 	profile_id char(32) not null,
 	profile_key char(30) not null,
@@ -201,7 +194,6 @@ create table t_profiles(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 drop table if exists t_categories;
-
 create table t_categories(
 	category_id char(32) not null,
 	category_key char(30) not null,
@@ -216,7 +208,6 @@ create table t_categories(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 drop table if exists t_lookups;
-
 create table t_lookups(
 	lookup_id char(32) not null,
 	lookup_category_id char(32) not null,
@@ -230,133 +221,6 @@ create table t_lookups(
 	updated_by char(32),
 	version integer,
 	primary key(lookup_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-drop table if exists t_merchants;
-create table t_merchants(
-	merchant_id char(32) not null,
-	merchant_name varchar(200),
-	merchant_desc varchar(200),
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(merchant_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-drop table if exists t_devices;
-create table t_devices(
-	device_id char(32) not null,
-	device_sequence_numb char(32) not null,
-	device_merchant_id char(32),
-	device_status number,	
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(device_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-drop table if exists t_advertisers;
-create table t_advertisers(
-	advertiser_id char(32) not null,
-	advertiser_name varchar(200),
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(advertiser_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-drop table if exists t_ads;
-create table t_ads(
-	ad_id char(32) not null,
-	ad_type number,
-	ad_child_sequence varchar(500),
-	ad_duration number,
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(ad_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-drop table if exists t_targets;
-create table t_targets(
-	target_id char(32) not null,
-	target_advertiser_id char(32) not null,
-	target_begin_time datetime,
-	target_end_time datetime,
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(target_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-drop table if exists t_target_merchants;
-create table t_target_merchants(
-	tm_id char(32) not null,
-	tm_target_id char(32) not null,
-	tm_merchant_id char(32) not null,
-	tm_status number,
-	tm_begin_time datetime,
-	tm_end_time datetime,
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(tm_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-drop table if exists t_target_ads;
-create table t_target_ads(
-	ta_id char(32) not null,
-	ta_target_id char(32) not null,
-	ta_ad_id char(32) not null,
-	ta_sequence number,
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(ta_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-drop table if exists t_counts;
-create table t_counts(
-	count_device_id char(32) not null,
-	count_ad_id char(32) not null,
-	count_play_count number,
-	count_time datetime,
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(count_device_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*
@@ -411,25 +275,4 @@ f5dc1172771a4118a0c97233194cf99f
 55dcbbdbca0540d9987fdb5734b9d478
 28605a5b0fbd4a8b8ae16d302a52f523
 3dbb7bda92a74e7f95365590bdb5ec1d
-04ebfba883d1444999d88a1e67f699e9
-87aa8f25dc524fe6b422e20f828ed9e4
-38ddb6ee43ba401d85ba967c87e377c6
-9c0eb86aee7345deb827208b86523d96
-2820cf76dd704d4392a8eda296c6e3be
-88614e287065478e899d831186e435fe
-21e87e30f65b454fbf193ac8b62eba7c
-180229b3ce7e4614a428701cc38fcfe3
-f329e13ac1ed4a53b823a15e540cb1eb
-e6ed10eb8cc340eea8feb7ad2890fe1e
-f2ef0f63569c4c429597afc12b95759a
-673e852569614965afbfb50e58802b36
-b06735d425e64078a7ced0cf62ef2e71
-d1f727ad821143858ddd66f146e75aa7
-660c70d8900c4300a7c0fae6273fda1c
-d3815a0963b5433eb939fd290769ca4b
-a5bc6b02da9a45ebb643c131c7df0ac2
-548c7e8eec9e412888c96b3f532e820a
-
-
 */
-
