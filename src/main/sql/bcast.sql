@@ -223,6 +223,7 @@ create table t_lookups(
 	lookup_key char(30) not null,
 	lookup_value varchar(200) not null,
 	lookup_desc varchar(200),
+	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
@@ -231,7 +232,132 @@ create table t_lookups(
 	primary key(lookup_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+drop table if exists t_merchants;
+create table t_merchants(
+	merchant_id char(32) not null,
+	merchant_name varchar(200),
+	merchant_desc varchar(200),
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(merchant_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+drop table if exists t_devices;
+create table t_devices(
+	device_id char(32) not null,
+	device_sequence_numb char(32) not null,
+	device_merchant_id char(32),
+	device_status number,	
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(device_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table if exists t_advertisers;
+create table t_advertisers(
+	advertiser_id char(32) not null,
+	advertiser_name varchar(200),
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(advertiser_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table if exists t_ads;
+create table t_ads(
+	ad_id char(32) not null,
+	ad_type number,
+	ad_child_sequence varchar(500),
+	ad_duration number,
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(ad_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table if exists t_targets;
+create table t_targets(
+	target_id char(32) not null,
+	target_advertiser_id char(32) not null,
+	target_begin_time datetime,
+	target_end_time datetime,
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(target_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table if exists t_target_merchants;
+create table t_target_merchants(
+	tm_id char(32) not null,
+	tm_target_id char(32) not null,
+	tm_merchant_id char(32) not null,
+	tm_status number,
+	tm_begin_time datetime,
+	tm_end_time datetime,
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(tm_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table if exists t_target_ads;
+create table t_target_ads(
+	ta_id char(32) not null,
+	ta_target_id char(32) not null,
+	ta_ad_id char(32) not null,
+	ta_sequence number,
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(ta_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table if exists t_counts;
+create table t_counts(
+	count_device_id char(32) not null,
+	count_ad_id char(32) not null,
+	count_play_count number,
+	count_time datetime,
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(count_device_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*
 
@@ -306,3 +432,4 @@ a5bc6b02da9a45ebb643c131c7df0ac2
 
 
 */
+
