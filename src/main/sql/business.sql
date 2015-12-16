@@ -1,32 +1,16 @@
 use demo;
 
-drop table if exists t_merchants;
-create table t_merchants(
-	merchant_id char(32) not null,
-	merchant_name varchar(200),
-	merchant_desc varchar(200),
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(merchant_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-
-insert into t_merchants(merchant_id, merchant_name, merchant_desc, version)
-	values('04ebfba883d1444999d88a1e67f699e9','DEMO_MERCHANT', 'Demo Merchant', 0);
-
 drop table if exists t_devices;
 create table t_devices(
 	device_id char(32) not null,
-	device_sequence_num char(32) not null,
-	device_merchant_id char(32),
-	device_status int,	
+	
+	device_sn varchar(32) not null,
+	device_batch varchar(20),
+	device_status integer,
+	device_bind_status integer,
+	
+	delete_flag integer,
+	disable_flag integer,
 	
 	creation_time datetime,
 	created_by char(32),
@@ -37,13 +21,25 @@ create table t_devices(
 	primary key(device_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into t_devices(device_id, device_sequence_num, device_merchant_id, device_status, version)
-	values('548c7e8eec9e412888c96b3f532e820a','a5bc6b02da9a45ebb643c131c7df0ac2', '04ebfba883d1444999d88a1e67f699e9', 1, 0);
-
-drop table if exists t_advertisers;
-create table t_advertisers(
-	advertiser_id char(32) not null,
-	advertiser_name varchar(200),
+drop table if exists t_advers;
+create table t_advers(
+	adver_id char(32) not null,
+	
+	adver_name varchar(200),
+	
+	adver_addr varchar(400),
+	adver_province varchar(20),
+	adver_city varchar(20),
+	adver_district varchar(20),
+	
+	adver_category integer,
+	
+	adver_contact_person varchar(40),
+	adver_contact_phone varchar(40),
+	adver_operation_person varchar(40),
+	
+	delete_flag integer,
+	disable_flag integer,
 	
 	creation_time datetime,
 	created_by char(32),
@@ -51,19 +47,29 @@ create table t_advertisers(
 	updated_by char(32),
 	version integer,
 	
-	primary key(advertiser_id)
+	primary key(adver_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into t_advertisers(advertiser_id, advertiser_name, version)
-	values('d3815a0963b5433eb939fd290769ca4b','DEMO_ADVER', 0);
-
-drop table if exists t_ads;
-create table t_ads(
-	ad_id char(32) not null,
-	ad_type int,
-	ad_child_sequence varchar(500),
-	ad_duration int,
-	ad_desc varchar(500),
+drop table if exists t_merchants;
+create table t_merchants(
+	merchant_id char(32) not null,
+	
+	merchant_name varchar(200),
+	
+	merchant_addr varchar(400),
+	merchant_province varchar(20),
+	merchant_city varchar(20),
+	merchant_district varchar(20),
+	
+	merchant_level integer,
+	
+	merchant_contact_person varchar(40),
+	merchant_contact_phone varchar(40),
+	merchant_spread_person varchar(40),
+	merchant_service_person varchar(40),
+	
+	delete_flag integer,
+	disable_flag integer,
 	
 	creation_time datetime,
 	created_by char(32),
@@ -71,23 +77,84 @@ create table t_ads(
 	updated_by char(32),
 	version integer,
 	
-	primary key(ad_id)
+	primary key(merchant_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into t_ads(ad_id, ad_type, ad_child_sequence, ad_duration, ad_desc, version)
-	values('87aa8f25dc524fe6b422e20f828ed9e4', 1, null, '40', 'ADV0001', 0);
-insert into t_ads(ad_id, ad_type, ad_child_sequence, ad_duration, ad_desc, version)
-	values('38ddb6ee43ba401d85ba967c87e377c6', 1, null, '45', 'ADV0002', 0);
-insert into t_ads(ad_id, ad_type, ad_child_sequence, ad_duration, ad_desc, version)
-	values('9c0eb86aee7345deb827208b86523d96', 1, null, '23', 'ADV0003', 0);
+drop table if exists t_resources;
+create table t_resources(
+	resource_id char(32) not null,
+	resource_merchant_id char(32),
+	
+	resource_type integer,
+	
+	resource_origin_name varchar(200),
+	resource_duration integer,
+	
+	resource_upload_time datetime,
+	resource_upload_status integer,
+	
+	resource_category integer,
+	
+	resource_range_age varchar(200),
+	resource_range_group varchar(200),
+	resource_target_status integer,
+	
+	delete_flag integer,
+	disable_flag integer,
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(resource_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+drop table if exists t_bindings;
+create table t_bindings(
+	binding_id char(32) not null,
+	
+	binding_device_id char(32),
+	binding_merchant_id char(32),
+	
+	binding_bind_time datetime,
+	binding_release_time datetime,
+	
+	binding_status integer,
+	
+	delete_flag integer,
+	disable_flag integer,
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(binding_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 drop table if exists t_targets;
 create table t_targets(
 	target_id char(32) not null,
-	target_advertiser_id char(32) not null,
+	
+	target_sn char(32),
+	
+	target_merchant_id char(32),
+	target_resource_id char(32),
+	
 	target_begin_time datetime,
 	target_end_time datetime,
+	
+	target_status integer,
+	target_desc varchar(200),
+	
+	target_play_sequence integer,
+	target_ban_time datetime,
+	
+	delete_flag integer,
+	disable_flag integer,
 	
 	creation_time datetime,
 	created_by char(32),
@@ -98,62 +165,17 @@ create table t_targets(
 	primary key(target_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into t_targets(target_id, target_advertiser_id, target_begin_time, target_end_time, version)
-	values('660c70d8900c4300a7c0fae6273fda1c', 'd3815a0963b5433eb939fd290769ca4b', now(), now() + 100, 0);
-
-drop table if exists t_target_merchants;
-create table t_target_merchants(
-	tm_id char(32) not null,
-	tm_target_id char(32) not null,
-	tm_merchant_id char(32) not null,
-	tm_status int,
-	tm_begin_time datetime,
-	tm_end_time datetime,
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(tm_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-insert into t_target_merchants(tm_id, tm_target_id, tm_merchant_id, tm_status, tm_begin_time, tm_end_time, version)
-	values('2820cf76dd704d4392a8eda296c6e3be', '660c70d8900c4300a7c0fae6273fda1c', '04ebfba883d1444999d88a1e67f699e9', 1, null, null, 0);
-	
-	
-
-
-drop table if exists t_target_ads;
-create table t_target_ads(
-	ta_id char(32) not null,
-	ta_target_id char(32) not null,
-	ta_ad_id char(32) not null,
-	ta_sequence int,
-	
-	creation_time datetime,
-	created_by char(32),
-	update_time datetime,
-	updated_by char(32),
-	version integer,
-	
-	primary key(ta_id)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-  
-insert into t_target_ads(ta_id, ta_target_id, ta_ad_id, ta_sequence, version)
-	values('88614e287065478e899d831186e435fe', '660c70d8900c4300a7c0fae6273fda1c', '87aa8f25dc524fe6b422e20f828ed9e4', 10, 0);
-insert into t_target_ads(ta_id, ta_target_id, ta_ad_id, ta_sequence, version)
-	values('21e87e30f65b454fbf193ac8b62eba7c', '660c70d8900c4300a7c0fae6273fda1c', '38ddb6ee43ba401d85ba967c87e377c6', 30, 0);
-insert into t_target_ads(ta_id, ta_target_id, ta_ad_id, ta_sequence, version)
-	values('180229b3ce7e4614a428701cc38fcfe3', '660c70d8900c4300a7c0fae6273fda1c', '9c0eb86aee7345deb827208b86523d96', 20, 0);
-
 drop table if exists t_counts;
 create table t_counts(
-	count_device_id char(32) not null,
-	count_ad_id char(32) not null,
-	count_play_count int,
+	device_id char(32),
+	resource_id char(32),
+	count integer,
+	time integer,
 	count_time datetime,
+	upload_time datetime,
+	
+	delete_flag integer,
+	disable_flag integer,
 	
 	creation_time datetime,
 	created_by char(32),
@@ -161,7 +183,7 @@ create table t_counts(
 	updated_by char(32),
 	version integer,
 	
-	primary key(count_device_id)
+	primary key(device_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*
