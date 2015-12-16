@@ -167,6 +167,7 @@ create table t_targets(
 
 drop table if exists t_counts;
 create table t_counts(
+	count_id char(32) not null,
 	device_id char(32),
 	resource_id char(32),
 	count integer,
@@ -183,7 +184,7 @@ create table t_counts(
 	updated_by char(32),
 	version integer,
 	
-	primary key(device_id)
+	primary key(count_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*
