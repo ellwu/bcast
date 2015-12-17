@@ -21,7 +21,7 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.pageSize = 10;
 	
 	$scope.getData = function(){
-		var listUrl = "${base}/user/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+		var listUrl = "${base}/device/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
 	    
 	    $http.get(listUrl).success(function (response) {
 	    	$scope.page = response;
@@ -62,7 +62,7 @@ app.controller('appCtl', function($scope, $http) {
 		$.ajax({
 			cache: true,
 			type: 'POST',
-			url: "${base}/user/create.do",
+			url: "${base}/device/create.do",
 			data: $scope.createItem,
 			async: false,
 			error: function(req){
@@ -103,7 +103,7 @@ app.controller('appCtl', function($scope, $http) {
 		$.ajax({
 			cache: true,
 			type: 'POST',
-			url: "${base}/user/edit.do",
+			url: "${base}/device/edit.do",
 			data: $scope.editItem,
 			async: false,
 			error: function(req){
@@ -147,7 +147,7 @@ app.controller('appCtl', function($scope, $http) {
 		$.ajax({
 			cache: true,
 			type: 'POST',
-			url: "${base}/user/delete.do",
+			url: "${base}/device/delete.do",
 			data: $scope.deleteItem,
 			async: false,
 			error: function(req){
