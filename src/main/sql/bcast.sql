@@ -58,7 +58,7 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 	values('79a627c7f9654d69954ef5ff756c175a','M_ROOT','顶级菜单',null,0,null,0);
 
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('eaafa50f51844514bf7107d9c6e26359','M_BUS','商户管理','79a627c7f9654d69954ef5ff756c175a',10000,null,0);
+	values('eaafa50f51844514bf7107d9c6e26359','M_BUS','商户管理','79a627c7f9654d69954ef5ff756c175a',10000,'355bb18abab24faa8590a058f188d7ac',0);
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('4de1a7d8526a40b4bcc3aa15dd2f821c','M_DEV','设备管理','79a627c7f9654d69954ef5ff756c175a',20000,'227eb0ca23a34297a80dbc214c875ba7',0);
@@ -180,6 +180,10 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('103a70039a184cdfa15bbbd53dbf9a70', 'F_LOOKUP_HOME', 'Lookup Home', '/lookup/home.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('227eb0ca23a34297a80dbc214c875ba7', 'F_DEVICE_HOME', 'Device Home', '/device/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('355bb18abab24faa8590a058f188d7ac', 'F_MERCHANT_HOME', 'Merchant Home', '/merchant/home.do', 0);
+	
+	
 
 drop table if exists t_profiles;
 create table t_profiles(
@@ -231,13 +235,6 @@ create table t_lookups(
 random ids:
 
 
-
-
-
-
-
-
-355bb18abab24faa8590a058f188d7ac
 20ab7cac904141ca82f48e25afd38e64
 d0edce6a718a4c65b64d25ffd947f7bb
 a7231144627544caa856f6c4ffeb4262
