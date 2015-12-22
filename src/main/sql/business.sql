@@ -122,6 +122,10 @@ create table t_resources(
 
 insert into t_resources(resource_id, resource_adver_id, resource_type, delete_flag, disable_flag, version)
 	values('aa885bbe109549f39ab70a81dbcc1427','c469f63a270249cc81d806e80003d255',1, 0, 0, 0);
+insert into t_resources(resource_id, resource_adver_id, resource_type, delete_flag, disable_flag, version)
+	values('8bf1edafa3b9416fbe5f80075de13f7f','c469f63a270249cc81d806e80003d255',1, 0, 0, 0);
+insert into t_resources(resource_id, resource_adver_id, resource_type, delete_flag, disable_flag, version)
+	values('692404459fdd48abbee8c5a7d5c9c810','c469f63a270249cc81d806e80003d255',1, 0, 0, 0);
 
 drop table if exists t_bindings;
 create table t_bindings(
@@ -146,6 +150,10 @@ create table t_bindings(
 	
 	primary key(binding_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into t_bindings(binding_id, binding_device_id, binding_merchant_id, binding_bind_time, binding_release_time, binding_status,
+	delete_flag, disable_flag, version)
+	values('26e9cb65e2054f2c8c2ec5308841d1d5','a7231144627544caa856f6c4ffeb4262','069bf1625a3e4fd3857511ee952d4777','2015-11-22 21:04:34', '2016-11-22 21:04:34', 1, 0, 0, 0);
 
 drop table if exists t_targets;
 create table t_targets(
@@ -176,6 +184,16 @@ create table t_targets(
 	
 	primary key(target_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into t_targets(target_id, target_sn, target_merchant_id, target_resource_id, target_begin_time, target_end_time,
+	target_status, target_play_sequence, delete_flag, disable_flag, version)
+	values('a35c11fb41c04f5cae733df3b3c88584', 't001', '069bf1625a3e4fd3857511ee952d4777', 'aa885bbe109549f39ab70a81dbcc1427', '2015-11-22 21:04:34', '2016-11-22 21:04:34', 1, 10, 0, 0, 0);
+insert into t_targets(target_id, target_sn, target_merchant_id, target_resource_id, target_begin_time, target_end_time,
+	target_status, target_play_sequence, delete_flag, disable_flag, version)
+	values('339ec46b030448c386b4348c0b027faf', 't002', '069bf1625a3e4fd3857511ee952d4777', '8bf1edafa3b9416fbe5f80075de13f7f', '2015-11-22 21:04:34', '2016-11-22 21:04:34', 1, 20, 0, 0, 0);
+insert into t_targets(target_id, target_sn, target_merchant_id, target_resource_id, target_begin_time, target_end_time,
+	target_status, target_play_sequence, delete_flag, disable_flag, version)
+	values('19e440b7b20c4a05b5640ec1cfad0b55', 't002', '069bf1625a3e4fd3857511ee952d4777', '692404459fdd48abbee8c5a7d5c9c810', '2015-11-22 21:04:34', '2016-11-22 21:04:34', 1, 30, 0, 0, 0);
 
 drop table if exists t_counts;
 create table t_counts(
