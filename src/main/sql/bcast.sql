@@ -66,9 +66,9 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('1c32b4ff6c8b48268749e50b91603465','M_ADV','广告管理','79a627c7f9654d69954ef5ff756c175a',30000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('42784df28fb14578ad15262199f688fd','M_ADV_SUP','广告商管理','1c32b4ff6c8b48268749e50b91603465',31000,null,0);
+	values('42784df28fb14578ad15262199f688fd','M_ADV_SUP','广告商管理','1c32b4ff6c8b48268749e50b91603465',31000,'20ab7cac904141ca82f48e25afd38e64',0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('525125e92cc348ac8be2eb504f0ca1a5','M_ADV_RES','广告资源管理','1c32b4ff6c8b48268749e50b91603465',32000,null,0);
+	values('525125e92cc348ac8be2eb504f0ca1a5','M_ADV_RES','广告资源管理','1c32b4ff6c8b48268749e50b91603465',32000,'d0edce6a718a4c65b64d25ffd947f7bb',0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('976e48f7f5634229953d10cb708860b1','M_ADV_CAST','广告投放管理','1c32b4ff6c8b48268749e50b91603465',33000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
@@ -182,6 +182,10 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('227eb0ca23a34297a80dbc214c875ba7', 'F_DEVICE_HOME', 'Device Home', '/device/home.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('355bb18abab24faa8590a058f188d7ac', 'F_MERCHANT_HOME', 'Merchant Home', '/merchant/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('20ab7cac904141ca82f48e25afd38e64', 'F_ADVER_HOME', 'Adver Home', '/adver/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('d0edce6a718a4c65b64d25ffd947f7bb', 'F_RESOURCE_HOME', 'Resource Home', '/resource/home.do', 0);
 	
 	
 
@@ -235,8 +239,6 @@ create table t_lookups(
 random ids:
 
 
-20ab7cac904141ca82f48e25afd38e64
-d0edce6a718a4c65b64d25ffd947f7bb
 a7231144627544caa856f6c4ffeb4262
 c469f63a270249cc81d806e80003d255
 069bf1625a3e4fd3857511ee952d4777

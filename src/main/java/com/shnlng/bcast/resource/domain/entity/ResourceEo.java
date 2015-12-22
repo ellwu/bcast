@@ -1,4 +1,4 @@
-package com.shnlng.bcast.resource.entity;
+package com.shnlng.bcast.resource.domain.entity;
 
 import java.io.Serializable;
 import java.util.Date;
