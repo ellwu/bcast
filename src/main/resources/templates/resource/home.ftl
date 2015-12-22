@@ -56,7 +56,7 @@
 					  	<table class="table table-bordered">
 							<thead> 
 								<tr> 
-									<th><@spring.message "resource.merchantId.head"/></th> 
+									<th><@spring.message "resource.adverId.head"/></th> 
 									
 									<th><@spring.message "resource.originName.head"/></th> 									
 									<th><@spring.message "resource.category.head"/></th> 
@@ -67,7 +67,7 @@
 							</thead> 
 							<tbody> 
 								<tr ng-repeat="item in page.content">
-								    <td>{{ item.merchantId }}</td>
+								    <td>{{ item.adverId }}</td>
 								    
 								    <td>{{ item.originName }}</td>
 								    <td>{{ item.category }}</td>

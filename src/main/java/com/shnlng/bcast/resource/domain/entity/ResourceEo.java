@@ -19,8 +19,8 @@ public class ResourceEo implements Serializable {
 	@Column(name = "resource_id")
 	private String id;
 
-	@Column(name = "resource_merchant_id")
-	private String merchantId;
+	@Column(name = "resource_adver_id")
+	private String adverId;
 
 	@Column(name = "resource_type")
 	private int type;
@@ -80,13 +80,13 @@ public class ResourceEo implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getMerchantId() {
-		return merchantId;
+	
+	public String getAdverId() {
+		return adverId;
 	}
 
-	public void setMerchantId(String merchantId) {
-		this.merchantId = merchantId;
+	public void setAdverId(String adverId) {
+		this.adverId = adverId;
 	}
 
 	public int getType() {

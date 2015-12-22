@@ -10,9 +10,9 @@
 			<form role="form" id="createForm" class="form-horizontal">
 			   
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="merchantId"><@spring.message "resource.merchantId.label"/></label>
+			      <label class="col-sm-2 control-label" for="adverId"><@spring.message "resource.adverId.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="merchantId" ng-model="createItem.merchantId" name="merchantId" placeholder="<@spring.message "resource.merchantId.placeholder"/>">
+			        <input type="text" class="form-control" id="adverId" ng-model="createItem.adverId" name="adverId" placeholder="<@spring.message "resource.adverId.placeholder"/>">
 			   	  </div>
 			   </div>
 			   

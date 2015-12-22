@@ -21,6 +21,9 @@ create table t_devices(
 	primary key(device_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+insert into t_devices(device_id, device_sn, device_batch, device_status, device_bind_status, delete_flag, disable_flag, version)
+	values('a7231144627544caa856f6c4ffeb4262', 'd001', 'b001', 1, 1, 0, 0, 0);
+
 drop table if exists t_advers;
 create table t_advers(
 	adver_id char(32) not null,
@@ -49,6 +52,9 @@ create table t_advers(
 	
 	primary key(adver_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into t_advers(adver_id, adver_name, adver_category, delete_flag, disable_flag, version)
+	values('c469f63a270249cc81d806e80003d255','a001', 1, 0, 0, 0);
 
 drop table if exists t_merchants;
 create table t_merchants(
@@ -80,10 +86,13 @@ create table t_merchants(
 	primary key(merchant_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+insert into t_merchants(merchant_id, merchant_name, merchant_level, delete_flag, disable_flag, version)
+	values('069bf1625a3e4fd3857511ee952d4777','m001', 1, 0, 0, 0);
+
 drop table if exists t_resources;
 create table t_resources(
 	resource_id char(32) not null,
-	resource_merchant_id char(32),
+	resource_adver_id char(32),
 	
 	resource_type integer,
 	
@@ -110,6 +119,9 @@ create table t_resources(
 	
 	primary key(resource_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into t_resources(resource_id, resource_adver_id, resource_type, delete_flag, disable_flag, version)
+	values('aa885bbe109549f39ab70a81dbcc1427','c469f63a270249cc81d806e80003d255',1, 0, 0, 0);
 
 drop table if exists t_bindings;
 create table t_bindings(
