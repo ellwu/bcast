@@ -7,8 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shnlng.bcast.system.entity.MenuEo;
-import com.shnlng.bcast.system.repository.MenuRepo;
+import com.shnlng.bcast.system.domain.MenuRepo;
+import com.shnlng.bcast.system.domain.entity.MenuEo;
 
 @Service
 public class MenuSo {

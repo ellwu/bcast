@@ -5,8 +5,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shnlng.bcast.system.entity.UserEo;
-import com.shnlng.bcast.system.repository.UserRepo;
+import com.shnlng.bcast.system.domain.UserRepo;
+import com.shnlng.bcast.system.domain.entity.UserEo;
 
 @Service
 public class UserSo {
