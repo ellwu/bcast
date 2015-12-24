@@ -12,6 +12,9 @@ import com.shnlng.bcast.system.domain.entity.MenuEo;
 public interface MenuRepo extends PagingAndSortingRepository<MenuEo, String> {
 
 	MenuEo findByKey(String key);
+	
+	@Query("select m from MenuEo m order by m.sequence asc")
+	List<MenuEo> findAllOrderBySequenceAsc();
 
 	List<MenuEo> findByParentIdOrderBySequenceAsc(String parentId);
 	
@@ -20,5 +23,4 @@ public interface MenuRepo extends PagingAndSortingRepository<MenuEo, String> {
 	
 	@Query("select new MenuEo(m.id, m.key, m.prompt) from MenuEo m order by m.sequence asc")
 	List<MenuEo> findOptions();
-	
 }

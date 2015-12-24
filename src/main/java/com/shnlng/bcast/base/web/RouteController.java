@@ -46,12 +46,12 @@ public class RouteController {
 		if (currentMenu == null) {
 			return "404";
 		}
-
+		
 		List<MenuEo> childMenus = currentMenu.getChildMenus();
-		
 
-		
 		HttpSession session = req.getSession();
+		
+		session.setAttribute("_CRUMBS", menuSo.crumbs(currentMenu));
 
 		boolean clickFromTopMenu = "top".equals(from);
 		if (clickFromTopMenu) {
@@ -62,31 +62,31 @@ public class RouteController {
 
 		String sideKey = null;
 		boolean clickFromSideMenu = "side".equals(from);
-		if(clickFromSideMenu){
+		if (clickFromSideMenu) {
 			sideKey = currentMenuKey;
 		}
-		
+
 		String forwardToFuncId = null;
 		for (MenuEo cM : childMenus) {
 
 			if (!StringUtils.isEmpty(cM.getFuncId())) {
 				forwardToFuncId = cM.getFuncId();
-				
-				if(clickFromTopMenu){
+
+				if (clickFromTopMenu) {
 					sideKey = cM.getKey();
 				}
 				break;
 			}
 
 		}
-		
+
 		String currentFuncId = currentMenu.getFuncId();
-		if(!StringUtils.isEmpty(currentFuncId)){
+		if (!StringUtils.isEmpty(currentFuncId)) {
 			forwardToFuncId = currentFuncId;
 		}
-		
+
 		session.setAttribute("_SIDE_KEY", sideKey);
-		
+
 		if (StringUtils.isEmpty(forwardToFuncId)) {
 			return "404";
 		}
@@ -109,4 +109,6 @@ public class RouteController {
 		logger.debug("leave toFunc");
 		return null;
 	}
+
+	
 }

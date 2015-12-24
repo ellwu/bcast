@@ -10,7 +10,7 @@ create table t_users(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key(user_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -28,7 +28,7 @@ create table t_roles(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key(role_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -50,7 +50,7 @@ create table t_menus(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key(menu_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 	
@@ -61,7 +61,12 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 	values('eaafa50f51844514bf7107d9c6e26359','M_BUS','商户管理','79a627c7f9654d69954ef5ff756c175a',10000,'355bb18abab24faa8590a058f188d7ac',0);
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('4de1a7d8526a40b4bcc3aa15dd2f821c','M_DEV','设备管理','79a627c7f9654d69954ef5ff756c175a',20000,'227eb0ca23a34297a80dbc214c875ba7',0);
+	values('4de1a7d8526a40b4bcc3aa15dd2f821c','M_DEV','终端设备','79a627c7f9654d69954ef5ff756c175a',20000,null,0);
+insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
+	values('b8db7cf1fed6491fa61e324419688896','M_DEV_HW','设备管理','4de1a7d8526a40b4bcc3aa15dd2f821c',21000,'227eb0ca23a34297a80dbc214c875ba7',0);
+insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
+	values('9136c634f90142ccb489f0b054400f4f','M_DEV_APPV','App版本管理','4de1a7d8526a40b4bcc3aa15dd2f821c',22000,'3dbb7bda92a74e7f95365590bdb5ec1d',0);
+
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('1c32b4ff6c8b48268749e50b91603465','M_ADV','广告管理','79a627c7f9654d69954ef5ff756c175a',30000,null,0);
@@ -117,7 +122,7 @@ create table t_user_roles(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key(ur_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -136,7 +141,7 @@ create table t_role_menus(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key(rm_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -156,7 +161,7 @@ create table t_funcs(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key (func_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -186,6 +191,8 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('20ab7cac904141ca82f48e25afd38e64', 'F_ADVER_HOME', 'Adver Home', '/adver/home.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('d0edce6a718a4c65b64d25ffd947f7bb', 'F_RESOURCE_HOME', 'Resource Home', '/resource/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('3dbb7bda92a74e7f95365590bdb5ec1d', 'F_VERSION_HOME', 'Version Home', '/app/version/home.do', 0);
 	
 	
 
@@ -200,7 +207,7 @@ create table t_profiles(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key(profile_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -214,7 +221,7 @@ create table t_categories(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key(category_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -230,7 +237,7 @@ create table t_lookups(
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	primary key(lookup_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -245,8 +252,7 @@ random ids:
 
 
 
-b8db7cf1fed6491fa61e324419688896
-9136c634f90142ccb489f0b054400f4f
+
 193aa58780b44f0798499164ad72f9d2
 438da4022f474fa5bcd7fe25575176be
 6109e3e658b342b48419af79baad7526
@@ -269,5 +275,5 @@ f5dc1172771a4118a0c97233194cf99f
 02a69ced2d9f45bc92559ba2071c247d
 55dcbbdbca0540d9987fdb5734b9d478
 28605a5b0fbd4a8b8ae16d302a52f523
-3dbb7bda92a74e7f95365590bdb5ec1d
+
 */

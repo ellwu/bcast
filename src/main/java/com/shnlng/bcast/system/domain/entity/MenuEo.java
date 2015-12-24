@@ -101,6 +101,8 @@ public class MenuEo implements Serializable{
 
 	@Transient
 	private List<MenuEo> childMenus = new ArrayList<MenuEo>();
+	@Transient
+	private MenuEo parentMenu = null;
 
 	public String getId() {
 		return id;
@@ -172,6 +174,14 @@ public class MenuEo implements Serializable{
 
 	public void setChildMenus(List<MenuEo> childMenus) {
 		this.childMenus = childMenus;
+	}
+
+	public MenuEo getParentMenu() {
+		return parentMenu;
+	}
+
+	public void setParentMenu(MenuEo parentMenu) {
+		this.parentMenu = parentMenu;
 	}
 
 }

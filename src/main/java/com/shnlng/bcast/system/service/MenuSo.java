@@ -1,6 +1,10 @@
 package com.shnlng.bcast.system.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -17,38 +21,77 @@ public class MenuSo {
 	@Autowired
 	public MenuRepo menuRepository;
 
-	public MenuEo getMenuTree(String key) {
-		logger.debug("enter getMenuTree");
+	public MenuEo buildTree() {
+		logger.info("enter build menu tree");
 
-		MenuEo menuTree = menuRepository.findByKey(key);
+		MenuEo rootMenu = popMenus("M_ROOT");
 
-		setChildMenus(menuTree);
-
-		logger.debug("leave getMenuTree");
-		return menuTree;
+		logger.info("leave build menu tree");
+		return rootMenu;
 	}
 
-	public void setChildMenus(MenuEo parentMenu) {
-		logger.debug("enter getChildMenus");
+	public MenuEo getMenuTree(String key) {
+		logger.info("enter build menu tree");
+		MenuEo menu = null;
 
-		String parentId = parentMenu.getId();
+		if (StringUtils.isEmpty(key)) {
+			return menu;
+		}
 
-		if (!StringUtils.isEmpty(parentId)) {
-			logger.debug("set child menus");
+		menu = popMenus(key);
 
-			List<MenuEo> childMenus = menuRepository.findByParentIdOrderBySequenceAsc(parentId);
+		logger.info("leave build menu tree");
+		return menu;
+	}
+	
+	public List<MenuEo> crumbs(MenuEo currentMenu) {
+		List<MenuEo> returns = new ArrayList<MenuEo>();
+		
+		Stack<MenuEo> menus = new Stack<MenuEo>();
 
-			if (childMenus != null && childMenus.size() > 0) {
-				logger.debug("get child " + childMenus.size());
+		MenuEo cMenu = currentMenu;
+		MenuEo parentMenu = cMenu.getParentMenu();
 
-				parentMenu.setChildMenus(childMenus);
+		while (parentMenu != null && parentMenu.getParentMenu() != null) {
+			menus.push(parentMenu);
 
-				for (MenuEo childM : childMenus) {
-					setChildMenus(childM);
-				}
+			cMenu = parentMenu;
+			parentMenu = cMenu.getParentMenu();
+		}
+
+		while(!menus.isEmpty()){
+			returns.add(menus.pop());
+		}
+		returns.add(currentMenu);
+		
+		return returns;
+	}
+
+	private MenuEo popMenus(String key) {
+		List<MenuEo> menus = menuRepository.findAllOrderBySequenceAsc();
+
+		Map<String, MenuEo> parentMenus = new HashMap<String, MenuEo>();
+		for (MenuEo m : menus) {
+			parentMenus.put(m.getId(), m);
+		}
+
+		for (MenuEo c : menus) {
+			MenuEo p = parentMenus.get(c.getParentId());
+			if (p != null) {
+				p.getChildMenus().add(c);
+				c.setParentMenu(p);
 			}
 		}
 
-		logger.debug("leave setChildMenus");
+		MenuEo popedMenu = null;
+		for (MenuEo m : menus) {
+			if (key.equals(m.getKey())) {
+				popedMenu = m;
+				break;
+			}
+		}
+
+		return popedMenu;
 	}
+
 }

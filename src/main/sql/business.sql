@@ -6,17 +6,17 @@ create table t_devices(
 	
 	device_sn varchar(32) not null,
 	device_batch varchar(20),
-	device_status integer,
-	device_bind_status integer,
+	device_status integer default 0,
+	device_bind_status integer default 0,
 	
-	delete_flag integer,
-	disable_flag integer,
+	delete_flag integer default 0,
+	disable_flag integer default 0,
 	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	
 	primary key(device_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -35,20 +35,20 @@ create table t_advers(
 	adver_city varchar(20),
 	adver_district varchar(20),
 	
-	adver_category integer,
+	adver_category integer default 0,
 	
 	adver_contact_person varchar(40),
 	adver_contact_phone varchar(40),
 	adver_operation_person varchar(40),
 	
-	delete_flag integer,
-	disable_flag integer,
+	delete_flag integer default 0,
+	disable_flag integer default 0,
 	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	
 	primary key(adver_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -67,21 +67,21 @@ create table t_merchants(
 	merchant_city varchar(20),
 	merchant_district varchar(20),
 	
-	merchant_level integer,
+	merchant_level integer default 0,
 	
 	merchant_contact_person varchar(40),
 	merchant_contact_phone varchar(40),
 	merchant_spread_person varchar(40),
 	merchant_service_person varchar(40),
 	
-	delete_flag integer,
-	disable_flag integer,
+	delete_flag integer default 0,
+	disable_flag integer default 0,
 	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	
 	primary key(merchant_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -94,28 +94,28 @@ create table t_resources(
 	resource_id char(32) not null,
 	resource_adver_id char(32),
 	
-	resource_type integer,
+	resource_type integer default 0,
 	
 	resource_origin_name varchar(200),
-	resource_duration integer,
+	resource_duration integer default 0,
 	
 	resource_upload_time datetime,
-	resource_upload_status integer,
+	resource_upload_status integer default 0,
 	
-	resource_category integer,
+	resource_category integer default 0,
 	
 	resource_range_age varchar(200),
 	resource_range_group varchar(200),
-	resource_target_status integer,
+	resource_target_status integer default 0,
 	
-	delete_flag integer,
-	disable_flag integer,
+	delete_flag integer default 0,
+	disable_flag integer default 0,
 	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	
 	primary key(resource_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -137,16 +137,16 @@ create table t_bindings(
 	binding_bind_time datetime,
 	binding_release_time datetime,
 	
-	binding_status integer,
+	binding_status integer default 0,
 	
-	delete_flag integer,
-	disable_flag integer,
+	delete_flag integer default 0,
+	disable_flag integer default 0,
 	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	
 	primary key(binding_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -167,20 +167,20 @@ create table t_targets(
 	target_begin_time datetime,
 	target_end_time datetime,
 	
-	target_status integer,
+	target_status integer default 0,
 	target_desc varchar(200),
 	
-	target_play_sequence integer,
+	target_play_sequence integer default 0,
 	target_ban_time datetime,
 	
-	delete_flag integer,
-	disable_flag integer,
+	delete_flag integer default 0,
+	disable_flag integer default 0,
 	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	
 	primary key(target_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -200,19 +200,19 @@ create table t_counts(
 	count_id char(32) not null,
 	device_id char(32),
 	resource_id char(32),
-	count integer,
-	time integer,
+	count integer default 0,
+	time integer default 0,
 	count_time datetime,
 	upload_time datetime,
 	
-	delete_flag integer,
-	disable_flag integer,
+	delete_flag integer default 0,
+	disable_flag integer default 0,
 	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	
 	primary key(count_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -220,19 +220,19 @@ create table t_counts(
 drop table if exists t_versions;
 create table t_versions(
 	version_id char(32) not null,
-	version_code integer,
+	version_code integer default 0,
 	version_name char(32),
 	version_url varchar(400),
-	version_apply_flag integer,
+	version_apply_flag integer default 0,
 	
-	delete_flag integer,
-	disable_flag integer,
+	delete_flag integer default 0,
+	disable_flag integer default 0,
 	
 	creation_time datetime,
 	created_by char(32),
 	update_time datetime,
 	updated_by char(32),
-	version integer,
+	version integer default 0,
 	
 	primary key(version_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

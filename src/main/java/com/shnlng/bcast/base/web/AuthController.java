@@ -24,7 +24,7 @@ public class AuthController {
 	private UserSo userService;
 
 	@Autowired
-	private MenuSo menuService;
+	private MenuSo menuSo;
 
 	@RequestMapping("/login")
 	public String loginIndex() {
@@ -66,11 +66,11 @@ public class AuthController {
 	private void initSession(UserEo user, HttpServletRequest req, HttpServletResponse resp) {
 		logger.debug("enter initSession");
 
-		MenuEo roleMenu = menuService.getMenuTree("M_ROOT");
+		MenuEo rootMenu = menuSo.buildTree();
 
 		HttpSession session = req.getSession();
 
-		session.setAttribute("_MENU", roleMenu);
+		session.setAttribute("_MENU", rootMenu);
 
 		logger.debug("leave initSession");
 	}
