@@ -222,6 +222,7 @@ create table t_versions(
 	version_id char(32) not null,
 	version_code integer,
 	version_name char(32),
+	version_url varchar(400),
 	version_apply_flag integer,
 	
 	delete_flag integer,
@@ -236,12 +237,12 @@ create table t_versions(
 	primary key(version_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into t_versions(version_id, version_code, version_name, version_apply_flag, delete_flag, disable_flag, version)
-	values('804d39f728324fc8973061a95f68d022', 1, '1.0.1', 1, 0, 0, 0);
-insert into t_versions(version_id, version_code, version_name, version_apply_flag, delete_flag, disable_flag, version)
-	values('30af2f1d60b24a1ea9a992d0d2eab607', 2, '1.0.2', 0, 0, 0, 0);
-insert into t_versions(version_id, version_code, version_name, version_apply_flag, delete_flag, disable_flag, version)
-	values('23c54e8367e746f7bde84cbbb04c656c', 3, '1.0.3', 0, 0, 0, 0);
+insert into t_versions(version_id, version_code, version_name, version_url, version_apply_flag, delete_flag, disable_flag, version)
+	values('804d39f728324fc8973061a95f68d022', 1, '1.0.1', 'http://shnlng.me:7090/app?version=1', 1, 0, 0, 0);
+insert into t_versions(version_id, version_code, version_name, version_url, version_apply_flag, delete_flag, disable_flag, version)
+	values('30af2f1d60b24a1ea9a992d0d2eab607', 2, '1.0.2', 'http://shnlng.me:7090/app?version=2', 0, 0, 0, 0);
+insert into t_versions(version_id, version_code, version_name, version_url, version_apply_flag, delete_flag, disable_flag, version)
+	values('23c54e8367e746f7bde84cbbb04c656c', 3, '1.0.3', 'http://shnlng.me:7090/app?version=3', 0, 0, 0, 0);
 
 
 /*
