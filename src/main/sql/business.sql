@@ -22,7 +22,7 @@ create table t_devices(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert into t_devices(device_id, device_sn, device_batch, device_status, device_bind_status, delete_flag, disable_flag, version)
-	values('a7231144627544caa856f6c4ffeb4262', 'd001', 'b001', 1, 1, 0, 0, 0);
+	values('a7231144627544caa856f6c4ffeb4262', '6a05a302b1fdf8cd', 'b001', 1, 1, 0, 0, 0);
 
 drop table if exists t_advers;
 create table t_advers(
@@ -216,6 +216,33 @@ create table t_counts(
 	
 	primary key(count_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table if exists t_versions;
+create table t_versions(
+	version_id char(32) not null,
+	version_code integer,
+	version_name char(32),
+	version_apply_flag integer,
+	
+	delete_flag integer,
+	disable_flag integer,
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer,
+	
+	primary key(version_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into t_versions(version_id, version_code, version_name, version_apply_flag, delete_flag, disable_flag, version)
+	values('804d39f728324fc8973061a95f68d022', 1, '1.0.1', 1, 0, 0, 0);
+insert into t_versions(version_id, version_code, version_name, version_apply_flag, delete_flag, disable_flag, version)
+	values('30af2f1d60b24a1ea9a992d0d2eab607', 2, '1.0.2', 0, 0, 0, 0);
+insert into t_versions(version_id, version_code, version_name, version_apply_flag, delete_flag, disable_flag, version)
+	values('23c54e8367e746f7bde84cbbb04c656c', 3, '1.0.3', 0, 0, 0, 0);
+
 
 /*
 
