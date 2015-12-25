@@ -29,8 +29,8 @@ public class RouteController {
 	private MenuSo menuSo;
 
 	@RequestMapping("/route")
-	public String toFunc(HttpServletRequest req, HttpServletResponse resp) {
-		logger.debug("enter toFunc");
+	public String route(HttpServletRequest req, HttpServletResponse resp) {
+		logger.debug("enter route");
 
 		String from = req.getParameter("from");
 		if (StringUtils.isEmpty(from)) {
@@ -106,9 +106,35 @@ public class RouteController {
 			logger.error(e.getMessage());
 		}
 
-		logger.debug("leave toFunc");
+		logger.debug("leave route");
 		return null;
 	}
 
-	
+	@RequestMapping("/tofunc")
+	public String tofunc(HttpServletRequest req, HttpServletResponse resp) {
+		logger.debug("enter tofunc");
+
+		String funcKey = req.getParameter("key");
+		if (StringUtils.isEmpty(funcKey)) {
+			return "404";
+		}
+
+		FuncEo func = funcRepo.findByKey(funcKey);
+		if (func == null) {
+			return "404";
+		}
+
+		try {
+			logger.debug("forward to " + func.getUrl());
+
+			req.getRequestDispatcher(func.getUrl()).forward(req, resp);
+		} catch (ServletException e) {
+			logger.error(e.getMessage());
+		} catch (IOException e) {
+			logger.error(e.getMessage());
+		}
+
+		logger.debug("leave tofunc");
+		return null;
+	}
 }

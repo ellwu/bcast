@@ -19,7 +19,7 @@
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="category"><@spring.message "adver.category.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="category" ng-model="editItem.category" name="category" placeholder="<@spring.message "adver.category.placeholder"/>">
+			        <select class="form-control" id="category" name="category" ng-model="editItem.category" ng-options="l.value as l.desc for l in options.categoryOptions"></select>
 			   	  </div>
 			   </div>
 			   
@@ -70,7 +70,14 @@
 			      <div class="col-sm-10">
 			        <input type="text" class="form-control" id="operationPerson" ng-model="editItem.operationPerson" name="operationPerson" placeholder="<@spring.message "adver.operationPerson.placeholder"/>">
 			   	  </div>
-			   </div>		
+			   </div>	
+			   
+			   <div class="form-group">
+			      <label class="col-sm-2 control-label" for="disableFlag"><@spring.message "disabled_enabled.label"/></label>
+			      <div class="col-sm-10">
+			   	  	<select class="form-control" id="disableFlag" name="disableFlag" ng-model="editItem.disableFlag" ng-options="l.value as l.desc for l in options.disableOptions"></select>	   	 
+			   	  </div>
+			   </div>	
 			</form>
          </div>
          <div class="modal-footer">

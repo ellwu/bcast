@@ -35,7 +35,7 @@ create table t_advers(
 	adver_city varchar(20),
 	adver_district varchar(20),
 	
-	adver_category integer default 0,
+	adver_category varchar(20),
 	
 	adver_contact_person varchar(40),
 	adver_contact_phone varchar(40),
@@ -54,7 +54,7 @@ create table t_advers(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert into t_advers(adver_id, adver_name, adver_category, delete_flag, disable_flag, version)
-	values('c469f63a270249cc81d806e80003d255','a001', 1, 0, 0, 0);
+	values('c469f63a270249cc81d806e80003d255','a001', '1', 0, 0, 0);
 
 drop table if exists t_merchants;
 create table t_merchants(

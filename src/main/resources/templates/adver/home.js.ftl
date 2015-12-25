@@ -23,9 +23,18 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.getData = function(){
 		var listUrl = "${base}/adver/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
 	    
-	    $http.get(listUrl).success(function (response) {
-	    	$scope.page = response;
-	    });
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			data: $scope.queryItem,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.page = data;
+			}
+		});
     };
     
     $scope.getData();
@@ -48,6 +57,21 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	//pageable table end
 	
+	//select option values begin
+	$scope.options = {};
+	
+	$scope.optionsInit = function(){
+		var optionsUrl = "${base}/lookup/values.do?categoryKey=ADVER_CATEGORY";
+	    
+	    $http.get(optionsUrl).success(function (response) {
+	    	$scope.options.categoryOptions = response;
+	    });
+	    
+	    $scope.options.disableOptions = [{"value":0,"desc":"<@spring.message "prompt.enabled"/>"},{"value":1,"desc":"<@spring.message "prompt.disabled"/>"}];
+	};
+	
+	$scope.optionsInit();
+	
 	//create action begin
 	$scope.createMsg = "";
 	$scope.createOk = true;
@@ -56,6 +80,7 @@ app.controller('appCtl', function($scope, $http) {
 		$scope.createItem = item;
 		
 		$("#createModal").modal("show");
+		$scope.optionsInit();
 	};
 	
 	$scope.createConfirm = function(){
@@ -96,6 +121,7 @@ app.controller('appCtl', function($scope, $http) {
 		$scope.editItem = item;
 		
 		$("#editModal").modal("show");
+		$scope.optionsInit();
 	};
 	
 	$scope.editConfirm = function(){
@@ -169,4 +195,17 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	
 	//delete action end
+	
+		//query action begin
+	$scope.queryItem = {};
+	
+    $scope.query = function(){
+    	$scope.getData();
+    };
+    
+    $scope.resetQuery = function(){
+    	$scope.queryItem = {};
+    };
+    
+	//query action end
 });

@@ -16,6 +16,6 @@ public interface AdverRepo extends PagingAndSortingRepository<AdverEo, String> {
 	@Query("update AdverEo a set a.deleteFlag = 1, a.disableFlag = 1 where a.id = :id")
 	int deleteAndDisable(@Param("id") String id);
 
-	@Query("select a from AdverEo a where a.deleteFlag = 0")
-	Page<AdverEo> findAllActive(Pageable pageable);
+	@Query("select a from AdverEo a where a.deleteFlag = 0 and (:name is null or a.name like :name) and (:category is null or a.category = :category)")
+	Page<AdverEo> queryActive(@Param("name") String name, @Param("category") String category, Pageable pageable);
 }

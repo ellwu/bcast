@@ -193,6 +193,10 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('d0edce6a718a4c65b64d25ffd947f7bb', 'F_RESOURCE_HOME', 'Resource Home', '/resource/home.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('3dbb7bda92a74e7f95365590bdb5ec1d', 'F_VERSION_HOME', 'Version Home', '/app/version/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('193aa58780b44f0798499164ad72f9d2', 'F_CREATE_RESOURCE', 'Create Resource', '/resource/createResource.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('ae0a2ee607a74df5a0a6aa54ab5700a4', 'F_EDIT_RESOURCE', 'Edit Resource', '/resource/editResource.do', 0);
 	
 	
 
@@ -267,7 +271,7 @@ random ids:
 
 
 
-193aa58780b44f0798499164ad72f9d2
+
 438da4022f474fa5bcd7fe25575176be
 6109e3e658b342b48419af79baad7526
 d2b99648adf24990a49026aefe58f7d6
@@ -282,7 +286,7 @@ d1bfc36818e747ec8fbc18123df2a53a
 3ea7c70b16be4b6c9fa058e5e4407392
 a073984172134391bf5c0e97a8d849a1
 0eb5ce4b9b18457299c34a230b0c3e66
-ae0a2ee607a74df5a0a6aa54ab5700a4
+
 0cb9c83db6074aabbbe9b462b39af1db
 b404095c68744c0ba30257ce16f5ba4c
 f5dc1172771a4118a0c97233194cf99f

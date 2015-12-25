@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,7 +36,9 @@ public class AdverEo implements Serializable {
 	private String district;
 
 	@Column(name = "adver_category")
-	private int category;
+	private String category;
+	@Transient
+	private String categoryDesc;
 
 	@Column(name = "adver_contact_person")
 	private String contactPerson;
@@ -117,11 +120,11 @@ public class AdverEo implements Serializable {
 		this.district = district;
 	}
 
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
@@ -203,6 +206,14 @@ public class AdverEo implements Serializable {
 
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
+	}
+
+	public String getCategoryDesc() {
+		return categoryDesc;
+	}
+
+	public void setCategoryDesc(String categoryDesc) {
+		this.categoryDesc = categoryDesc;
 	}
 
 }

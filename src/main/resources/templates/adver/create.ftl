@@ -19,7 +19,7 @@
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="category"><@spring.message "adver.category.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="category" ng-model="createItem.category" name="category" placeholder="<@spring.message "adver.category.placeholder"/>">
+			        <select class="form-control" id="category" name="category" ng-model="createItem.category" ng-options="l.value as l.desc for l in options.categoryOptions"></select>
 			   	  </div>
 			   </div>
 			   

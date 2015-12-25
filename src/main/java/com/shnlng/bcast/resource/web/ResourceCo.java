@@ -38,6 +38,22 @@ public class ResourceCo {
 		logger.debug("enter home");
 		return "/resource/home";
 	}
+	
+	@RequestMapping("/createResource")
+	public String createResource(HttpServletRequest req, HttpServletResponse resp) {
+		logger.debug("enter createResource");
+
+		logger.debug("enter createResource");
+		return "/resource/createResource";
+	}
+	
+	@RequestMapping("/editResource")
+	public String editResource(HttpServletRequest req, HttpServletResponse resp) {
+		logger.debug("enter editResource");
+
+		logger.debug("enter editResource");
+		return "/resource/editResource";
+	}
 
 	@RequestMapping("/list")
 	@ResponseBody

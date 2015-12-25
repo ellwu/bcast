@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContext;
 
-import com.shnlng.bcast.adver.domain.AdverRepo;
 import com.shnlng.bcast.adver.domain.entity.AdverEo;
+import com.shnlng.bcast.adver.service.AdverService;
 import com.shnlng.bcast.base.util.IdGen;
 
 @Controller
@@ -29,7 +29,7 @@ public class AdverCo {
 	private static final Logger logger = Logger.getLogger(AdverCo.class);
 
 	@Autowired
-	private AdverRepo adverRepo;
+	private AdverService adverSo;
 
 	@RequestMapping("/home")
 	public String home(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -41,10 +41,10 @@ public class AdverCo {
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public Page<AdverEo> list(Pageable pageable) {
+	public Page<AdverEo> list(String name, String category, Pageable pageable) {
 		logger.debug("enter list");
 
-		Page<AdverEo> result = adverRepo.findAllActive(pageable);
+		Page<AdverEo> result = adverSo.queryActive(name, category, pageable);
 
 		logger.debug("leave list");
 		return result;
@@ -69,7 +69,7 @@ public class AdverCo {
 
 		try {
 
-			adverRepo.deleteAndDisable(adver.getId());
+			adverSo.adverRepo.deleteAndDisable(adver.getId());
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -107,7 +107,7 @@ public class AdverCo {
 		try {
 			adver.setCreationTime(new Date());
 
-			adverRepo.save(adver);
+			adverSo.adverRepo.save(adver);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -144,7 +144,7 @@ public class AdverCo {
 		try {
 			adver.setUpdateTime(new Date());
 
-			adverRepo.save(adver);
+			adverSo.adverRepo.save(adver);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());

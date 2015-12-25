@@ -19,7 +19,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="btn-group" role="group" aria-label="...">
-							<button type="button" class="btn btn-default" ng-click="create()"><@spring.message "prompt.create"/></button>
+							<a class="btn btn-default" href="${base}/tofunc.do?key=F_CREATE_RESOURCE"><@spring.message "prompt.create"/></a>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
 							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="perPageBtn" aria-expanded="false">					
@@ -61,7 +61,7 @@
 									<th><@spring.message "resource.originName.head"/></th> 									
 									<th><@spring.message "resource.category.head"/></th> 
 									
-									<th><@spring.message "resource.disableFlag.head"/></th> 
+									<th><@spring.message "disabled_enabled.head"/></th>
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -72,9 +72,9 @@
 								    <td>{{ item.originName }}</td>
 								    <td>{{ item.category }}</td>
 								    
-								    <td>{{ item.disableFlag }}</td>
+								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
-								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
+								    	<a class="button glyphicon glyphicon-pencil" href="${base}/tofunc.do?key=F_EDIT_RESOURCE"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>
 								    </td>
 								  </tr>
@@ -87,11 +87,7 @@
 					
 					</div>
 				</div>
-				
-				<#include "/resource/create.ftl"/>
-				
-				<#include "/resource/edit.ftl"/>
-				
+								
 				<#include "/resource/delete.ftl"/>
 				
 			</@html.content>
