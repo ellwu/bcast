@@ -41,10 +41,10 @@ public class MerchantCo {
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public Page<MerchantEo> list(Pageable pageable) {
+	public Page<MerchantEo> list(String name, String level, String category, Pageable pageable) {
 		logger.debug("enter list");
 
-		Page<MerchantEo> result = mSo.findAllActive(pageable);
+		Page<MerchantEo> result = mSo.queryActive(name, level, category, pageable);
 
 		logger.debug("leave list");
 		return result;

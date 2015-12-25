@@ -36,12 +36,12 @@ public class MerchantEo implements Serializable {
 	private String district;
 
 	@Column(name = "merchant_level")
-	private int level;
+	private String level;
 	@Transient
 	private String levelDesc;
 	
 	@Column(name = "merchant_category")
-	private int category;
+	private String category;
 	@Transient
 	private String categoryDesc;
 
@@ -128,11 +128,11 @@ public class MerchantEo implements Serializable {
 		this.district = district;
 	}
 
-	public int getLevel() {
+	public String getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(String level) {
 		this.level = level;
 	}
 
@@ -240,11 +240,11 @@ public class MerchantEo implements Serializable {
 		this.categoryDesc = categoryDesc;
 	}
 
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 

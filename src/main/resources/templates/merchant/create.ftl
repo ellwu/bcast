@@ -19,13 +19,13 @@
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="level"><@spring.message "merchant.level.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="level" ng-model="createItem.level" name="level" placeholder="<@spring.message "merchant.level.placeholder"/>">
+			   	  	<select class="form-control" id="level" name="level" ng-model="createItem.level" ng-options="l.value as l.desc for l in options.levelOptions"></select>
 			   	  </div>
 			   </div>
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="category"><@spring.message "merchant.category.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="category" ng-model="createItem.category" name="category" placeholder="<@spring.message "merchant.category.placeholder"/>">
+			        <select class="form-control" id="category" name="category" ng-model="createItem.category" ng-options="l.value as l.desc for l in options.categoryOptions"></select>
 			   	  </div>
 			   </div>
 			   

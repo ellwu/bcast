@@ -18,4 +18,7 @@ public interface MerchantRepo extends PagingAndSortingRepository<MerchantEo, Str
 
 	@Query("select m from MerchantEo m where m.deleteFlag = 0")
 	Page<MerchantEo> findAllActive(Pageable pageable);
+
+	@Query("select m from MerchantEo m where m.deleteFlag = 0 and (:name is null or m.name like :name) and (:level is null or m.level = :level) and (:category is null or m.category = :category)")
+	Page<MerchantEo> queryActive(@Param("name") String name, @Param("level") String level, @Param("category") String category, Pageable pageable);
 }

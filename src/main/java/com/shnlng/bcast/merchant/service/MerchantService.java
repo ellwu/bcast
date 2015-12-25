@@ -19,36 +19,68 @@ public class MerchantService {
 	public MerchantRepo merchantRepo;
 	@Autowired
 	private LookupRepo lRepo;
-	
-	public Page<MerchantEo> findAllActive(Pageable pageable){
-		
-		Page<MerchantEo> merchants = merchantRepo.findAllActive(pageable); 
+
+	public Page<MerchantEo> findAllActive(Pageable pageable) {
+
+		Page<MerchantEo> merchants = merchantRepo.findAllActive(pageable);
 
 		final List<LookupEo> levels = lRepo.findByCategoryKey("MERCHANT_LEVEL");
 		final List<LookupEo> categories = lRepo.findByCategoryKey("MERCHANT_CATEGORY");
-		
+
 		Consumer<? super MerchantEo> action = new Consumer<MerchantEo>() {
 
 			@Override
 			public void accept(MerchantEo m) {
-				for(LookupEo l : levels){
-					if(m.getLevel() == Integer.parseInt(l.getValue())){
+				for (LookupEo l : levels) {
+					if (m.getLevel().equals(l.getValue())) {
 						m.setLevelDesc(l.getDesc());
 						break;
 					}
 				}
-				
-				for(LookupEo c : categories){
-					if(m.getCategory() == Integer.parseInt(c.getValue())){
+
+				for (LookupEo c : categories) {
+					if (m.getCategory().equals(c.getValue())) {
 						m.setCategoryDesc(c.getDesc());
 						break;
 					}
 				}
 			}
 		};
-		
+
 		merchants.forEach(action);
-		
+
+		return merchants;
+	}
+
+	public Page<MerchantEo> queryActive(String name, String level, String category, Pageable pageable) {
+
+		Page<MerchantEo> merchants = merchantRepo.queryActive(name, level, category, pageable);
+
+		final List<LookupEo> levels = lRepo.findByCategoryKey("MERCHANT_LEVEL");
+		final List<LookupEo> categories = lRepo.findByCategoryKey("MERCHANT_CATEGORY");
+
+		Consumer<? super MerchantEo> action = new Consumer<MerchantEo>() {
+
+			@Override
+			public void accept(MerchantEo m) {
+				for (LookupEo l : levels) {
+					if (m.getLevel().equals(l.getValue())) {
+						m.setLevelDesc(l.getDesc());
+						break;
+					}
+				}
+
+				for (LookupEo c : categories) {
+					if (m.getCategory().equals(c.getValue())) {
+						m.setCategoryDesc(c.getDesc());
+						break;
+					}
+				}
+			}
+		};
+
+		merchants.forEach(action);
+
 		return merchants;
 	}
 }

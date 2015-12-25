@@ -16,6 +16,9 @@
 			
 			<@html.content>
 				<div class="alert alert-success" role="alert" ng-hide="noTopMsg">{{ topMsg }}</div> 
+				
+				<#include "/merchant/query.ftl"/>
+				
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="btn-group" role="group" aria-label="...">
@@ -47,10 +50,10 @@
 						</div>
 						<div class="btn-group pull-right" role="group" aria-label="...">
 							<button type="button" class="btn btn-default" ng-click="previous()" ng-disabled="page.first"><@spring.message "prompt.previous"/></button>
-							<button type="button" class="btn btn-default"ng-click="next()" ng-disabled="page.last"><@spring.message "prompt.next"/></button>
+							<button type="button" class="btn btn-default" ng-click="next()" ng-disabled="page.last"><@spring.message "prompt.next"/></button>
 						</div>
 					</div>
-							
+					
 					<div class="panel-body">
 						<div class="table-responsive">
 					  	<table class="table table-bordered">
@@ -66,7 +69,7 @@
 									<th><@spring.message "merchant.contactPerson.head"/></th> 
 									<th><@spring.message "merchant.contactPhone.head"/></th> 
 									
-									<th><@spring.message "merchant.disableFlag.head"/></th> 
+									<th><@spring.message "disabled_enabled.head"/></th> 
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -82,7 +85,7 @@
 								    <td>{{ item.contactPerson }}</td>
 								    <td>{{ item.contactPhone }}</td>
 								    
-								    <td>{{ item.disableFlag }}</td>
+								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>

@@ -19,13 +19,13 @@
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="level"><@spring.message "merchant.level.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="level" ng-model="editItem.level" name="level" placeholder="<@spring.message "merchant.level.placeholder"/>">
+			        <select class="form-control" id="level" name="level" ng-model="editItem.level" ng-options="l.value as l.desc for l in options.levelOptions"></select>
 			   	  </div>
 			   </div>
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="category"><@spring.message "merchant.category.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="category" ng-model="editItem.category" name="category" placeholder="<@spring.message "merchant.category.placeholder"/>">
+			        <select class="form-control" id="category" name="category" ng-model="editItem.category" ng-options="l.value as l.desc for l in options.categoryOptions"></select>
 			   	  </div>
 			   </div>
 			   
@@ -82,6 +82,13 @@
 			      <label class="col-sm-2 control-label" for="spreadPerson"><@spring.message "merchant.spreadPerson.label"/></label>
 			      <div class="col-sm-10">
 			        <input type="text" class="form-control" id="spreadPerson" ng-model="editItem.spreadPerson" name="spreadPerson" placeholder="<@spring.message "merchant.spreadPerson.placeholder"/>">
+			   	  </div>
+			   </div>
+			   
+			   <div class="form-group">
+			      <label class="col-sm-2 control-label" for="disableFlag"><@spring.message "disabled_enabled.label"/></label>
+			      <div class="col-sm-10">
+			   	  	<select class="form-control" id="disableFlag" name="disableFlag" ng-model="editItem.disableFlag" ng-options="l.value as l.desc for l in options.disableOptions"></select>	   	 
 			   	  </div>
 			   </div>
 			</form>
