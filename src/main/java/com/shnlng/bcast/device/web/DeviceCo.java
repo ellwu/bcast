@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContext;
 
 import com.shnlng.bcast.base.util.IdGen;
-import com.shnlng.bcast.device.domain.DeviceRepo;
 import com.shnlng.bcast.device.domain.entity.DeviceEo;
+import com.shnlng.bcast.device.service.DeviceService;
 
 @Controller
 @RequestMapping("/device")
@@ -29,7 +29,7 @@ public class DeviceCo {
 	private static final Logger logger = Logger.getLogger(DeviceCo.class);
 
 	@Autowired
-	private DeviceRepo deviceRepo;
+	private DeviceService dso;
 
 	@RequestMapping("/home")
 	public String home(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -41,10 +41,10 @@ public class DeviceCo {
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public Page<DeviceEo> list(Pageable pageable) {
+	public Page<DeviceEo> list(String sn, String batch, Pageable pageable) {
 		logger.debug("enter list");
 
-		Page<DeviceEo> result = deviceRepo.findAllActive(pageable);
+		Page<DeviceEo> result = dso.queryActive(sn, batch, pageable);
 
 		logger.debug("leave list");
 		return result;
@@ -68,8 +68,8 @@ public class DeviceCo {
 		}
 
 		try {
-			
-			deviceRepo.deleteAndDisable(device.getId());
+
+			dso.deviceRepo.deleteAndDisable(device.getId());
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -107,7 +107,7 @@ public class DeviceCo {
 		try {
 			device.setCreationTime(new Date());
 
-			deviceRepo.save(device);
+			dso.deviceRepo.save(device);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -144,7 +144,7 @@ public class DeviceCo {
 		try {
 			device.setUpdateTime(new Date());
 
-			deviceRepo.save(device);
+			dso.deviceRepo.save(device);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());

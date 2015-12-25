@@ -23,9 +23,18 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.getData = function(){
 		var listUrl = "${base}/device/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
 	    
-	    $http.get(listUrl).success(function (response) {
-	    	$scope.page = response;
-	    });
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			data: $scope.queryItem,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.page = data;
+			}
+		});
     };
     
     $scope.getData();
@@ -47,6 +56,27 @@ app.controller('appCtl', function($scope, $http) {
 		$scope.getData();
 	};
 	//pageable table end
+	
+	//select option values begin
+	$scope.options = {};
+	
+	$scope.optionsInit = function(){
+		var optionsUrl = "${base}/lookup/values.do?categoryKey=DEVICE_STATUS";
+	    
+	    $http.get(optionsUrl).success(function (response) {
+	    	$scope.options.statusOptions = response;
+	    });
+	    
+	    optionsUrl = "${base}/lookup/values.do?categoryKey=DEVICE_BIND_STATUS";
+	    
+	    $http.get(optionsUrl).success(function (response) {
+	    	$scope.options.bindStatusOptions = response;
+	    });
+	    
+	    $scope.options.disableOptions = [{"value":0,"desc":"<@spring.message "prompt.enabled"/>"},{"value":1,"desc":"<@spring.message "prompt.disabled"/>"}];
+	};
+	
+	$scope.optionsInit();
 	
 	//create action begin
 	$scope.createMsg = "";
@@ -169,4 +199,17 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	
 	//delete action end
+	
+	//query action begin
+	$scope.queryItem = {};
+	
+    $scope.query = function(){
+    	$scope.getData();
+    };
+    
+    $scope.resetQuery = function(){
+    	$scope.queryItem = {};
+    };
+    
+	//query action end
 });

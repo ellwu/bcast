@@ -16,6 +16,6 @@ public interface DeviceRepo extends PagingAndSortingRepository<DeviceEo, String>
 	@Query("update DeviceEo device set device.deleteFlag = 1, device.disableFlag = 1 where device.id = :id")
 	int deleteAndDisable(@Param("id") String id);
 	
-	@Query("select deviceEo from DeviceEo deviceEo where deviceEo.deleteFlag = 0")
-	Page<DeviceEo> findAllActive(Pageable pageable);
+	@Query("select d from DeviceEo d where d.deleteFlag = 0 and (:sn is null or d.sn like :sn) and (:batch is null or d.batch like :batch)")
+	Page<DeviceEo> queryActive(@Param("sn") String sn, @Param("batch") String batch, Pageable pageable);
 }

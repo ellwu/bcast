@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,10 +27,14 @@ public class DeviceEo implements Serializable {
 	private String batch;
 
 	@Column(name = "device_status")
-	private int status;
+	private String status;
+	@Transient
+	private String statusDesc;
 
 	@Column(name = "device_bind_status")
-	private int bindStatus;
+	private String bindStatus;
+	@Transient
+	private String bindStatusDesc;
 
 	@Column(name = "delete_flag")
 	private int deleteFlag;
@@ -78,19 +83,19 @@ public class DeviceEo implements Serializable {
 		this.batch = batch;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
-	public int getBindStatus() {
+	public String getBindStatus() {
 		return bindStatus;
 	}
 
-	public void setBindStatus(int bindStatus) {
+	public void setBindStatus(String bindStatus) {
 		this.bindStatus = bindStatus;
 	}
 
@@ -148,5 +153,21 @@ public class DeviceEo implements Serializable {
 
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
+	}
+
+	public String getBindStatusDesc() {
+		return bindStatusDesc;
+	}
+
+	public void setBindStatusDesc(String bindStatusDesc) {
+		this.bindStatusDesc = bindStatusDesc;
+	}
+
+	public String getStatusDesc() {
+		return statusDesc;
+	}
+
+	public void setStatusDesc(String statusDesc) {
+		this.statusDesc = statusDesc;
 	}
 }

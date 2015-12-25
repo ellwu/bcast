@@ -6,8 +6,8 @@ create table t_devices(
 	
 	device_sn varchar(32) not null,
 	device_batch varchar(20),
-	device_status integer default 0,
-	device_bind_status integer default 0,
+	device_status varchar(20),
+	device_bind_status varchar(20),
 	
 	delete_flag integer default 0,
 	disable_flag integer default 0,
@@ -22,7 +22,7 @@ create table t_devices(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert into t_devices(device_id, device_sn, device_batch, device_status, device_bind_status, delete_flag, disable_flag, version)
-	values('a7231144627544caa856f6c4ffeb4262', '6a05a302b1fdf8cd', 'b001', 1, 1, 0, 0, 0);
+	values('a7231144627544caa856f6c4ffeb4262', '6a05a302b1fdf8cd', 'b001', '1', '1', 0, 0, 0);
 
 drop table if exists t_advers;
 create table t_advers(

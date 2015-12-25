@@ -16,6 +16,9 @@
 			
 			<@html.content>
 				<div class="alert alert-success" role="alert" ng-hide="noTopMsg">{{ topMsg }}</div> 
+				
+				<#include "/device/query.ftl"/>
+				
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="btn-group" role="group" aria-label="...">
@@ -59,7 +62,7 @@
 									<th><@spring.message "device.batch.head"/></th> 
 									<th><@spring.message "device.status.head"/></th> 
 									<th><@spring.message "device.bindStatus.head"/></th> 
-									<th><@spring.message "device.disableFlag.head"/></th> 
+									<th><@spring.message "disabled_enabled.head"/></th> 
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -67,9 +70,11 @@
 								<tr ng-repeat="item in page.content">
 								    <td>{{ item.sn }}</td>
 								    <td>{{ item.batch }}</td>
-								    <td>{{ item.status }}</td>
-								    <td>{{ item.bindStatus }}</td>
-								    <td>{{ item.disableFlag }}</td>
+								    
+								    <td>{{ item.statusDesc }}</td>
+								    <td>{{ item.bindStatusDesc }}</td>
+								    
+								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>

@@ -2,6 +2,7 @@ package com.shnlng.bcast.merchant.service;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,34 +20,18 @@ public class MerchantService {
 	@Autowired
 	private LookupRepo lRepo;
 
-	public Page<MerchantEo> findAllActive(Pageable pageable) {
-
-		Page<MerchantEo> merchants = merchantRepo.findAllActive(pageable);
-
-		List<LookupEo> levels = lRepo.findByCategoryKey("MERCHANT_LEVEL");
-		List<LookupEo> categories = lRepo.findByCategoryKey("MERCHANT_CATEGORY");
-
-		List<MerchantEo> tmps = merchants.getContent();
-		for (MerchantEo m : tmps) {
-			for (LookupEo l : levels) {
-				if (m.getLevel().equals(l.getValue())) {
-					m.setLevelDesc(l.getDesc());
-					break;
-				}
-			}
-
-			for (LookupEo c : categories) {
-				if (m.getCategory().equals(c.getValue())) {
-					m.setCategoryDesc(c.getDesc());
-					break;
-				}
-			}
+	public Page<MerchantEo> queryActive(String name, String level, String category, Pageable pageable) {
+		if (StringUtils.isEmpty(name)) {
+			name = null;
 		}
 
-		return merchants;
-	}
+		if (StringUtils.isEmpty(level)) {
+			level = null;
+		}
 
-	public Page<MerchantEo> queryActive(String name, String level, String category, Pageable pageable) {
+		if (StringUtils.isEmpty(category)) {
+			category = null;
+		}
 
 		Page<MerchantEo> merchants = merchantRepo.queryActive(name, level, category, pageable);
 

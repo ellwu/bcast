@@ -23,19 +23,20 @@
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label"  for="status"><@spring.message "device.status.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="status" ng-model="editItem.status" name="status" placeholder="<@spring.message "device.status.placeholder"/>">
+			        <select class="form-control" id="status" name="status" ng-model="editItem.status" ng-options="l.value as l.desc for l in options.statusOptions"></select>	   	 
 			   	  </div>
 			   </div>
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label"  for="bindStatus"><@spring.message "device.bindStatus.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="bindStatus" ng-model="editItem.bindStatus" name="bindStatus" placeholder="<@spring.message "device.bindStatus.placeholder"/>">
+			        <select class="form-control" id="status" name="status" ng-model="editItem.status" ng-options="l.value as l.desc for l in options.bindStatusOptions" disabled></select>	   	 
 			   	  </div>
 			   </div>
+			   
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label"  for="disableFlag"><@spring.message "device.disableFlag.label"/></label>
+			      <label class="col-sm-2 control-label" for="disableFlag"><@spring.message "disabled_enabled.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="disableFlag" ng-model="editItem.disableFlag" name="disableFlag" placeholder="<@spring.message "device.disableFlag.placeholder"/>">
+			   	  	<select class="form-control" id="disableFlag" name="disableFlag" ng-model="editItem.disableFlag" ng-options="l.value as l.desc for l in options.disableOptions"></select>	   	 
 			   	  </div>
 			   </div>
 			</form>
