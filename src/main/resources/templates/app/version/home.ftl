@@ -59,7 +59,7 @@
 									<th><@spring.message "version.name.head"/></th> 
 									<th><@spring.message "version.applyFlag.head"/></th> 
 									<th><@spring.message "version.url.head"/></th> 
-									<th><@spring.message "version.disableFlag.head"/></th> 
+									<th><@spring.message "disabled_enabled.head"/></th> 
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -69,7 +69,7 @@
 								    <td>{{ item.name }}</td>
 								    <td>{{ item.applyFlag }}</td>
 								    <td>{{ item.url }}</td>
-								    <td>{{ item.disableFlag }}</td>
+								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>
