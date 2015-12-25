@@ -58,6 +58,7 @@
 								<tr> 
 									<th><@spring.message "merchant.name.head"/></th> 
 									<th><@spring.message "merchant.level.head"/></th> 
+									<th><@spring.message "merchant.category.head"/></th> 
 									
 									<th><@spring.message "merchant.servicePerson.head"/></th> 
 									<th><@spring.message "merchant.spreadPerson.head"/></th> 
@@ -72,7 +73,8 @@
 							<tbody> 
 								<tr ng-repeat="item in page.content">
 								    <td>{{ item.name }}</td>
-								    <td>{{ item.level }}</td>
+								    <td>{{ item.levelDesc }}</td>
+								    <td>{{ item.categoryDesc }}</td>
 								    
 								    <td>{{ item.servicePerson }}</td>
 								    <td>{{ item.spreadPerson }}</td>

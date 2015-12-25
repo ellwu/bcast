@@ -68,6 +68,7 @@ create table t_merchants(
 	merchant_district varchar(20),
 	
 	merchant_level integer default 0,
+	merchant_category integer default 0,
 	
 	merchant_contact_person varchar(40),
 	merchant_contact_phone varchar(40),
@@ -86,8 +87,11 @@ create table t_merchants(
 	primary key(merchant_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into t_merchants(merchant_id, merchant_name, merchant_level, delete_flag, disable_flag, version)
-	values('069bf1625a3e4fd3857511ee952d4777','m001', 1, 0, 0, 0);
+
+INSERT INTO `t_merchants` VALUES 
+	('069bf1625a3e4fd3857511ee952d4777','真味清城','软件大道1号','江苏','南京','雨花台',1,1,'白凯南','13412312343','求解','秋季',0,0,NULL,'','2015-12-25 09:45:36','',0),
+	('2694de5c4d674c8b8a6360b4a4b185b7','来一份','小行小区','江苏','南京','雨花台',2,1,'小白','12334512345','求解','秋季',0,0,'2015-12-25 09:53:22',NULL,NULL,NULL,0);
+
 
 drop table if exists t_resources;
 create table t_resources(

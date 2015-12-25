@@ -58,6 +58,7 @@
 									<th><@spring.message "lookup.category.head"/></th> 
 									<th><@spring.message "lookup.key.head"/></th> 
 									<th><@spring.message "lookup.value.head"/></th> 
+									<th><@spring.message "lookup.desc.head"/></th> 
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -66,6 +67,7 @@
 								    <td>{{ item.category.prompt }}</td>
 								    <td>{{ item.key }}</td>
 								    <td>{{ item.value }}</td>
+								    <td>{{ item.desc }}</td>
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>

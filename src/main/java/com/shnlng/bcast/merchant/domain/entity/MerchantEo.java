@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -36,6 +37,13 @@ public class MerchantEo implements Serializable {
 
 	@Column(name = "merchant_level")
 	private int level;
+	@Transient
+	private String levelDesc;
+	
+	@Column(name = "merchant_category")
+	private int category;
+	@Transient
+	private String categoryDesc;
 
 	@Column(name = "merchant_contact_person")
 	private String contactPerson;
@@ -214,6 +222,30 @@ public class MerchantEo implements Serializable {
 
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
+	}
+
+	public String getLevelDesc() {
+		return levelDesc;
+	}
+
+	public void setLevelDesc(String levelDesc) {
+		this.levelDesc = levelDesc;
+	}
+
+	public String getCategoryDesc() {
+		return categoryDesc;
+	}
+
+	public void setCategoryDesc(String categoryDesc) {
+		this.categoryDesc = categoryDesc;
+	}
+
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
 	}
 
 }

@@ -47,7 +47,7 @@ public class LookupCo {
 	public Page<LookupEo> list(Pageable pageable) {
 		logger.debug("enter list");
 
-		Page<LookupEo> result = lookupRepo.findAll(pageable);
+		Page<LookupEo> result = lookupRepo.findAllOrderByCategoryAndKey(pageable); //.findAll(pageable);
 
 		logger.debug("leave list");
 		return result;

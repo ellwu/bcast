@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContext;
 
 import com.shnlng.bcast.base.util.IdGen;
-import com.shnlng.bcast.merchant.domain.MerchantRepo;
 import com.shnlng.bcast.merchant.domain.entity.MerchantEo;
+import com.shnlng.bcast.merchant.service.MerchantService;
 
 @Controller
 @RequestMapping("/merchant")
@@ -29,7 +29,7 @@ public class MerchantCo {
 	private static final Logger logger = Logger.getLogger(MerchantCo.class);
 
 	@Autowired
-	private MerchantRepo merchantRepo;
+	private MerchantService mSo;
 
 	@RequestMapping("/home")
 	public String home(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -44,7 +44,7 @@ public class MerchantCo {
 	public Page<MerchantEo> list(Pageable pageable) {
 		logger.debug("enter list");
 
-		Page<MerchantEo> result = merchantRepo.findAllActive(pageable);
+		Page<MerchantEo> result = mSo.findAllActive(pageable);
 
 		logger.debug("leave list");
 		return result;
@@ -69,7 +69,7 @@ public class MerchantCo {
 
 		try {
 
-			merchantRepo.deleteAndDisable(merchant.getId());
+			mSo.merchantRepo.deleteAndDisable(merchant.getId());
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -107,7 +107,7 @@ public class MerchantCo {
 		try {
 			merchant.setCreationTime(new Date());
 
-			merchantRepo.save(merchant);
+			mSo.merchantRepo.save(merchant);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -144,7 +144,7 @@ public class MerchantCo {
 		try {
 			merchant.setUpdateTime(new Date());
 
-			merchantRepo.save(merchant);
+			mSo.merchantRepo.save(merchant);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());

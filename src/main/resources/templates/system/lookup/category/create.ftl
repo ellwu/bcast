@@ -20,6 +20,12 @@
 			        <input type="text" class="form-control" id="prompt" ng-model="createItem.prompt" name="prompt" placeholder="<@spring.message "category.prompt.placeholder"/>">
 			   	  </div>
 			   </div>
+			   <div class="form-group">
+			      <label class="col-sm-2 control-label"  for="desc"><@spring.message "category.desc.label"/></label>
+			      <div class="col-sm-10">
+			        <input type="text" class="form-control" id="desc" ng-model="createItem.desc" name="desc" placeholder="<@spring.message "category.desc.placeholder"/>">
+			   	  </div>
+			   </div>
 			</form>
          </div>
          <div class="modal-footer">

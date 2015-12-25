@@ -57,6 +57,7 @@
 								<tr> 
 									<th><@spring.message "category.key.head"/></th> 
 									<th><@spring.message "category.prompt.head"/></th> 
+									<th><@spring.message "category.desc.head"/></th> 
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -64,6 +65,7 @@
 								<tr ng-repeat="item in page.content">
 								    <td>{{ item.key }}</td>
 								    <td>{{ item.prompt }}</td>
+								    <td>{{ item.desc }}</td>
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>

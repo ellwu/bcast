@@ -22,6 +22,12 @@
 			        <input type="text" class="form-control" id="level" ng-model="editItem.level" name="level" placeholder="<@spring.message "merchant.level.placeholder"/>">
 			   	  </div>
 			   </div>
+			   <div class="form-group">
+			      <label class="col-sm-2 control-label" for="category"><@spring.message "merchant.category.label"/></label>
+			      <div class="col-sm-10">
+			        <input type="text" class="form-control" id="category" ng-model="editItem.category" name="category" placeholder="<@spring.message "merchant.category.placeholder"/>">
+			   	  </div>
+			   </div>
 			   
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="addr"><@spring.message "merchant.addr.label"/></label>

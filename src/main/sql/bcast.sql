@@ -225,6 +225,10 @@ create table t_categories(
 	primary key(category_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `t_categories` VALUES 
+	('60f1e1fd893d4c26b7c8c7a343c43c8d','MERCHANT_LEVEL','商户-档次','商户-档次','2015-12-25 09:14:09','','2015-12-25 09:28:50','',0),
+	('dd08b27e048747cdbde0442c70e579c7','MERCHANT_CATEGORY','商户-行业类型','商户-行业类型','2015-12-25 09:22:07',NULL,NULL,NULL,0);
+
 drop table if exists t_lookups;
 create table t_lookups(
 	lookup_id char(32) not null,
@@ -240,6 +244,16 @@ create table t_lookups(
 	version integer default 0,
 	primary key(lookup_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `t_lookups` VALUES 
+	('03607185ae9f4b189e0466ae4194eb4b','dd08b27e048747cdbde0442c70e579c7','3','3','休闲','2015-12-25 09:23:01',NULL,NULL,NULL,0),
+	('16f4d8277843482e8b7fce790a00b0f4','dd08b27e048747cdbde0442c70e579c7','5','5','美容美发','2015-12-25 09:23:38',NULL,NULL,NULL,0),
+	('47c5d751776f4e15a20fa7d8e3d7cff0','60f1e1fd893d4c26b7c8c7a343c43c8d','1','1','高','2015-12-25 09:18:24',NULL,'2015-12-25 09:20:42',NULL,0),
+	('68d29a4ac803402e86358977acc5f98b','dd08b27e048747cdbde0442c70e579c7','4','4','娱乐','2015-12-25 09:23:24',NULL,NULL,NULL,0),
+	('71c0d602b76c4904905a7fcf134e7148','60f1e1fd893d4c26b7c8c7a343c43c8d','3','3','低','2015-12-25 09:21:08',NULL,NULL,NULL,0),
+	('8b60d13ac5b2400a8c8ce720f976e6fe','60f1e1fd893d4c26b7c8c7a343c43c8d','2','2','中','2015-12-25 09:20:55',NULL,NULL,NULL,0),
+	('bc699bcb0fb14bf2884d4a80df5ae35d','dd08b27e048747cdbde0442c70e579c7','1','1','餐饮','2015-12-25 09:22:40',NULL,NULL,NULL,0),
+	('c037f3a1434d4997a5896d2c61eeccc2','dd08b27e048747cdbde0442c70e579c7','2','2','茶座','2015-12-25 09:22:52',NULL,NULL,NULL,0);
 
 /*
 
