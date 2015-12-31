@@ -22,7 +22,12 @@
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="adver"><@spring.message "resource.adver.label"/></label>
 			      <div class="col-sm-3">
-			        <input type="text" class="form-control" id="adver" ng-model="createItem.adver" name="adver" placeholder="<@spring.message "resource.adver.placeholder"/>">
+			      	<div class="input-group">
+			        	<input type="text" class="form-control" id="adver" ng-model="createItem.adver" name="adver" placeholder="<@spring.message "resource.adver.placeholder"/>" readonly>
+			        	<span class="input-group-btn">
+				        	<button type="button" class="btn btn-default" ng-click="searchAdver()"><@spring.message "prompt.search"/></button>
+				      	</span>
+			        </div>
 			   	  </div>
 			   </div>
 			   
@@ -30,6 +35,24 @@
 			      <label class="col-sm-2 control-label" for="type"><@spring.message "resource.type.label"/></label>
 			      <div class="col-sm-3">
 			   	  	<select class="form-control" id="type" name="type" ng-model="createItem.type" ng-options="l.value as l.desc for l in options.typeOptions"></select>
+			   	  </div>
+			   </div>
+			   
+			   <div class="form-group">
+			      <label class="col-sm-2 control-label" for="file"><@spring.message "resource.file.label"/></label>
+			      <div class="col-sm-3">
+			   	  	<div class="input-group">
+				      <input id="photoCover" class="form-control" type="text" readonly>
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button" onclick="$('input[id=lefile]').click();"><@spring.message "prompt.choose"/></button>
+				      </span>
+				    </div>
+			   	  	<input id="lefile" type="file" style="display:none">
+				    <script type="text/javascript">
+						$('input[id=lefile]').change(function() {
+							$('#photoCover').val($(this).val());
+						});
+					</script>
 			   	  </div>
 			   </div>
 			   
@@ -45,26 +68,33 @@
 			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="duration" ng-model="createItem.duration" name="duration" placeholder="<@spring.message "resource.duration.placeholder"/>">
 			   	  </div>
-			   	  <div class="col-sm-2">
-			        <@spring.message "resource.duration.unit"/>
-			   	  </div>
 			   </div>
 			   
-			    <div class="form-group">
+			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="rangeAge"><@spring.message "resource.rangeAge.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-4">
 			        <input type="text" class="form-control" id="rangeAge" ng-model="createItem.rangeAge" name="rangeAge" placeholder="<@spring.message "resource.rangeAge.placeholder"/>">
 			   	  </div>
 			   </div>
 			   
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="rangeGroup"><@spring.message "resource.rangeGroup.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-4">
 			        <input type="text" class="form-control" id="rangeGroup" ng-model="createItem.rangeGroup" name="rangeGroup" placeholder="<@spring.message "resource.rangeGroup.placeholder"/>">
+			   	  </div>
+			   </div>
+			   
+			   <div class="form-group">
+			      <label class="col-sm-2 control-label"></label>
+			      <div class="col-sm-6">
+			        <button type="button" class="btn btn-primary" ng-click="createConfirm()"><@spring.message "prompt.create"/></button>
+			        <button type="button" class="btn btn-default"><@spring.message "prompt.return"/></button>
 			   	  </div>
 			   </div>
 			   			   
 			</form>
+			
+			<#include "/resource/queryAdvers.ftl"/>
 				
 			</@html.content>
 			
