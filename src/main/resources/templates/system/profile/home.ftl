@@ -52,6 +52,8 @@
 					</div>
 							
 					<div class="panel-body">
+					
+						<div class="table-responsive">
 					  	<table class="table table-bordered">
 							<thead> 
 								<tr> 
@@ -73,6 +75,7 @@
 								  </tr>
 							</tbody> 
 						</table>
+						</div>
 					</div>
 							  
 					<div class="panel-footer">
