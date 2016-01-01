@@ -16,7 +16,7 @@
 			
 			<@html.content>
 				
-			<div class="alert alert-{{msgType}}" role="alert" ng-hide="!hasMsg">{{ msg }}</div> 
+			<div class="alert alert-info" role="alert" ng-hide="!hasMsg">{{ msg }}</div> 
 			<form role="form" id="createForm" class="form-horizontal">
 			   <input type="hidden" ng-model="createItem.adverId" name="adverId"/>
 			   

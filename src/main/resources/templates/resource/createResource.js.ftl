@@ -30,7 +30,6 @@ app.controller('appCtl', function($scope, $http) {
 	//create action begin
 	$scope.msg = "";
 	$scope.hasMsg = false;
-	$scope.msgType = "danger";
 	
 	$scope.createItem = {};
 	
@@ -67,7 +66,6 @@ app.controller('appCtl', function($scope, $http) {
 			async: false,
 			error: function(req){
 				$scope.hasMsg = true;
-				$scope.msgType = "danger";
 				$scope.msg = "Internal error. Please contact your administrator.";
 			},
 			success: function(data){
@@ -76,7 +74,6 @@ app.controller('appCtl', function($scope, $http) {
 					$scope.createItem = {};
 				}
 				
-				$scope.msgType = "success";
 				$scope.hasMsg = true;
 				$scope.msg = data.msg;
 			}

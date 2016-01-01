@@ -155,7 +155,7 @@ public class ResourceCo {
 
 			fos.close();
 		} catch (Exception e) {
-			logger.debug("resource input empty");
+			logger.error(e.getMessage());
 
 			result.put("msg", requestContext.getMessage("resource.create.error"));
 			result.put("status", false);
