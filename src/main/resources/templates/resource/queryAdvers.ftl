@@ -13,28 +13,22 @@
 						<div class="form-group">
 							  <label class="col-sm-3 control-label" for="name"><@spring.message "merchant.name.label"/></label>
 							  <div class="col-sm-9">
-								<input type="text" class="form-control" id="name" name="name" ng-model="queryItem.name" placeholder="<@spring.message "merchant.name.placeholder"/>">
+								<input type="text" class="form-control" id="name" name="name" ng-model="query_Adver.queryItem.name" placeholder="<@spring.message "merchant.name.placeholder"/>">
 							  </div>
 						</div>
 						
-						<div class="form-group">
-						      <label class="col-sm-3 control-label" for="level"><@spring.message "merchant.level.label"/></label>
-						      <div class="col-sm-9">
-						   	  	<select class="form-control" id="level" name="level" ng-model="queryItem.level" ng-options="l.value as l.desc for l in options.levelOptions"></select>
-						   	  </div>
-						   </div>
 						   <div class="form-group">
 						      <label class="col-sm-3 control-label" for="category"><@spring.message "merchant.category.label"/></label>
 						      <div class="col-sm-9">
-						        <select class="form-control" id="category" name="category" ng-model="queryItem.category" ng-options="l.value as l.desc for l in options.categoryOptions"></select>
+						        <select class="form-control" id="category" name="category" ng-model="query_Adver.queryItem.category" ng-options="l.value as l.desc for l in query_Adver.options.categoryOptions"></select>
 						   	  </div>
 						   </div>
 						
 						<div class="form-group">
 							  <label class="col-sm-3 control-label" for="name"></label>
 							  <div class="col-sm-9">
-								<button type="button" class="btn btn-primary" ng-click="query()"><@spring.message "prompt.query"/></button>
-								<button type="button" class="btn btn-primary" ng-click="resetQuery()"><@spring.message "prompt.reset"/></button>
+								<button type="button" class="btn btn-primary" ng-click="query_Adver.query()"><@spring.message "prompt.query"/></button>
+								<button type="button" class="btn btn-primary" ng-click="query_Adver.resetQuery()"><@spring.message "prompt.reset"/></button>
 							  </div>
 						</div>
 					</form>
@@ -45,31 +39,31 @@
 				<div class="panel-heading">
 					<div class="btn-group" role="group" aria-label="...">
 						<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="perPageBtn" aria-expanded="false">					
-							<span data-type="selected-text">{{ pageSize }} <@spring.message "prompt.perPage"/></span>
+							<span data-type="selected-text">{{ query_Adver.pageSize }} <@spring.message "prompt.perPage"/></span>
 							<span class="caret"></span>						
 						</button>
 			
 						<ul class="dropdown-menu" role="menu" aria-labelledby="perPageBtn">		
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" ng-click="perPage(5)">5 <@spring.message "prompt.perPage"/></a>
+								<a role="menuitem" tabindex="-1" ng-click="query_Adver.perPage(5)">5 <@spring.message "prompt.perPage"/></a>
 							</li>			
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" ng-click="perPage(10)">10 <@spring.message "prompt.perPage"/></a>
+								<a role="menuitem" tabindex="-1" ng-click="query_Adver.perPage(10)">10 <@spring.message "prompt.perPage"/></a>
 							</li>			
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" ng-click="perPage(20)">20 <@spring.message "prompt.perPage"/></a>
+								<a role="menuitem" tabindex="-1" ng-click="query_Adver.perPage(20)">20 <@spring.message "prompt.perPage"/></a>
 							</li>		
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" ng-click="perPage(30)">30 <@spring.message "prompt.perPage"/></a>
+								<a role="menuitem" tabindex="-1" ng-click="query_Adver.perPage(30)">30 <@spring.message "prompt.perPage"/></a>
 							</li>											
 							<li role="presentation">
-								<a role="menuitem" tabindex="-1" ng-click="perPage(50)">50 <@spring.message "prompt.perPage"/></a>
+								<a role="menuitem" tabindex="-1" ng-click="query_Adver.perPage(50)">50 <@spring.message "prompt.perPage"/></a>
 							</li>
 						</ul>
 					</div>
 					<div class="btn-group pull-right" role="group" aria-label="...">
-						<button type="button" class="btn btn-default" ng-click="previous()" ng-disabled="page.first"><@spring.message "prompt.previous"/></button>
-						<button type="button" class="btn btn-default"ng-click="next()" ng-disabled="page.last"><@spring.message "prompt.next"/></button>
+						<button type="button" class="btn btn-default" ng-click="query_Adver.previous()" ng-disabled="query_Adver.page.first"><@spring.message "prompt.previous"/></button>
+						<button type="button" class="btn btn-default"ng-click="query_Adver.next()" ng-disabled="query_Adver.page.last"><@spring.message "prompt.next"/></button>
 					</div>
 				</div>
 						
@@ -86,12 +80,11 @@
 								<th><@spring.message "adver.contactPerson.head"/></th> 
 								<th><@spring.message "adver.contactPhone.head"/></th> 
 								
-								<th><@spring.message "disabled_enabled.head"/></th> 
 								<th><@spring.message "table.head.action"/></th>
 							</tr> 
 						</thead> 
 						<tbody> 
-							<tr ng-repeat="item in page.content">
+							<tr ng-repeat="item in query_Adver.page.content">
 							    <td>{{ item.name }}</td>
 							    <td>{{ item.categoryDesc }}</td>
 							    
@@ -100,10 +93,8 @@
 							    <td>{{ item.contactPerson }}</td>
 							    <td>{{ item.contactPhone }}</td>
 							    
-							    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 							    <td>
-							    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
-							    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>
+							    	<a class="button glyphicon glyphicon-share-alt" ng-click="query_Adver.choose(item)"></a>
 							    </td>
 							  </tr>
 						</tbody> 

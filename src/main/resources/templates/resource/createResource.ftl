@@ -16,8 +16,9 @@
 			
 			<@html.content>
 				
-				<div class="alert alert-danger" role="alert" ng-hide="createOk">{{ createMsg }}</div> 
+			<div class="alert alert-{{msgType}}" role="alert" ng-hide="!hasMsg">{{ msg }}</div> 
 			<form role="form" id="createForm" class="form-horizontal">
+			   <input type="hidden" ng-model="createItem.adverId" name="adverId"/>
 			   
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="adver"><@spring.message "resource.adver.label"/></label>
@@ -47,7 +48,7 @@
 				        <button class="btn btn-default" type="button" onclick="$('input[id=lefile]').click();"><@spring.message "prompt.choose"/></button>
 				      </span>
 				    </div>
-			   	  	<input id="lefile" type="file" style="display:none">
+			   	  	<input id="lefile" name="file" type="file" style="display:none">
 				    <script type="text/javascript">
 						$('input[id=lefile]').change(function() {
 							$('#photoCover').val($(this).val());
@@ -88,7 +89,7 @@
 			      <label class="col-sm-2 control-label"></label>
 			      <div class="col-sm-6">
 			        <button type="button" class="btn btn-primary" ng-click="createConfirm()"><@spring.message "prompt.create"/></button>
-			        <button type="button" class="btn btn-default"><@spring.message "prompt.return"/></button>
+			        <a class="btn btn-default" href="${base}/tofunc.do?key=F_RESOURCE_HOME"><@spring.message "prompt.return"/></a>
 			   	  </div>
 			   </div>
 			   			   
@@ -98,7 +99,7 @@
 				
 			</@html.content>
 			
-			<script src="${base}/res.do?path=/resource/home.js"></script>
+			<script src="${base}/res.do?path=/resource/createResource.js"></script>
 		</div>
 	</body>
 </html>

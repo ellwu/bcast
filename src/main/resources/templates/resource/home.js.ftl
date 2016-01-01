@@ -48,88 +48,6 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	//pageable table end
 	
-	//create action begin
-	$scope.createMsg = "";
-	$scope.createOk = true;
-	
-	$scope.create = function(item){
-		$scope.createItem = item;
-		
-		$("#createModal").modal("show");
-	};
-	
-	$scope.createConfirm = function(){
-		$.ajax({
-			cache: true,
-			type: 'POST',
-			url: "${base}/resource/create.do",
-			data: $scope.createItem,
-			async: false,
-			error: function(req){
-				$scope.createOk = false;
-				$scope.createMsg = "Internal error. Please contact your administrator.";
-			},
-			success: function(data){
-				if(data.status){
-					$("#createModal").modal('hide');
-					
-					delete $scope.createItem;
-					
-					$scope.createOk = true;
-					$scope.getData();
-					
-					$scope.showTopMsg(data.msg);
-				}else{
-					$scope.createMsg = data.msg;
-					$scope.createOk = false;
-				}
-			}
-		});
-	};
-	//create action end
-	
-	//edit action begin
-	$scope.editMsg = "";
-	$scope.editOk = true;
-	
-	$scope.edit = function(item){
-		$scope.editItem = item;
-		
-		$("#editModal").modal("show");
-	};
-	
-	$scope.editConfirm = function(){
-		
-		$.ajax({
-			cache: true,
-			type: 'POST',
-			url: "${base}/resource/edit.do",
-			data: $scope.editItem,
-			async: false,
-			error: function(req){
-				$scope.editOk = false;
-				$scope.editMsg = "Internal error. Please contact your administrator.";
-			},
-			success: function(data){
-				if(data.status){
-					$("#editModal").modal('hide');
-					
-					delete $scope.editItem;
-					
-					$scope.editOk = true;
-					$scope.getData();
-					
-					$scope.showTopMsg(data.msg);
-				}else{
-					$scope.editMsg = data.msg;
-					$scope.editOk = false;
-				}
-			}
-		});
-	};
-	
-	//edit action end
-	
 	//delete action begin
 	$scope.deleteItem = {};
 	$scope.deleteMsg = "";
@@ -169,12 +87,4 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	
 	//delete action end
-	
-	//search action begin
-	
-	$scope.searchAdver = function(){
-		$("#searchAdverModal").modal("show");
-	};
-	
-	//search action end
 });

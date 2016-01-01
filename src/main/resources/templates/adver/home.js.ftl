@@ -196,7 +196,7 @@ app.controller('appCtl', function($scope, $http) {
 	
 	//delete action end
 	
-		//query action begin
+	//query action begin
 	$scope.queryItem = {};
 	
     $scope.query = function(){
