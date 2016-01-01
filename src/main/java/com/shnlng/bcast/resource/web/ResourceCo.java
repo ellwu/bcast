@@ -25,8 +25,8 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import com.shnlng.bcast.base.util.FileUtil;
 import com.shnlng.bcast.base.util.IdGen;
-import com.shnlng.bcast.resource.domain.ResourceRepo;
 import com.shnlng.bcast.resource.domain.entity.ResourceEo;
+import com.shnlng.bcast.resource.service.ResourceSo;
 import com.shnlng.bcast.system.domain.ProfileRepo;
 
 @Controller
@@ -36,7 +36,7 @@ public class ResourceCo {
 	private static final Logger logger = Logger.getLogger(ResourceCo.class);
 
 	@Autowired
-	private ResourceRepo resourceRepo;
+	private ResourceSo resourceSo;
 	@Autowired
 	private ProfileRepo profileRepo;
 
@@ -66,10 +66,10 @@ public class ResourceCo {
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public Page<ResourceEo> list(Pageable pageable) {
+	public Page<ResourceEo> list(String adver, String originName, String category, Pageable pageable) {
 		logger.debug("enter list");
 
-		Page<ResourceEo> result = resourceRepo.findAllActive(pageable);
+		Page<ResourceEo> result = resourceSo.queryActive(adver, originName, category, pageable);
 
 		logger.debug("leave list");
 		return result;
@@ -94,7 +94,7 @@ public class ResourceCo {
 
 		try {
 
-			resourceRepo.deleteAndDisable(resource.getId());
+			resourceSo.resourceRepo.deleteAndDisable(resource.getId());
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -177,7 +177,7 @@ public class ResourceCo {
 		try {
 			resource.setCreationTime(new Date());
 
-			resourceRepo.save(resource);
+			resourceSo.resourceRepo.save(resource);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -216,7 +216,7 @@ public class ResourceCo {
 		try {
 			resource.setCreationTime(new Date());
 
-			resourceRepo.save(resource);
+			resourceSo.resourceRepo.save(resource);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -253,7 +253,7 @@ public class ResourceCo {
 		try {
 			resource.setUpdateTime(new Date());
 
-			resourceRepo.save(resource);
+			resourceSo.resourceRepo.save(resource);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());

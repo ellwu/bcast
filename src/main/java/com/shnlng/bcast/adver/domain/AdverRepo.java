@@ -1,5 +1,7 @@
 package com.shnlng.bcast.adver.domain;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,4 +20,7 @@ public interface AdverRepo extends PagingAndSortingRepository<AdverEo, String> {
 
 	@Query("select a from AdverEo a where a.deleteFlag = 0 and (:name is null or a.name like :name) and (:category is null or a.category = :category)")
 	Page<AdverEo> queryActive(@Param("name") String name, @Param("category") String category, Pageable pageable);
+
+	@Query("select id, name from AdverEo")
+	List<Object[]> findAllNames();
 }

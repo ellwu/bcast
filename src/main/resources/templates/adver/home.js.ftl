@@ -37,8 +37,6 @@ app.controller('appCtl', function($scope, $http) {
 		});
     };
     
-    $scope.getData();
-    		
 	$scope.next = function(){
 		$scope.pageIndex += 1;
 		$scope.getData();

@@ -18,4 +18,8 @@ public interface ResourceRepo extends PagingAndSortingRepository<ResourceEo, Str
 
 	@Query("select r from ResourceEo r where r.deleteFlag = 0")
 	Page<ResourceEo> findAllActive(Pageable pageable);
+
+	@Query("select r from ResourceEo r where r.deleteFlag = 0 and (:adver is null or r.adverId in (select a.id from AdverEo a where a.name like :adver)) and (:originName is null or r.originName like :originName) and (:category is null or r.category = :category) order by r.adverId")
+	Page<ResourceEo> queryActive(@Param("adver") String adver, @Param("originName") String originName,
+			@Param("category") String category, Pageable pageable);
 }

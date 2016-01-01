@@ -23,13 +23,20 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.getData = function(){
 		var listUrl = "${base}/resource/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
 	    
-	    $http.get(listUrl).success(function (response) {
-	    	$scope.page = response;
-	    });
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			data: $scope.queryItem,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.page = data;
+			}
+		});
     };
     
-    $scope.getData();
-    		
 	$scope.next = function(){
 		$scope.pageIndex += 1;
 		$scope.getData();
@@ -87,4 +94,17 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	
 	//delete action end
+	
+	//query action begin
+	$scope.queryItem = {};
+	
+    $scope.query = function(){
+    	$scope.getData();
+    };
+    
+    $scope.resetQuery = function(){
+    	$scope.queryItem = {};
+    };
+    
+	//query action end
 });

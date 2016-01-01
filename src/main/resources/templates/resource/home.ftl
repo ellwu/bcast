@@ -16,6 +16,9 @@
 			
 			<@html.content>
 				<div class="alert alert-success" role="alert" ng-hide="noTopMsg">{{ topMsg }}</div> 
+				
+				<#include "/resource/query.ftl"/>
+				
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="btn-group" role="group" aria-label="...">
@@ -67,10 +70,10 @@
 							</thead> 
 							<tbody> 
 								<tr ng-repeat="item in page.content">
-								    <td>{{ item.adverId }}</td>
+								    <td>{{ item.adver }}</td>
 								    
 								    <td>{{ item.originName }}</td>
-								    <td>{{ item.category }}</td>
+								    <td>{{ item.categoryDesc }}</td>
 								    
 								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
