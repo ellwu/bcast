@@ -197,6 +197,8 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('193aa58780b44f0798499164ad72f9d2', 'F_CREATE_RESOURCE', 'Create Resource', '/resource/createResource.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('ae0a2ee607a74df5a0a6aa54ab5700a4', 'F_EDIT_RESOURCE', 'Edit Resource', '/resource/editResource.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('0cb066d3d7d943ee9a15e8c93aa3b758', 'F_BINDING_HOME', 'Binding Home', '/binding/home.do', 0);
 	
 	
 
@@ -280,7 +282,7 @@ df4d5b7b6d4643c4ba17950506bab2dd
 3aae3d72f2a34eddac92389ddea9909f
 d1bfc36818e747ec8fbc18123df2a53a
 14b23a40a69b4778823604c0414c50c6
-0cb066d3d7d943ee9a15e8c93aa3b758
+
 5684bc5dd19a4da8a3f73c1bafac9ab5
 6788631816ab42c2b2497547d94ad532
 3ea7c70b16be4b6c9fa058e5e4407392

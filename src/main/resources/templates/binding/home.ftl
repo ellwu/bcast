@@ -7,7 +7,7 @@
 <html lang="en">
 	<head>
 		<@html.commonHead/>
-		<title><@spring.message "resource.home.title"/></title>
+		<title><@spring.message "binding.home.title"/></title>
 		<script src="${base}/js/angular.js"></script>
 	</head>
 	<body>
@@ -17,12 +17,12 @@
 			<@html.content>
 				<div class="alert alert-success" role="alert" ng-hide="noTopMsg">{{ topMsg }}</div> 
 				
-				<#include "/resource/query.ftl"/>
+				<#include "/binding/info.ftl"/>
 				
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="btn-group" role="group" aria-label="...">
-							<a class="btn btn-default" href="${base}/tofunc.do?key=F_CREATE_RESOURCE"><@spring.message "prompt.create"/></a>
+							<button type="button" class="btn btn-default" ng-click="create()"><@spring.message "prompt.create"/></button>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
 							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="perPageBtn" aria-expanded="false">					
@@ -59,27 +59,19 @@
 					  	<table class="table table-bordered">
 							<thead> 
 								<tr> 
-									<th><@spring.message "resource.adverId.head"/></th> 
-									
-									<th><@spring.message "resource.originName.head"/></th> 									
-									<th><@spring.message "resource.category.head"/></th> 
-									
-									<th><@spring.message "disabled_enabled.head"/></th>
-									<th><@spring.message "table.head.action"/></th>
+									<th><@spring.message "binding.merchant.head"/></th> 
+									<th><@spring.message "binding.bindTime.head"/></th> 
+									<th><@spring.message "binding.releaseTime.head"/></th> 
+									<th><@spring.message "binding.status.head"/></th> 
 								</tr> 
 							</thead> 
 							<tbody> 
 								<tr ng-repeat="item in page.content">
-								    <td>{{ item.adver }}</td>
+								    <td>{{ item.merchant }}</td>
+								    <td>{{ item.bindTime }}</td>
 								    
-								    <td>{{ item.originName }}</td>
-								    <td>{{ item.categoryDesc }}</td>
-								    
-								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
-								    <td>
-								    	<a class="button glyphicon glyphicon-pencil" href="${base}/tofunc.do?key=F_EDIT_RESOURCE&resourceId={{item.id}}"></a>
-								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>
-								    </td>
+								    <td>{{ item.releaseTime }}</td>
+								    <td>{{ item.status }}</td>
 								  </tr>
 							</tbody> 
 						</table>
@@ -90,12 +82,12 @@
 					
 					</div>
 				</div>
-								
-				<#include "/resource/delete.ftl"/>
+				
+				<#include "/binding/create.ftl"/>
 				
 			</@html.content>
 			
-			<script src="${base}/res.do?path=/resource/home.js"></script>
+			<script src="${base}/res.do?path=/binding/home.js&deviceId=${RequestParameters["deviceId"]}"></script>
 		</div>
 	</body>
 </html>

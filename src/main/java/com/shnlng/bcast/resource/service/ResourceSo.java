@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.shnlng.bcast.adver.domain.AdverRepo;
+import com.shnlng.bcast.adver.domain.entity.AdverEo;
 import com.shnlng.bcast.resource.domain.ResourceRepo;
 import com.shnlng.bcast.resource.domain.entity.ResourceEo;
 import com.shnlng.bcast.system.domain.LookupRepo;
@@ -46,7 +47,7 @@ public class ResourceSo {
 		List<Object[]> advers = adverRepo.findAllNames();
 		Map<String, String> adverIdNameMap = new HashMap<String, String>();
 		for (Object[] a : advers) {
-			adverIdNameMap.put((String)a[0], (String)a[1]);
+			adverIdNameMap.put((String) a[0], (String) a[1]);
 		}
 
 		List<ResourceEo> tmps = resources.getContent();
@@ -62,5 +63,18 @@ public class ResourceSo {
 		}
 
 		return resources;
+	}
+
+	public ResourceEo editOne(String resourceId) {
+
+		ResourceEo resource = resourceRepo.findOne(resourceId);
+
+		AdverEo adver = adverRepo.findOne(resource.getAdverId());
+		
+		if (adver != null) {
+			resource.setAdver(adver.getName());
+		}
+
+		return resource;
 	}
 }

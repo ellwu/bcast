@@ -77,6 +77,8 @@
 								    
 								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
+								    	<a class="button glyphicon glyphicon-link" href="${base}/tofunc.do?key=F_BINDING_HOME&deviceId={{item.id}}"></a>
+								    	<a class="button glyphicon glyphicon-scissors" ng-click="release(item)"></a>
 								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>
 								    </td>

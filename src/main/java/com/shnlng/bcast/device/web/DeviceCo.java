@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import com.shnlng.bcast.base.util.IdGen;
 import com.shnlng.bcast.device.domain.entity.DeviceEo;
-import com.shnlng.bcast.device.service.DeviceService;
+import com.shnlng.bcast.device.service.DeviceSo;
 
 @Controller
 @RequestMapping("/device")
@@ -29,7 +29,7 @@ public class DeviceCo {
 	private static final Logger logger = Logger.getLogger(DeviceCo.class);
 
 	@Autowired
-	private DeviceService dso;
+	private DeviceSo dso;
 
 	@RequestMapping("/home")
 	public String home(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -37,6 +37,17 @@ public class DeviceCo {
 
 		logger.debug("enter home");
 		return "/device/home";
+	}
+	
+	@RequestMapping("/findOne")
+	@ResponseBody
+	public DeviceEo list(String deviceId) {
+		logger.debug("enter findOne");
+
+		DeviceEo result = dso.deviceRepo.findOne(deviceId);
+
+		logger.debug("leave findOne");
+		return result;
 	}
 
 	@RequestMapping("/list")
@@ -106,6 +117,7 @@ public class DeviceCo {
 
 		try {
 			device.setCreationTime(new Date());
+			device.setStatus("1");
 
 			dso.deviceRepo.save(device);
 

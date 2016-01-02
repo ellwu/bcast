@@ -64,6 +64,17 @@ public class ResourceCo {
 		return "/resource/editResource";
 	}
 
+	@RequestMapping("/editOne")
+	@ResponseBody
+	public ResourceEo editOne(String resourceId, HttpServletRequest req, HttpServletResponse resp) {
+		logger.debug("enter editOne");
+
+		ResourceEo resource = resourceSo.editOne(resourceId);
+
+		logger.debug("enter editOne");
+		return resource;
+	}
+
 	@RequestMapping("/list")
 	@ResponseBody
 	public Page<ResourceEo> list(String adver, String originName, String category, Pageable pageable) {
@@ -191,6 +202,102 @@ public class ResourceCo {
 		result.put("status", true);
 
 		logger.debug("leave createResourceAndFile");
+		return result;
+	}
+
+	@RequestMapping("/editResourceAndFile")
+	@ResponseBody
+	public Map<String, Object> editResourceAndFile(@RequestParam(value = "file", required = false) MultipartFile file,
+			ResourceEo resource, HttpServletRequest req, HttpServletResponse resp) {
+		logger.debug("enter editResourceAndFile");
+
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		RequestContext requestContext = new RequestContext(req);
+
+		if (resource == null || StringUtils.isEmpty(resource.getId())) {
+			logger.debug("resource input empty");
+
+			result.put("msg", requestContext.getMessage("resource.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+
+		String resourceId = resource.getId();
+
+		ResourceEo originResource = resourceSo.resourceRepo.findOne(resourceId);
+
+		if (originResource == null) {
+			logger.debug("resource not exists");
+
+			result.put("msg", requestContext.getMessage("resource.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+
+		if (file != null) {
+
+			String resourceRepoPath = profileRepo.findValueByKey("RESOURCE_REPO_PATH");
+			String resourceFileName = resourceRepoPath + File.separator + resourceId;
+			File resourceFile = new File(resourceFileName);
+
+			FileOutputStream fos = null;
+
+			try {
+				if (!resourceFile.exists()) {
+					resourceFile.createNewFile();
+				}
+
+				fos = new FileOutputStream(resourceFile);
+
+				FileUtil.copyStream(file.getInputStream(), fos, true);
+
+				fos.close();
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+
+				result.put("msg", requestContext.getMessage("resource.edit.error"));
+				result.put("status", false);
+				return result;
+			} finally {
+				if (fos != null) {
+					try {
+						fos.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+			originResource.setOriginName(file.getOriginalFilename());
+		}
+
+		originResource.setAdverId(resource.getAdverId());
+		originResource.setType(resource.getType());
+		originResource.setCategory(resource.getCategory());
+		originResource.setDuration(resource.getDuration());
+		originResource.setRangeAge(resource.getRangeAge());
+		originResource.setRangeGroup(resource.getRangeGroup());
+		originResource.setUploadTime(new Date());
+
+		originResource.setUpdateTime(new Date());
+		
+		try {
+
+			resourceSo.resourceRepo.save(originResource);
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+
+			result.put("msg", requestContext.getMessage("resource.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+
+		result.put("msg", requestContext.getMessage("resource.edit.ok"));
+		result.put("status", true);
+
+		logger.debug("leave editResourceAndFile");
 		return result;
 	}
 

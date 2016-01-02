@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,6 +25,8 @@ public class BindingEo implements Serializable {
 
 	@Column(name = "binding_merchant_id")
 	private String merchantId;
+	@Transient
+	private String merchant;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "binding_bind_time")
@@ -34,8 +37,10 @@ public class BindingEo implements Serializable {
 	private Date releaseTime;
 
 	@Column(name = "binding_status")
-	private int status;
-
+	private String status;
+	@Transient
+	private String statusDesc;
+	
 	@Column(name = "delete_flag")
 	private int deleteFlag;
 
@@ -99,11 +104,11 @@ public class BindingEo implements Serializable {
 		this.releaseTime = releaseTime;
 	}
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -161,6 +166,22 @@ public class BindingEo implements Serializable {
 
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
+	}
+
+	public String getMerchant() {
+		return merchant;
+	}
+
+	public void setMerchant(String merchant) {
+		this.merchant = merchant;
+	}
+
+	public String getStatusDesc() {
+		return statusDesc;
+	}
+
+	public void setStatusDesc(String statusDesc) {
+		this.statusDesc = statusDesc;
 	}
 
 }

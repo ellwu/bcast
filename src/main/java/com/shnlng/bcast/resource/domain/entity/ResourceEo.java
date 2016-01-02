@@ -26,7 +26,9 @@ public class ResourceEo implements Serializable {
 	private String adver;
 
 	@Column(name = "resource_type")
-	private int type;
+	private String type;
+	@Transient
+	private String typeDesc;
 
 	@Column(name = "resource_origin_name")
 	private String originName;
@@ -94,11 +96,11 @@ public class ResourceEo implements Serializable {
 		this.adverId = adverId;
 	}
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
@@ -236,6 +238,14 @@ public class ResourceEo implements Serializable {
 
 	public void setAdver(String adver) {
 		this.adver = adver;
+	}
+
+	public String getTypeDesc() {
+		return typeDesc;
+	}
+
+	public void setTypeDesc(String typeDesc) {
+		this.typeDesc = typeDesc;
 	}
 
 }

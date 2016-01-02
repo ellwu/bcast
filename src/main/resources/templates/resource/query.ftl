@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-xs-6 col-md-3">
+	<div class="col-xs-6 col-md-6">
 		<form role="form" id="queryForm" class="form-horizontal">
 			<div class="form-group">
 				  <label class="col-sm-3 control-label" for="adver"><@spring.message "resource.adver.label"/></label>

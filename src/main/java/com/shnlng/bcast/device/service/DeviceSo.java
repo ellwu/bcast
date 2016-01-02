@@ -14,7 +14,7 @@ import com.shnlng.bcast.system.domain.LookupRepo;
 import com.shnlng.bcast.system.domain.entity.LookupEo;
 
 @Service
-public class DeviceService {
+public class DeviceSo {
 	@Autowired
 	public DeviceRepo deviceRepo;
 	@Autowired
@@ -37,14 +37,14 @@ public class DeviceService {
 		List<DeviceEo> tmps = devices.getContent();
 		for (DeviceEo d : tmps) {
 			for (LookupEo s : status) {
-				if (d.getStatus().equals(s.getValue())) {
+				if (d.getStatus() != null && d.getStatus().equals(s.getValue())) {
 					d.setStatusDesc(s.getDesc());
 					break;
 				}
 			}
 
 			for (LookupEo bs : bindStatus) {
-				if (d.getBindStatus().equals(bs.getValue())) {
+				if (d.getBindStatus() != null && d.getBindStatus().equals(bs.getValue())) {
 					d.setBindStatusDesc(bs.getDesc());
 					break;
 				}
