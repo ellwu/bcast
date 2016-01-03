@@ -43,7 +43,7 @@ app.controller('appCtl', function($scope, $http) {
 			success: function(data){
 				if(data.status){
 					delete $scope.editItem;
-					$scope.createItem = {};
+					$scope.editItem = {};
 				}
 				
 				$scope.hasMsg = true;
@@ -96,8 +96,8 @@ app.controller('appCtl', function($scope, $http) {
     };
     
     $scope.query_Resource.choose = function(selectedResource){
-    	$scope.createItem.resource = selectedResource.originName;
-    	$scope.createItem.resourceId = selectedResource.id;
+    	$scope.editItem.resource = selectedResource.originName;
+    	$scope.editItem.resourceId = selectedResource.id;
     	
     	
 		$("#searchResourceModal").modal("hide");
@@ -164,8 +164,8 @@ app.controller('appCtl', function($scope, $http) {
     };
     
     $scope.query_Merchant.choose = function(selectedMerchant){
-    	$scope.createItem.merchant = selectedMerchant.name;
-    	$scope.createItem.merchantId = selectedMerchant.id;
+    	$scope.editItem.merchant = selectedMerchant.name;
+    	$scope.editItem.merchantId = selectedMerchant.id;
     	
     	
 		$("#searchMerchantModal").modal("hide");
