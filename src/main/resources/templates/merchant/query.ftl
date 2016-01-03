@@ -13,13 +13,13 @@
 			      <div class="col-sm-9">
 			   	  	<select class="form-control" id="level" name="level" ng-model="queryItem.level" ng-options="l.value as l.desc for l in options.levelOptions"></select>
 			   	  </div>
-			   </div>
-			   <div class="form-group">
+		   </div>
+		   <div class="form-group">
 			      <label class="col-sm-3 control-label" for="category"><@spring.message "merchant.category.label"/></label>
 			      <div class="col-sm-9">
 			        <select class="form-control" id="category" name="category" ng-model="queryItem.category" ng-options="l.value as l.desc for l in options.categoryOptions"></select>
 			   	  </div>
-			   </div>
+		   </div>
 			
 			<div class="form-group">
 				  <label class="col-sm-3 control-label" for="name"></label>

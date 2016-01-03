@@ -53,7 +53,7 @@ public class ResourceSo {
 		List<ResourceEo> tmps = resources.getContent();
 		for (ResourceEo a : tmps) {
 			for (LookupEo c : categories) {
-				if (c.getValue().equals(a.getCategory())) {
+				if (c.getValue() != null && c.getValue().equals(a.getCategory())) {
 					a.setCategoryDesc(c.getDesc());
 					break;
 				}

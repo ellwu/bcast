@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,9 +25,13 @@ public class TargetEo implements Serializable {
 
 	@Column(name = "target_merchant_id")
 	private String merchantId;
+	@Transient
+	private String merchant;
 	
 	@Column(name = "target_resource_id")
 	private String resourceId;
+	@Transient
+	private String resource;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "target_begin_time")
@@ -206,6 +211,22 @@ public class TargetEo implements Serializable {
 
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
+	}
+
+	public String getMerchant() {
+		return merchant;
+	}
+
+	public void setMerchant(String merchant) {
+		this.merchant = merchant;
+	}
+
+	public String getResource() {
+		return resource;
+	}
+
+	public void setResource(String resource) {
+		this.resource = resource;
 	}
 	
 	

@@ -12,7 +12,6 @@ import com.shnlng.bcast.device.domain.BindingRepo;
 import com.shnlng.bcast.device.domain.entity.BindingEo;
 import com.shnlng.bcast.merchant.domain.MerchantRepo;
 import com.shnlng.bcast.merchant.domain.entity.MerchantEo;
-import com.shnlng.bcast.system.domain.LookupRepo;
 
 @Service
 public class BindingSo {
@@ -20,8 +19,6 @@ public class BindingSo {
 	public BindingRepo bRepo;
 	@Autowired
 	private MerchantRepo mRepo;
-	@Autowired
-	private LookupRepo lRepo;
 
 	public Page<BindingEo> findBindingHistory(String deviceId, Pageable pageable) {
 		

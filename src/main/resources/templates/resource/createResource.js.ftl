@@ -130,7 +130,7 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	
 	$scope.query_Adver.previous = function(){
-		$scope.pageIndex -= 1;
+		$scope.query_Adver.pageIndex -= 1;
 		$scope.query_Adver.getData();
 	};
 	

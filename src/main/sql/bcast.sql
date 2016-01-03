@@ -75,7 +75,7 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('525125e92cc348ac8be2eb504f0ca1a5','M_ADV_RES','广告资源管理','1c32b4ff6c8b48268749e50b91603465',32000,'d0edce6a718a4c65b64d25ffd947f7bb',0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('976e48f7f5634229953d10cb708860b1','M_ADV_CAST','广告投放管理','1c32b4ff6c8b48268749e50b91603465',33000,null,0);
+	values('976e48f7f5634229953d10cb708860b1','M_ADV_CAST','广告投放管理','1c32b4ff6c8b48268749e50b91603465',33000,'0cb9c83db6074aabbbe9b462b39af1db',0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('81f8105f8f6f4501ab53cd4b7f3bf42a','M_ADV_SEQ','广告播放序列','1c32b4ff6c8b48268749e50b91603465',34000,null,0);
 	
@@ -199,9 +199,15 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('ae0a2ee607a74df5a0a6aa54ab5700a4', 'F_EDIT_RESOURCE', 'Edit Resource', '/resource/editResource.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('0cb066d3d7d943ee9a15e8c93aa3b758', 'F_BINDING_HOME', 'Binding Home', '/binding/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('0cb9c83db6074aabbbe9b462b39af1db', 'F_TARGET_HOME', 'Target Home', '/target/home.do', 0);
+	
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('a073984172134391bf5c0e97a8d849a1', 'F_CREATE_TARGET', 'Create Target', '/target/createTarget.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('0eb5ce4b9b18457299c34a230b0c3e66', 'F_EDIT_TARGET', 'Edit Target', '/target/editTarget.do', 0);
 	
 	
-
 drop table if exists t_profiles;
 create table t_profiles(
 	profile_id char(32) not null,
@@ -286,10 +292,8 @@ d1bfc36818e747ec8fbc18123df2a53a
 5684bc5dd19a4da8a3f73c1bafac9ab5
 6788631816ab42c2b2497547d94ad532
 3ea7c70b16be4b6c9fa058e5e4407392
-a073984172134391bf5c0e97a8d849a1
-0eb5ce4b9b18457299c34a230b0c3e66
 
-0cb9c83db6074aabbbe9b462b39af1db
+
 b404095c68744c0ba30257ce16f5ba4c
 f5dc1172771a4118a0c97233194cf99f
 02a69ced2d9f45bc92559ba2071c247d
