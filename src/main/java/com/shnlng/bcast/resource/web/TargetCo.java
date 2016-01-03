@@ -55,6 +55,17 @@ public class TargetCo {
 		return "/target/editTarget";
 	}
 
+	@RequestMapping("/editOne")
+	@ResponseBody
+	public TargetEo editOne(String targetId, HttpServletRequest req, HttpServletResponse resp) {
+		logger.debug("enter editOne");
+
+		TargetEo target = targetSo.editOne(targetId);
+
+		logger.debug("enter editOne");
+		return target;
+	}
+
 	@RequestMapping("/list")
 	@ResponseBody
 	public Page<TargetEo> list(String sn, String resource, String merchant, Pageable pageable) {

@@ -1,5 +1,7 @@
 package com.shnlng.bcast.resource.domain;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,4 +21,7 @@ public interface TargetRepo extends PagingAndSortingRepository<TargetEo, String>
 	@Query("select t from TargetEo t where t.deleteFlag = 0 and (:sn is null or t.sn like :sn) and (:merchant is null or t.merchantId in (select m.id from MerchantEo m where m.name like :merchant)) and (:resource is null or t.resourceId in (select r.id from ResourceEo r where r.originName like :resource))")
 	Page<TargetEo> queryActive(@Param("sn") String sn, @Param("resource") String resource,
 			@Param("merchant") String merchant, Pageable pageable);
+	
+	@Query("select t from TargetEo t where t.merchantId = :merchantId")
+	List<TargetEo> findMerchantTargets(@Param("merchantId") String merchantId);
 }

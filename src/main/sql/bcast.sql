@@ -76,8 +76,6 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 	values('525125e92cc348ac8be2eb504f0ca1a5','M_ADV_RES','广告资源管理','1c32b4ff6c8b48268749e50b91603465',32000,'d0edce6a718a4c65b64d25ffd947f7bb',0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('976e48f7f5634229953d10cb708860b1','M_ADV_CAST','广告投放管理','1c32b4ff6c8b48268749e50b91603465',33000,'0cb9c83db6074aabbbe9b462b39af1db',0);
-insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('81f8105f8f6f4501ab53cd4b7f3bf42a','M_ADV_SEQ','广告播放序列','1c32b4ff6c8b48268749e50b91603465',34000,null,0);
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('c039dc4cfc84431db0b30a3005ab13bf','M_BI','统计分析','79a627c7f9654d69954ef5ff756c175a',40000,null,0);
@@ -207,6 +205,9 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('0eb5ce4b9b18457299c34a230b0c3e66', 'F_EDIT_TARGET', 'Edit Target', '/target/editTarget.do', 0);
 	
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('b404095c68744c0ba30257ce16f5ba4c', 'F_MERCHANT_RES_SEQ', 'Merchant Resource Sequence', '/merchant/targetSequence.do', 0);
+	
 	
 drop table if exists t_profiles;
 create table t_profiles(
@@ -294,7 +295,7 @@ d1bfc36818e747ec8fbc18123df2a53a
 3ea7c70b16be4b6c9fa058e5e4407392
 
 
-b404095c68744c0ba30257ce16f5ba4c
+
 f5dc1172771a4118a0c97233194cf99f
 02a69ced2d9f45bc92559ba2071c247d
 55dcbbdbca0540d9987fdb5734b9d478

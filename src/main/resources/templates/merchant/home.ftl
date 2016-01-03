@@ -87,6 +87,7 @@
 								    
 								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
+								    	<a class="button glyphicon glyphicon-th-list" ng-click="targetSequence(item)"></a>
 								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>
 								    </td>
@@ -106,6 +107,8 @@
 				<#include "/merchant/edit.ftl"/>
 				
 				<#include "/merchant/delete.ftl"/>
+				
+				<#include "/merchant/targets.ftl"/>
 				
 			</@html.content>
 			

@@ -1,6 +1,7 @@
 package com.shnlng.bcast.resource.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -74,6 +75,45 @@ public class TargetSo {
 
 		for (TargetEo t : targets) {
 			t.setResource(resourceMaps.get(t.getResourceId()));
+		}
+
+		return targets;
+	}
+
+	public TargetEo editOne(String targetId) {
+
+		if (StringUtils.isEmpty(targetId)) {
+			return null;
+		}
+
+		TargetEo target = targetRepo.findOne(targetId);
+
+		ResourceEo resource = rRepo.findOne(target.getResourceId());
+		if (resource != null) {
+			target.setResource(resource.getOriginName());
+		}
+
+		MerchantEo merchant = mRepo.findOne(target.getMerchantId());
+		if (merchant != null) {
+			target.setMerchant(merchant.getName());
+		}
+
+		return target;
+	}
+
+	public List<TargetEo> findMerchantTargets(String merchantId) {
+
+		if (StringUtils.isEmpty(merchantId)) {
+			return null;
+		}
+
+		List<TargetEo> targets = targetRepo.findMerchantTargets(merchantId);
+
+		for (TargetEo t : targets) {
+			ResourceEo resource = rRepo.findOne(t.getResourceId());
+			if (resource != null) {
+				t.setResource(resource.getOriginName());
+			}
 		}
 
 		return targets;

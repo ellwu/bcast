@@ -7,100 +7,97 @@
 <html lang="en">
 	<head>
 		<@html.commonHead/>
-		<title><@spring.message "resource.home.title"/></title>
+		<title><@spring.message "target.home.title"/></title>
 		<script src="${base}/js/angular.js"></script>
+		
+		<link href="${base}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+		<script src="${base}/js/bootstrap-datetimepicker.js"></script>
+		<script src="${base}/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	</head>
 	<body>
 		<div ng-app="myApp" ng-controller="appCtl">
 			<@html.topMenu/>
 			
 			<@html.content>
-
+				
 			<div class="alert alert-info" role="alert" ng-hide="!hasMsg">{{ msg }}</div> 
 			<form role="form" id="createForm" class="form-horizontal">
-			   <input type="hidden" ng-model="editItem.adverId" name="adverId"/>
+			   <input type="hidden" ng-model="editItem.merchantId" name="merchantId"/>
+			   <input type="hidden" ng-model="editItem.resourceId" name="resourceId"/>
 			   
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="adver"><@spring.message "resource.adver.label"/></label>
+			      <label class="col-sm-2 control-label" for="sn"><@spring.message "target.sn.label"/></label>
+			      <div class="col-sm-3">
+			        <input type="text" class="form-control" id="sn" ng-model="editItem.sn" name="sn" placeholder="<@spring.message "target.sn.placeholder"/>">
+			   	  </div>
+			   </div>
+			   
+			   <div class="form-group">
+			      <label class="col-sm-2 control-label" for="resource"><@spring.message "target.resource.label"/></label>
 			      <div class="col-sm-3">
 			      	<div class="input-group">
-			        	<input type="text" class="form-control" id="adver" ng-model="editItem.adver" name="adver" placeholder="<@spring.message "resource.adver.placeholder"/>" readonly>
+			        	<input type="text" class="form-control" id="resource" ng-model="editItem.resource" name="resource" placeholder="<@spring.message "target.resource.placeholder"/>" readonly>
 			        	<span class="input-group-btn">
-				        	<button type="button" class="btn btn-default" ng-click="searchAdver()"><@spring.message "prompt.search"/></button>
+				        	<button type="button" class="btn btn-default" ng-click="searchResource()"><@spring.message "prompt.search"/></button>
 				      	</span>
 			        </div>
 			   	  </div>
 			   </div>
 			   
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="type"><@spring.message "resource.type.label"/></label>
+			      <label class="col-sm-2 control-label" for="merchant"><@spring.message "target.merchant.label"/></label>
 			      <div class="col-sm-3">
-			   	  	<select class="form-control" id="type" name="type" ng-model="editItem.type" ng-options="l.value as l.desc for l in options.typeOptions"></select>
+			      	<div class="input-group">
+			        	<input type="text" class="form-control" id="merchant" ng-model="editItem.merchant" name="merchant" placeholder="<@spring.message "target.merchant.placeholder"/>" readonly>
+			        	<span class="input-group-btn">
+				        	<button type="button" class="btn btn-default" ng-click="searchMerchant()"><@spring.message "prompt.search"/></button>
+				      	</span>
+			        </div>
 			   	  </div>
 			   </div>
 			   
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="file"><@spring.message "resource.file.label"/></label>
+			      <label class="col-sm-2 control-label" for="beginTime"><@spring.message "target.beginTime.label"/></label>
 			      <div class="col-sm-3">
-			   	  	<div class="input-group">
-				      <input id="photoCover" ng-model="editItem.originName" class="form-control" type="text" readonly>
-				      <span class="input-group-btn">
-				        <button class="btn btn-default" type="button" onclick="$('input[id=lefile]').click();"><@spring.message "prompt.choose"/></button>
-				      </span>
-				    </div>
-			   	  	<input id="lefile" name="file" type="file" style="display:none">
-				    <script type="text/javascript">
-						$('input[id=lefile]').change(function() {
-							$('#photoCover').val($(this).val());
-						});
-					</script>
+			        <input type="text" class="form-control" id="beginTime" ng-model="editItem.beginTime" name="beginTime" placeholder="<@spring.message "target.beginTime.placeholder"/>">
 			   	  </div>
 			   </div>
+			   <script type="text/javascript">
+				    $("#beginTime").datetimepicker({
+				    	language: "zh-CN",
+				    	format: 'yyyy-mm-dd hh:ii:ss'
+				    });
+				</script>  
 			   
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="category"><@spring.message "resource.category.label"/></label>
+			      <label class="col-sm-2 control-label" for="endTime"><@spring.message "target.endTime.label"/></label>
 			      <div class="col-sm-3">
-			        <select class="form-control" id="category" name="category" ng-model="editItem.category" ng-options="l.value as l.desc for l in options.categoryOptions"></select>
+			        <input type="text" class="form-control" id="endTime" ng-model="editItem.endTime" name="endTime" placeholder="<@spring.message "target.endTime.placeholder"/>">
 			   	  </div>
 			   </div>
-			   
-			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="duration"><@spring.message "resource.duration.label"/></label>
-			      <div class="col-sm-2">
-			        <input type="text" class="form-control" id="duration" ng-model="editItem.duration" name="duration" placeholder="<@spring.message "resource.duration.placeholder"/>">
-			   	  </div>
-			   </div>
-			   
-			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="rangeAge"><@spring.message "resource.rangeAge.label"/></label>
-			      <div class="col-sm-4">
-			        <input type="text" class="form-control" id="rangeAge" ng-model="editItem.rangeAge" name="rangeAge" placeholder="<@spring.message "resource.rangeAge.placeholder"/>">
-			   	  </div>
-			   </div>
-			   
-			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="rangeGroup"><@spring.message "resource.rangeGroup.label"/></label>
-			      <div class="col-sm-4">
-			        <input type="text" class="form-control" id="rangeGroup" ng-model="editItem.rangeGroup" name="rangeGroup" placeholder="<@spring.message "resource.rangeGroup.placeholder"/>">
-			   	  </div>
-			   </div>
+			   <script type="text/javascript">
+				    $("#endTime").datetimepicker({
+				    	language: "zh-CN",
+				    	format: 'yyyy-mm-dd hh:ii:ss'
+				    });
+				</script>     
 			   
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label"></label>
 			      <div class="col-sm-6">
 			        <button type="button" class="btn btn-primary" ng-click="editConfirm()"><@spring.message "prompt.edit"/></button>
-			        <a class="btn btn-default" href="${base}/tofunc.do?key=F_RESOURCE_HOME"><@spring.message "prompt.return"/></a>
+			        <a class="btn btn-default" href="${base}/tofunc.do?key=F_TARGET_HOME"><@spring.message "prompt.return"/></a>
 			   	  </div>
 			   </div>
 			   			   
 			</form>
 			
-			<#include "/resource/queryAdvers.ftl"/>
+			<#include "/target/queryResource.ftl"/>
+			<#include "/target/queryMerchant.ftl"/>
 				
 			</@html.content>
 			
-			<script src="${base}/res.do?path=/resource/editResource.js&resourceId=${RequestParameters["resourceId"]}"></script>
-			
+			<script src="${base}/res.do?path=/target/editTarget.js&targetId=${RequestParameters["targetId"]}"></script>
 		</div>
 	</body>
 </html>

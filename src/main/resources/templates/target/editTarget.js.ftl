@@ -4,28 +4,6 @@
 
 var app = angular.module('myApp', []);
 app.controller('appCtl', function($scope, $http) {
-
-	//option values begin
-	$scope.options = {};
-	
-	$scope.optionsInit = function(){
-		var optionsUrl = "${base}/lookup/values.do?categoryKey=RESOURCE_CATEGORY";
-	    
-	    $http.get(optionsUrl).success(function (response) {
-	    	$scope.options.categoryOptions = response;
-	    });
-	    
-	    optionsUrl = "${base}/lookup/values.do?categoryKey=RESOURCE_TYPE";
-	    
-	    $http.get(optionsUrl).success(function (response) {
-	    	$scope.options.typeOptions = response;
-	    });
-	    
-	};
-	
-	$scope.optionsInit();
-	
-	//option values end
 	
 	//create action begin
 	$scope.msg = "";
@@ -34,7 +12,7 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.editItem = {};
 	
 	$scope.findEditItem = function(){
-		var editUrl = "${base}/resource/editOne.do?resourceId=${RequestParameters["resourceId"]}";
+		var editUrl = "${base}/target/editOne.do?targetId=${RequestParameters["targetId"]}";
 	    
 	    $.ajax({
 			cache: true,
@@ -50,54 +28,22 @@ app.controller('appCtl', function($scope, $http) {
     };
     
     $scope.findEditItem();
-    
 	
 	$scope.editConfirm = function(){
-		var formData = new FormData();
-		
-		if($('input[type=file]')[0].files[0]){
-			formData.append('file', $('input[type=file]')[0].files[0]);
-		}
-		if($scope.editItem.id){
-			formData.append('id', $scope.editItem.id);
-		}
-		if($scope.editItem.adverId){
-			formData.append('adverId', $scope.editItem.adverId);
-		}
-		if($scope.editItem.type){
-			formData.append('type', $scope.editItem.type);
-		}
-		if($scope.editItem.category){
-			formData.append('category', $scope.editItem.category);
-		}
-		if($scope.editItem.duration){
-			formData.append('duration', $scope.editItem.duration);
-		}
-		if($scope.editItem.rangeAge){
-			formData.append('rangeAge', $scope.editItem.rangeAge);
-		}
-		if($scope.editItem.rangeGroup){
-			formData.append('rangeGroup', $scope.editItem.rangeGroup);
-		}
-		
 		$.ajax({
 			cache: true,
 			type: 'POST',
-			url: "${base}/resource/editResourceAndFile.do",
-			data: formData,
-			contentType: false,
-    		processData: false,
+			url: "${base}/target/edit.do",
+			data: $scope.editItem,
 			async: false,
 			error: function(req){
-				$scope.hasMsg = true;
-				$scope.msg = "Internal error. Please contact your administrator.";
+				$scope.createOk = false;
+				$scope.createMsg = "Internal error. Please contact your administrator.";
 			},
 			success: function(data){
 				if(data.status){
 					delete $scope.editItem;
-					$scope.editItem = {};
-					
-					$scope.findEditItem();
+					$scope.createItem = {};
 				}
 				
 				$scope.hasMsg = true;
@@ -109,86 +55,170 @@ app.controller('appCtl', function($scope, $http) {
 	
 	//search action begin
 	
-	$scope.searchAdver = function(){
+	$scope.searchResource = function(){
 		
-		$scope.query_Adver.optionsInit();
+		$scope.query_Resource.optionsInit();
 	
-		$("#searchAdverModal").modal("show");
+		$("#searchResourceModal").modal("show");
+	};
+	
+	$scope.searchMerchant = function(){
+		
+		$scope.query_Merchant.optionsInit();
+	
+		$("#searchMerchantModal").modal("show");
 	};
 	
 	//search action end
 	
 	//adver query action begin
-	$scope.query_Adver = {};
+	$scope.query_Resource = {};
 	
 	//pageable table begin
-	$scope.query_Adver.pageIndex = 0;
-	$scope.query_Adver.pageSize = 10;
+	$scope.query_Resource.pageIndex = 0;
+	$scope.query_Resource.pageSize = 10;
 	
-	$scope.query_Adver.getData = function(){
-		var listUrl = "${base}/adver/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+	$scope.query_Resource.getData = function(){
+		var listUrl = "${base}/resource/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
 	    
 	    $.ajax({
 			cache: true,
 			type: 'POST',
 			url: listUrl,
-			data: $scope.query_Adver.queryItem,
+			data: $scope.query_Resource.queryItem,
 			async: false,
 			error: function(req){
 			},
 			success: function(data){
-				$scope.query_Adver.page = data;
+				$scope.query_Resource.page = data;
 			}
 		});
     };
     
-    $scope.query_Adver.choose = function(selectedAdver){
-    	$scope.createItem.adver = selectedAdver.name;
-    	$scope.createItem.adverId = selectedAdver.id;
+    $scope.query_Resource.choose = function(selectedResource){
+    	$scope.createItem.resource = selectedResource.originName;
+    	$scope.createItem.resourceId = selectedResource.id;
     	
     	
-		$("#searchAdverModal").modal("hide");
+		$("#searchResourceModal").modal("hide");
     };
     
-	$scope.query_Adver.next = function(){
-		$scope.query_Adver.pageIndex += 1;
-		$scope.query_Adver.getData();
+	$scope.query_Resource.next = function(){
+		$scope.query_Resource.pageIndex += 1;
+		$scope.query_Resource.getData();
 	};
 	
-	$scope.query_Adver.previous = function(){
+	$scope.query_Resource.previous = function(){
 		$scope.pageIndex -= 1;
-		$scope.query_Adver.getData();
+		$scope.query_Resource.getData();
 	};
 	
-	$scope.query_Adver.perPage = function(size){
-		$scope.query_Adver.pageSize = size;
-		$scope.query_Adver.pageIndex = 0;
+	$scope.query_Resource.perPage = function(size){
+		$scope.query_Resource.pageSize = size;
+		$scope.query_Resource.pageIndex = 0;
 		
-		$scope.query_Adver.getData();
+		$scope.query_Resource.getData();
 	};
 	//pageable table end
 	
-	$scope.query_Adver.queryItem = {};
+	$scope.query_Resource.queryItem = {};
 	
-    $scope.query_Adver.query = function(){
-    	$scope.query_Adver.getData();
+    $scope.query_Resource.query = function(){
+    	$scope.query_Resource.getData();
     };
     
-    $scope.query_Adver.resetQuery = function(){
-    	$scope.query_Adver.queryItem = {};
+    $scope.query_Resource.resetQuery = function(){
+    	$scope.query_Resource.queryItem = {};
     };
     
 	//query action end
 	
 	//query option values begin
-	$scope.query_Adver.options = {};
+	$scope.query_Resource.options = {};
 	
-	$scope.query_Adver.optionsInit = function(){
-		var optionsUrl = "${base}/lookup/values.do?categoryKey=ADVER_CATEGORY";
+	$scope.query_Resource.optionsInit = function(){
+		
+	};
+	
+	$scope.query_Merchant = {};
+	
+	//pageable table begin
+	$scope.query_Merchant.pageIndex = 0;
+	$scope.query_Merchant.pageSize = 10;
+	
+	$scope.query_Merchant.getData = function(){
+		var listUrl = "${base}/merchant/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+	    
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			data: $scope.query_Merchant.queryItem,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.query_Merchant.page = data;
+			}
+		});
+    };
+    
+    $scope.query_Merchant.choose = function(selectedMerchant){
+    	$scope.createItem.merchant = selectedMerchant.name;
+    	$scope.createItem.merchantId = selectedMerchant.id;
+    	
+    	
+		$("#searchMerchantModal").modal("hide");
+    };
+    
+	$scope.query_Merchant.next = function(){
+		$scope.query_Merchant.pageIndex += 1;
+		$scope.query_Merchant.getData();
+	};
+	
+	$scope.query_Merchant.previous = function(){
+		$scope.query_Merchant.pageIndex -= 1;
+		$scope.query_Merchant.getData();
+	};
+	
+	$scope.query_Merchant.perPage = function(size){
+		$scope.query_Merchant.pageSize = size;
+		$scope.query_Merchant.pageIndex = 0;
+		
+		$scope.query_Merchant.getData();
+	};
+	//pageable table end
+	
+	$scope.query_Merchant.queryItem = {};
+	
+    $scope.query_Merchant.query = function(){
+    	$scope.query_Merchant.getData();
+    };
+    
+    $scope.query_Merchant.resetQuery = function(){
+    	$scope.query_Merchant.queryItem = {};
+    };
+    
+	//query action end
+	
+	//query option values begin
+	$scope.query_Merchant.options = {};
+	
+	$scope.query_Merchant.optionsInit = function(){
+		var optionsUrl = "${base}/lookup/values.do?categoryKey=MERCHANT_LEVEL";
 	    
 	    $http.get(optionsUrl).success(function (response) {
-	    	$scope.query_Adver.options.categoryOptions = response;
+	    	$scope.query_Merchant.options.levelOptions = response;
 	    });
+	    
+	    optionsUrl = "${base}/lookup/values.do?categoryKey=MERCHANT_CATEGORY";
+	    
+	    $http.get(optionsUrl).success(function (response) {
+	    	$scope.query_Merchant.options.categoryOptions = response;
+	    });
+	    
+	    $scope.query_Merchant.options.disableOptions = [{"value":0,"desc":"<@spring.message "prompt.enabled"/>"},{"value":1,"desc":"<@spring.message "prompt.disabled"/>"}];
+
 	    
 	};
 	

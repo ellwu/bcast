@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.support.RequestContext;
 
 import com.shnlng.bcast.base.util.IdGen;
+import com.shnlng.bcast.device.domain.DeviceRepo;
 import com.shnlng.bcast.device.domain.entity.BindingEo;
+import com.shnlng.bcast.device.domain.entity.DeviceEo;
 import com.shnlng.bcast.device.service.BindingSo;
 
 @Controller
@@ -30,6 +32,8 @@ public class BindingCo {
 
 	@Autowired
 	private BindingSo bSo;
+	@Autowired
+	private DeviceRepo dRepo;
 
 	@RequestMapping("/home")
 	public String home(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -47,6 +51,48 @@ public class BindingCo {
 		Page<BindingEo> result = bSo.findBindingHistory(deviceId, pageable);
 
 		logger.debug("leave history");
+		return result;
+	}
+
+	@RequestMapping("/release")
+	@ResponseBody
+	public Map<String, Object> release(DeviceEo d, HttpServletRequest req, HttpServletResponse resp) {
+		logger.debug("enter release");
+
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		RequestContext requestContext = new RequestContext(req);
+
+		if (d == null || StringUtils.isEmpty(d.getId())) {
+			logger.debug("device input empty");
+
+			result.put("msg", requestContext.getMessage("bind.release.error"));
+			result.put("status", false);
+			return result;
+		}
+
+		String deviceId = d.getId();
+
+		try {
+			DeviceEo device = dRepo.findOne(deviceId);
+
+			device.setBindStatus("2");
+
+			dRepo.save(device);
+
+			bSo.bRepo.release(deviceId, new Date());
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+
+			result.put("msg", requestContext.getMessage("bind.release.error"));
+			result.put("status", false);
+			return result;
+		}
+		result.put("msg", requestContext.getMessage("bind.release.ok"));
+		result.put("status", true);
+
+		logger.debug("leave release");
 		return result;
 	}
 
@@ -88,6 +134,12 @@ public class BindingCo {
 			bind.setStatus("1");
 
 			bSo.bRepo.save(bind);
+
+			DeviceEo device = dRepo.findOne(deviceId);
+
+			device.setBindStatus("1");
+
+			dRepo.save(device);
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());

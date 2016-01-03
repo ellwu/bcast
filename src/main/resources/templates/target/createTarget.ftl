@@ -10,11 +10,10 @@
 		<title><@spring.message "target.home.title"/></title>
 		<script src="${base}/js/angular.js"></script>
 		
-		
 		<link href="${base}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 		<script src="${base}/js/bootstrap-datetimepicker.js"></script>
 		<script src="${base}/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
-	</head>asd
+	</head>
 	<body>
 		<div ng-app="myApp" ng-controller="appCtl">
 			<@html.topMenu/>

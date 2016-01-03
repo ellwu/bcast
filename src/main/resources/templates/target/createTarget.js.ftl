@@ -5,28 +5,6 @@
 var app = angular.module('myApp', []);
 app.controller('appCtl', function($scope, $http) {
 
-	//option values begin
-	$scope.options = {};
-	
-	$scope.optionsInit = function(){
-		var optionsUrl = "${base}/lookup/values.do?categoryKey=RESOURCE_CATEGORY";
-	    
-	    $http.get(optionsUrl).success(function (response) {
-	    	$scope.options.categoryOptions = response;
-	    });
-	    
-	    optionsUrl = "${base}/lookup/values.do?categoryKey=RESOURCE_TYPE";
-	    
-	    $http.get(optionsUrl).success(function (response) {
-	    	$scope.options.typeOptions = response;
-	    });
-	    
-	};
-	
-	$scope.optionsInit();
-	
-	//option values end
-	
 	//create action begin
 	$scope.msg = "";
 	$scope.hasMsg = false;

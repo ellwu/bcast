@@ -14,7 +14,7 @@ import com.shnlng.bcast.system.domain.LookupRepo;
 import com.shnlng.bcast.system.domain.entity.LookupEo;
 
 @Service
-public class MerchantService {
+public class MerchantSo {
 	@Autowired
 	public MerchantRepo merchantRepo;
 	@Autowired

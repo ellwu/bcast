@@ -2,6 +2,7 @@ package com.shnlng.bcast.merchant.web;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,9 @@ import org.springframework.web.servlet.support.RequestContext;
 
 import com.shnlng.bcast.base.util.IdGen;
 import com.shnlng.bcast.merchant.domain.entity.MerchantEo;
-import com.shnlng.bcast.merchant.service.MerchantService;
+import com.shnlng.bcast.merchant.service.MerchantSo;
+import com.shnlng.bcast.resource.domain.entity.TargetEo;
+import com.shnlng.bcast.resource.service.TargetSo;
 
 @Controller
 @RequestMapping("/merchant")
@@ -29,7 +32,9 @@ public class MerchantCo {
 	private static final Logger logger = Logger.getLogger(MerchantCo.class);
 
 	@Autowired
-	private MerchantService mSo;
+	private MerchantSo mSo;
+	@Autowired
+	private TargetSo tSo;
 
 	@RequestMapping("/home")
 	public String home(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -37,6 +42,17 @@ public class MerchantCo {
 
 		logger.debug("enter home");
 		return "/merchant/home";
+	}
+
+	@RequestMapping("/targetSequence")
+	@ResponseBody
+	public List<TargetEo> targetSequence(String merchantId) {
+		logger.debug("enter list");
+
+		List<TargetEo> result = tSo.findMerchantTargets(merchantId);
+
+		logger.debug("leave list");
+		return result;
 	}
 
 	@RequestMapping("/list")

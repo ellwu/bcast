@@ -200,6 +200,36 @@ app.controller('appCtl', function($scope, $http) {
 	
 	//delete action end
 	
+	//target sequence action begin
+	$scope.targets = {};
+	
+	$scope.getTargets = function(merchantId){
+		var listUrl = "${base}/merchant/targetSequence.do?merchantId=" + merchantId;
+	    
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.targets.data = data;
+			}
+		});
+    };
+	
+	$scope.targetSequence = function(item){
+		$scope.targets = {};
+		
+		$scope.getTargets(item.id);
+		
+		$("#targetModal").modal("show");
+	};
+	
+	
+	//target sequence action end
+	
 	//query action begin
 	$scope.queryItem = {};
 	

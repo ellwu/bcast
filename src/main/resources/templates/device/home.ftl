@@ -99,6 +99,8 @@
 				
 				<#include "/device/delete.ftl"/>
 				
+				<#include "/device/release.ftl"/>
+				
 			</@html.content>
 			
 			<script src="${base}/res.do?path=/device/home.js"></script>

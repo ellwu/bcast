@@ -158,6 +158,44 @@ app.controller('appCtl', function($scope, $http) {
 	
 	//edit action end
 	
+	//release action begin
+	$scope.release = function(item){
+		$scope.editItem = item;
+		
+		$("#releaseModal").modal("show");
+	};
+	
+	$scope.releaseConfirm = function(){
+		
+		$.ajax({
+			cache: true,
+			type: 'POST',
+			url: "${base}/binding/release.do",
+			data: $scope.editItem,
+			async: false,
+			error: function(req){
+				$scope.editOk = false;
+				$scope.editMsg = "Internal error. Please contact your administrator.";
+			},
+			success: function(data){
+				if(data.status){
+					$("#releaseModal").modal('hide');
+					
+					delete $scope.editItem;
+					
+					$scope.editOk = true;
+					$scope.getData();
+					
+					$scope.showTopMsg(data.msg);
+				}else{
+					$scope.editMsg = data.msg;
+					$scope.editOk = false;
+				}
+			}
+		});
+	};
+	//release action end
+	
 	//delete action begin
 	$scope.deleteItem = {};
 	$scope.deleteMsg = "";
