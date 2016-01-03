@@ -41,7 +41,8 @@
 								    <td>{{ item.endTime }}</td>
 								    
 								    <td>
-								    	<a class="button glyphicon glyphicon-pencil" href="${base}/tofunc.do?key=F_EDIT_TARGET&targetId={{item.id}}"></a>
+								    	<a class="button glyphicon glyphicon-chevron-up" ng-click="seqUp($index)"></a>
+								    	<a class="button glyphicon glyphicon-chevron-down" ng-click="seqDown($index)"></a>
 								    </td>
 								  </tr>
 							</tbody> 

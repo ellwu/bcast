@@ -140,6 +140,50 @@ public class MerchantCo {
 		return result;
 	}
 
+	@RequestMapping("/switchTargetSeq")
+	@ResponseBody
+	public Map<String, Object> switchTargetSeq(HttpServletRequest req, HttpServletResponse resp, String itemId, String destItemId) {
+		logger.debug("enter switchTargetSeq");
+
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		RequestContext requestContext = new RequestContext(req);
+
+		if (StringUtils.isEmpty(itemId) || StringUtils.isEmpty(destItemId)) {
+			logger.debug("switch input empty");
+
+			result.put("msg", requestContext.getMessage("merchant.switch.error"));
+			result.put("status", false);
+			return result;
+		}
+
+		try {
+			TargetEo item = tSo.targetRepo.findOne(itemId);
+			
+			TargetEo destItem = tSo.targetRepo.findOne(destItemId);
+			
+			int tmpSeq = item.getPlaySequence();
+			item.setPlaySequence(destItem.getPlaySequence());
+			destItem.setPlaySequence(tmpSeq);
+
+			tSo.targetRepo.save(item);
+			tSo.targetRepo.save(destItem);
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+
+			result.put("msg", requestContext.getMessage("merchant.switch.error"));
+			result.put("status", false);
+			return result;
+		}
+
+		result.put("msg", requestContext.getMessage("merchant.switch.ok"));
+		result.put("status", true);
+
+		logger.debug("leave switchTargetSeq");
+		return result;
+	}
+
 	@RequestMapping("/edit")
 	@ResponseBody
 	public Map<String, Object> edit(HttpServletRequest req, HttpServletResponse resp, MerchantEo merchant) {

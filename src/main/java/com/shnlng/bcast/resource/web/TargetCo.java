@@ -132,6 +132,16 @@ public class TargetCo {
 		target.setId(IdGen.id32());
 
 		try {
+			int maxSeq = targetSo.targetRepo.findMaxSequence(target.getMerchantId());
+			
+			if(maxSeq == 0){
+				maxSeq = 10;
+			}else{
+				maxSeq += 10;
+			}
+			
+			target.setPlaySequence(maxSeq);
+			
 			target.setCreationTime(new Date());
 
 			targetSo.targetRepo.save(target);

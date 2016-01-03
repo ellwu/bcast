@@ -242,4 +242,47 @@ app.controller('appCtl', function($scope, $http) {
     };
     
 	//query action end
+	
+	//sequence action begin
+	
+	$scope.seqUp = function(index){
+		if(index <= 0){
+			return;
+		}
+	
+		var currentItem = $scope.targets.data[index];
+		var previousItem = $scope.targets	.data[index - 1];
+		
+		$scope.switchSeq(currentItem, previousItem);
+	};
+	
+	$scope.seqDown = function(index){
+		if(index >= $scope.targets.data.length){
+			return;
+		}
+		
+		var currentItem = $scope.targets.data[index];
+		var nextItem = $scope.targets.data[index + 1];
+		
+		$scope.switchSeq(currentItem, nextItem);
+	};
+	
+	$scope.switchSeq = function(item, destItem){
+		var listUrl = "${base}/merchant/switchTargetSeq.do?itemId=" + item.id + "&destItemId=" + destItem.id;
+	    
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.getTargets(item.merchantId);
+			}
+		});
+	};
+	
+	
+	//sequence action end
 });

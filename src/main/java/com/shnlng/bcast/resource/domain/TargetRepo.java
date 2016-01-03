@@ -22,6 +22,9 @@ public interface TargetRepo extends PagingAndSortingRepository<TargetEo, String>
 	Page<TargetEo> queryActive(@Param("sn") String sn, @Param("resource") String resource,
 			@Param("merchant") String merchant, Pageable pageable);
 	
-	@Query("select t from TargetEo t where t.merchantId = :merchantId")
+	@Query("select t from TargetEo t where t.deleteFlag = 0 and t.disableFlag = 0 and t.merchantId = :merchantId order by t.playSequence asc")
 	List<TargetEo> findMerchantTargets(@Param("merchantId") String merchantId);
+	
+	@Query("select max(t.playSequence) from TargetEo t where t.merchantId = :merchantId")
+	int findMaxSequence(@Param("merchantId") String merchantId);
 }
