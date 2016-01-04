@@ -26,5 +26,5 @@ public interface TargetRepo extends PagingAndSortingRepository<TargetEo, String>
 	List<TargetEo> findMerchantTargets(@Param("merchantId") String merchantId);
 	
 	@Query("select max(t.playSequence) from TargetEo t where t.merchantId = :merchantId")
-	int findMaxSequence(@Param("merchantId") String merchantId);
+	Integer findMaxSequence(@Param("merchantId") String merchantId);
 }

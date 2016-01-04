@@ -3,6 +3,8 @@ package com.shnlng.bcast.resource.web;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -147,6 +149,33 @@ public class ResourceCo {
 			return result;
 		}
 
+		if (!StringUtils.isEmpty(resource.getRangeAge())) {
+			try {
+				resource.setRangeAge(URLDecoder.decode(resource.getRangeAge(), "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		if (!StringUtils.isEmpty(resource.getRangeGroup())) {
+			try {
+				resource.setRangeGroup(URLDecoder.decode(resource.getRangeGroup(), "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		if (!StringUtils.isEmpty(resource.getOriginName())) {
+			try {
+				String originName = URLDecoder.decode(resource.getOriginName(), "UTF-8");
+
+				if (originName.lastIndexOf("\\") > 0) {
+					originName = originName.substring(originName.lastIndexOf("\\") + 1, originName.length());
+				}
+				resource.setOriginName(originName);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+
 		String resourceId = IdGen.id32();
 
 		String resourceRepoPath = profileRepo.findValueByKey("RESOURCE_REPO_PATH");
@@ -182,7 +211,7 @@ public class ResourceCo {
 		}
 
 		resource.setId(resourceId);
-		resource.setOriginName(file.getOriginalFilename());
+		resource.setOriginName(resource.getOriginName());
 		resource.setUploadTime(new Date());
 
 		try {
@@ -221,6 +250,33 @@ public class ResourceCo {
 			result.put("msg", requestContext.getMessage("resource.edit.error"));
 			result.put("status", false);
 			return result;
+		}
+
+		if (!StringUtils.isEmpty(resource.getRangeAge())) {
+			try {
+				resource.setRangeAge(URLDecoder.decode(resource.getRangeAge(), "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		if (!StringUtils.isEmpty(resource.getRangeGroup())) {
+			try {
+				resource.setRangeGroup(URLDecoder.decode(resource.getRangeGroup(), "UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+		if (!StringUtils.isEmpty(resource.getOriginName())) {
+			try {
+				String originName = URLDecoder.decode(resource.getOriginName(), "UTF-8");
+
+				if (originName.lastIndexOf("\\") > 0) {
+					originName = originName.substring(originName.lastIndexOf("\\") + 1, originName.length());
+				}
+				resource.setOriginName(originName);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
 
 		String resourceId = resource.getId();
@@ -269,7 +325,7 @@ public class ResourceCo {
 				}
 			}
 
-			originResource.setOriginName(file.getOriginalFilename());
+			originResource.setOriginName(resource.getOriginName());
 		}
 
 		originResource.setAdverId(resource.getAdverId());
@@ -281,7 +337,7 @@ public class ResourceCo {
 		originResource.setUploadTime(new Date());
 
 		originResource.setUpdateTime(new Date());
-		
+
 		try {
 
 			resourceSo.resourceRepo.save(originResource);

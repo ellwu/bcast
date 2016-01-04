@@ -17,7 +17,7 @@
 			<@html.content>
 
 			<div class="alert alert-info" role="alert" ng-hide="!hasMsg">{{ msg }}</div> 
-			<form role="form" id="createForm" class="form-horizontal">
+			<form role="form" id="editForm" class="form-horizontal" action="${base}/resource/editResourceAndFile.do" method="POST" enctype="multipart/form-data">
 			   <input type="hidden" ng-model="editItem.adverId" name="adverId"/>
 			   
 			   <div class="form-group">
@@ -43,7 +43,7 @@
 			      <label class="col-sm-2 control-label" for="file"><@spring.message "resource.file.label"/></label>
 			      <div class="col-sm-3">
 			   	  	<div class="input-group">
-				      <input id="photoCover" ng-model="editItem.originName" class="form-control" type="text" readonly>
+				      <input id="photoCover" ng-model="editItem.originName" name="originName" class="form-control" type="text" readonly>
 				      <span class="input-group-btn">
 				        <button class="btn btn-default" type="button" onclick="$('input[id=lefile]').click();"><@spring.message "prompt.choose"/></button>
 				      </span>

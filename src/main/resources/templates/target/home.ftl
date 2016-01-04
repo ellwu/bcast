@@ -67,7 +67,7 @@
 									<th><@spring.message "target.beginTime.head"/></th> 									
 									<th><@spring.message "target.endTime.head"/></th> 	
 																
-									<th><@spring.message "target.status.head"/></th> 
+									<!--<th><@spring.message "target.status.head"/></th> -->
 									
 									<th><@spring.message "disabled_enabled.head"/></th>
 									<th><@spring.message "table.head.action"/></th>
@@ -83,7 +83,7 @@
 								    <td>{{ item.beginTime }}</td>
 								    <td>{{ item.endTime }}</td>
 								    
-								    <td>{{ item.status }}</td>
+								   <!-- <td>{{ item.status }}</td> -->
 								    
 								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>

@@ -74,17 +74,21 @@ app.controller('appCtl', function($scope, $http) {
 			formData.append('duration', $scope.editItem.duration);
 		}
 		if($scope.editItem.rangeAge){
-			formData.append('rangeAge', $scope.editItem.rangeAge);
+			formData.append('rangeAge', encodeURI($scope.editItem.rangeAge));
 		}
 		if($scope.editItem.rangeGroup){
-			formData.append('rangeGroup', $scope.editItem.rangeGroup);
+			formData.append('rangeGroup', encodeURI($scope.editItem.rangeGroup));
 		}
-		
+		if($("#photoCover").val()){
+			formData.append('originName', encodeURI($("#photoCover").val()));
+		}
+			
 		$.ajax({
 			cache: true,
 			type: 'POST',
 			url: "${base}/resource/editResourceAndFile.do",
 			data: formData,
+              enctype: 'multipart/form-data; charset=UTF-8',
 			contentType: false,
     		processData: false,
 			async: false,

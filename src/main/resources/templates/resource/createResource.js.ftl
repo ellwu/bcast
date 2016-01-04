@@ -50,10 +50,13 @@ app.controller('appCtl', function($scope, $http) {
 			formData.append('duration', $scope.createItem.duration);
 		}
 		if($scope.createItem.rangeAge){
-			formData.append('rangeAge', $scope.createItem.rangeAge);
+			formData.append('rangeAge', encodeURI($scope.createItem.rangeAge));
 		}
 		if($scope.createItem.rangeGroup){
-			formData.append('rangeGroup', $scope.createItem.rangeGroup);
+			formData.append('rangeGroup', encodeURI($scope.createItem.rangeGroup));
+		}
+		if($("#photoCover").val()){
+			formData.append('originName', encodeURI($("#photoCover").val()));
 		}
 		
 		$.ajax({
