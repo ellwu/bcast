@@ -1,5 +1,7 @@
 package com.shnlng.bcast.resource.domain;
 
+import java.util.Date;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
@@ -22,4 +24,7 @@ public interface ResourceRepo extends PagingAndSortingRepository<ResourceEo, Str
 	@Query("select r from ResourceEo r where r.deleteFlag = 0 and (:adver is null or r.adverId in (select a.id from AdverEo a where a.name like :adver)) and (:originName is null or r.originName like :originName) and (:category is null or r.category = :category) order by r.adverId")
 	Page<ResourceEo> queryActive(@Param("adver") String adver, @Param("originName") String originName,
 			@Param("category") String category, Pageable pageable);
+	
+	@Query("select count(t) from TargetEo t where t.status = 1 and t.disableFlag = 0 and t.deleteFlag = 0 and t.resourceId = :resourceId and t.beginTime <= :date and t.endTime >= :date")
+	int countActiveTargets(@Param("resourceId") String resourceId, @Param("date") Date date);
 }

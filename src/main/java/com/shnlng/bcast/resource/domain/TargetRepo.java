@@ -15,7 +15,7 @@ import com.shnlng.bcast.resource.domain.entity.TargetEo;
 public interface TargetRepo extends PagingAndSortingRepository<TargetEo, String> {
 	@Transactional
 	@Modifying
-	@Query("update TargetEo t set t.deleteFlag = 1, t.disableFlag = 1 where t.id = :id")
+	@Query("update TargetEo t set t.status = 0, t.deleteFlag = 1, t.disableFlag = 1 where t.id = :id")
 	int deleteAndDisable(@Param("id") String id);
 
 	@Query("select t from TargetEo t where t.deleteFlag = 0 and (:sn is null or t.sn like :sn) and (:merchant is null or t.merchantId in (select m.id from MerchantEo m where m.name like :merchant)) and (:resource is null or t.resourceId in (select r.id from ResourceEo r where r.originName like :resource))")

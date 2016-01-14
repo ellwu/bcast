@@ -104,6 +104,16 @@ public class ResourceCo {
 			result.put("status", false);
 			return result;
 		}
+		
+		int activeTargetsCount = resourceSo.resourceRepo.countActiveTargets(resource.getId(), new Date());
+		
+		if(activeTargetsCount > 0){
+			logger.debug("still has targets");
+
+			result.put("msg", requestContext.getMessage("resource.targets.exists.error"));
+			result.put("status", false);
+			return result;
+		}
 
 		try {
 
