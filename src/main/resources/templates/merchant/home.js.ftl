@@ -296,4 +296,30 @@ app.controller('appCtl', function($scope, $http) {
 	
 	
 	//sequence action end
+
+	//devices action begin
+	$scope.merchantDevices = function(item){
+		$scope.devices = {};
+		
+		$scope.getDevices(item.id);
+		
+		$("#deviceModal").modal("show");
+	};
+	
+	$scope.getDevices = function(merchantId){
+		var listUrl = "${base}/device/merchant.do?merchantId=" + merchantId;
+	    
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.devices.data = data;
+			}
+		});
+    };
+   //devices action end
 });

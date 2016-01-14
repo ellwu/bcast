@@ -2,6 +2,7 @@ package com.shnlng.bcast.device.web;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,6 +48,17 @@ public class DeviceCo {
 		DeviceEo result = dso.deviceRepo.findOne(deviceId);
 
 		logger.debug("leave findOne");
+		return result;
+	}
+	
+	@RequestMapping("/merchant")
+	@ResponseBody
+	public List<DeviceEo> merchantDevices(String merchantId){
+		logger.debug("enter merchantDevices");
+		
+		List<DeviceEo> result = dso.deviceRepo.findByMerchant(merchantId);
+		
+		logger.debug("enter findmerchantDevicesOne");
 		return result;
 	}
 

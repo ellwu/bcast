@@ -75,7 +75,7 @@
 							</thead> 
 							<tbody> 
 								<tr ng-repeat="item in page.content">
-								    <td>{{ item.name }}</td>
+								    <td><a ng-click="merchantDevices(item)">{{ item.name }}</a></td>
 								    <td>{{ item.levelDesc }}</td>
 								    <td>{{ item.categoryDesc }}</td>
 								    
@@ -109,6 +109,8 @@
 				<#include "/merchant/delete.ftl"/>
 				
 				<#include "/merchant/targets.ftl"/>
+				
+				<#include "/merchant/devices.ftl"/>
 				
 			</@html.content>
 			
