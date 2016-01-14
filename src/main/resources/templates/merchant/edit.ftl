@@ -30,6 +30,13 @@
 			   </div>
 			   
 			   <div class="form-group">
+			      <label class="col-sm-2 control-label" for="maxTargets"><@spring.message "merchant.maxTargets.label"/></label>
+			      <div class="col-sm-10">
+			        <input type="text" class="form-control" id="maxTargets" ng-model="editItem.maxTargets" name="maxTargets" placeholder="<@spring.message "merchant.maxTargets.placeholder"/>">
+			   	  </div>
+			   </div>
+			   
+			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="addr"><@spring.message "merchant.addr.label"/></label>
 			      <div class="col-sm-10">
 			        <input type="text" class="form-control" id="addr" ng-model="editItem.addr" name="addr" placeholder="<@spring.message "merchant.addr.placeholder"/>">

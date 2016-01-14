@@ -119,6 +119,9 @@ public class MerchantCo {
 		}
 
 		merchant.setId(IdGen.id32());
+		if(merchant.getMaxTargets() == 0){
+			merchant.setMaxTargets(10);
+		}
 
 		try {
 			merchant.setCreationTime(new Date());

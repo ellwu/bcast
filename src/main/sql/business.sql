@@ -69,6 +69,7 @@ create table t_merchants(
 	
 	merchant_level varchar(20),
 	merchant_category varchar(20),
+	merchant_max_targets integer default 10,
 	
 	merchant_contact_person varchar(40),
 	merchant_contact_phone varchar(40),
