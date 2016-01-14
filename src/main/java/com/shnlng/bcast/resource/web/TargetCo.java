@@ -135,9 +135,9 @@ public class TargetCo {
 			Integer maxSeq = targetSo.targetRepo.findMaxSequence(target.getMerchantId());
 			
 			if(maxSeq == null){
-				maxSeq = 10;
+				maxSeq = 1;
 			}else{
-				maxSeq += 10;
+				maxSeq += 1;
 			}
 			
 			target.setPlaySequence(maxSeq);

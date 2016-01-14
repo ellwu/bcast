@@ -17,8 +17,6 @@
 				  	<table class="table table-bordered">
 							<thead> 
 								<tr> 
-									<th><@spring.message "target.sn.head"/></th> 
-									
 									<th><@spring.message "target.resource.head"/></th> 									
 									
 									<th><@spring.message "target.playSequence.head"/></th> 
@@ -31,14 +29,12 @@
 							</thead> 
 							<tbody> 
 								<tr ng-repeat="item in targets.data">
-								    <td>{{ item.sn }}</td>
-								    
 								    <td>{{ item.resource }}</td>
 								    
 								    <td>{{ item.playSequence }}</td>
 								    
-								    <td>{{ item.beginTime }}</td>
-								    <td>{{ item.endTime }}</td>
+								    <td>{{ item.beginTime | ldate }}</td>
+								    <td>{{ item.endTime | ldate }}</td>
 								    
 								    <td>
 								    	<a class="button glyphicon glyphicon-chevron-up" ng-click="seqUp($index)"></a>

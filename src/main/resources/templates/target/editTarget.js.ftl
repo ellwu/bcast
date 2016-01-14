@@ -3,6 +3,7 @@
 <#assign base=request.contextPath/>
 
 var app = angular.module('myApp', []);
+
 app.controller('appCtl', function($scope, $http) {
 	
 	//create action begin
@@ -10,6 +11,14 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.hasMsg = false;
 	
 	$scope.editItem = {};
+	
+	$scope.ldate = function(input){
+		if(input){
+			return input.substring(0, 10);
+		}else{
+			return '';
+		}
+	};
 	
 	$scope.findEditItem = function(){
 		var editUrl = "${base}/target/editOne.do?targetId=${RequestParameters["targetId"]}";
@@ -23,6 +32,11 @@ app.controller('appCtl', function($scope, $http) {
 			},
 			success: function(data){
 				$scope.editItem = data;
+				
+				if($scope.editItem){
+					$scope.editItem.beginTime = $scope.ldate($scope.editItem.beginTime);
+					$scope.editItem.endTime = $scope.ldate($scope.editItem.endTime);
+				}
 			}
 		});
     };
@@ -42,8 +56,7 @@ app.controller('appCtl', function($scope, $http) {
 			},
 			success: function(data){
 				if(data.status){
-					delete $scope.editItem;
-					$scope.editItem = {};
+					$scope.findEditItem();
 				}
 				
 				$scope.hasMsg = true;

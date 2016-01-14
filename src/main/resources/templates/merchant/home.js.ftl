@@ -3,6 +3,17 @@
 <#assign base=request.contextPath/>
 
 var app = angular.module('myApp', []);
+
+app.filter("ldate", function(){
+	return function(input){
+		if(input){
+			return input.substring(0, 10);
+		}else{
+			return '';
+		}
+	};
+});
+
 app.controller('appCtl', function($scope, $http) {
 	$scope.noTopMsg = true;
 	$scope.topMsg = "";

@@ -9,10 +9,11 @@
 		<@html.commonHead/>
 		<title><@spring.message "target.home.title"/></title>
 		<script src="${base}/js/angular.js"></script>
-		
+		<!--
 		<link href="${base}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 		<script src="${base}/js/bootstrap-datetimepicker.js"></script>
 		<script src="${base}/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+		-->
 	</head>
 	<body>
 		<div ng-app="myApp" ng-controller="appCtl">
@@ -24,14 +25,7 @@
 			<form role="form" id="createForm" class="form-horizontal">
 			   <input type="hidden" ng-model="createItem.merchantId" name="merchantId"/>
 			   <input type="hidden" ng-model="createItem.resourceId" name="resourceId"/>
-			   
-			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="sn"><@spring.message "target.sn.label"/></label>
-			      <div class="col-sm-3">
-			        <input type="text" class="form-control" id="sn" ng-model="createItem.sn" name="sn" placeholder="<@spring.message "target.sn.placeholder"/>">
-			   	  </div>
-			   </div>
-			   
+			   			   
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="resource"><@spring.message "target.resource.label"/></label>
 			      <div class="col-sm-3">
@@ -63,9 +57,9 @@
 			   	  </div>
 			   </div>
 			   <script type="text/javascript">
-				    $("#beginTime").datetimepicker({
+				    $("#beginTime").datepicker({
 				    	language: "zh-CN",
-				    	format: 'yyyy-mm-dd hh:ii:ss'
+				    	format: 'yyyy-mm-dd'
 				    });
 				</script>  
 			   
@@ -76,9 +70,9 @@
 			   	  </div>
 			   </div>
 			   <script type="text/javascript">
-				    $("#endTime").datetimepicker({
+				    $("#endTime").datepicker({
 				    	language: "zh-CN",
-				    	format: 'yyyy-mm-dd hh:ii:ss'
+				    	format: 'yyyy-mm-dd'
 				    });
 				</script>     
 			   

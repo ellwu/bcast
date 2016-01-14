@@ -7,7 +7,7 @@
          </div>
          <div class="modal-body">  
          	<div class="alert alert-danger" role="alert" ng-hide="deleteOk">{{ deleteMsg }}</div>  
-			<p><@spring.message "prompt.delete.confirm"/> "{{deleteItem.originName}}" ?</p>
+			<p><@spring.message "prompt.delete.confirm"/> "{{deleteItem.resource}} {{deleteItem.merchant}}" ?</p>
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"><@spring.message "prompt.close"/></button>

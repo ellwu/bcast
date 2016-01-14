@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "t_targets")
@@ -33,11 +34,11 @@ public class TargetEo implements Serializable {
 	@Transient
 	private String resource;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd", iso=ISO.DATE)
 	@Column(name = "target_begin_time")
 	private Date beginTime;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "target_end_time")
 	private Date endTime;	
 
