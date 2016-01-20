@@ -9,14 +9,17 @@
 		
 	<base id="base" href="${base}"/>
 	
+	<script src="${base}/js/jquery.min.js"></script>
+	
 	<link href="${base}/css/jquery-ui.css" rel="stylesheet">
 	<link href="${base}/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${base}/css/showcast.css" rel="stylesheet">
 	
-	<script src="${base}/js/jquery.min.js"></script>
-	<script src="${base}/js/jquery-ui.js"></script>
-	<script src="${base}/js/jquery-ui.datepicker.zh-CN.js"></script>
 	<script src="${base}/js/bootstrap.min.js"></script>
+		
+	<link href="${base}/css/bootstrap-datepicker3.css" rel="stylesheet">
+	<script src="${base}/js/bootstrap-datepicker.js"></script>
+	<script src="${base}/js/bootstrap-datepicker.zh-CN.min.js" charset="UTF-8"></script>
 </#macro>
 
 <#macro topMenu>
