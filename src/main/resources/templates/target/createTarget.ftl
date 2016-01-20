@@ -55,7 +55,10 @@
 			   <script type="text/javascript">
 				    $("#beginTime").datepicker({
 				    	language: "zh-CN",
-				    	format: 'yyyy-mm-dd'
+				    	format: 'yyyy-mm-dd',
+					    todayBtn: "linked",
+					    clearBtn: true,
+    					orientation: "bottom left"
 				    });
 				</script>  
 			   
@@ -68,7 +71,10 @@
 			   <script type="text/javascript">
 				    $("#endTime").datepicker({
 				    	language: "zh-CN",
-				    	format: 'yyyy-mm-dd'
+				    	format: 'yyyy-mm-dd',
+					    todayBtn: "linked",
+					    clearBtn: true,
+    					orientation: "bottom left"
 				    });
 				</script>     
 			   
