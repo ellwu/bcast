@@ -10,16 +10,15 @@
 			<form role="form" id="createForm" class="form-horizontal">
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="sn"><@spring.message "device.sn.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-3">
 			        <input type="text" class="form-control" id="sn" ng-model="createItem.sn" name="sn" placeholder="<@spring.message "device.sn.placeholder"/>">
 			   	  </div>
-			   </div>
-			   <div class="form-group">
+			   	  
 			      <label class="col-sm-2 control-label"  for="batch"><@spring.message "device.batch.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-3">
 			        <input type="text" class="form-control" id="batch" ng-model="createItem.batch" name="batch" placeholder="<@spring.message "device.batch.placeholder"/>">
 			   	  </div>
-			   </div>						   
+			   </div>
 			</form>
          </div>
          <div class="modal-footer">

@@ -101,6 +101,14 @@ public class AdverCo {
 			result.put("status", false);
 			return result;
 		}
+		
+		if (StringUtils.isEmpty(adver.getName())) {
+			logger.debug("adver input empty");
+
+			result.put("msg", requestContext.getMessage("adver.create.error.name"));
+			result.put("status", false);
+			return result;
+		}
 
 		adver.setId(IdGen.id32());
 
@@ -137,6 +145,14 @@ public class AdverCo {
 			logger.debug("adver input empty");
 
 			result.put("msg", requestContext.getMessage("adver.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (StringUtils.isEmpty(adver.getName())) {
+			logger.debug("adver input empty");
+
+			result.put("msg", requestContext.getMessage("adver.edit.error.name"));
 			result.put("status", false);
 			return result;
 		}

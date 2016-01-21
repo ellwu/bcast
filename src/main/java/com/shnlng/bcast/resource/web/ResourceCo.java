@@ -146,7 +146,7 @@ public class ResourceCo {
 		if (file == null) {
 			logger.debug("resource file empty");
 
-			result.put("msg", requestContext.getMessage("resource.create.error"));
+			result.put("msg", requestContext.getMessage("resource.create.error.file"));
 			result.put("status", false);
 			return result;
 		}
@@ -155,6 +155,14 @@ public class ResourceCo {
 			logger.debug("resource input empty");
 
 			result.put("msg", requestContext.getMessage("resource.create.error"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (StringUtils.isEmpty(resource.getAdverId())) {
+			logger.debug("resource input empty");
+
+			result.put("msg", requestContext.getMessage("resource.create.error.adver"));
 			result.put("status", false);
 			return result;
 		}
@@ -258,6 +266,14 @@ public class ResourceCo {
 			logger.debug("resource input empty");
 
 			result.put("msg", requestContext.getMessage("resource.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (StringUtils.isEmpty(resource.getAdverId())) {
+			logger.debug("resource input empty");
+
+			result.put("msg", requestContext.getMessage("resource.edit.error.adver"));
 			result.put("status", false);
 			return result;
 		}

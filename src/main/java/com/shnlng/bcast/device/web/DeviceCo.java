@@ -124,6 +124,22 @@ public class DeviceCo {
 			result.put("status", false);
 			return result;
 		}
+		
+		if (StringUtils.isEmpty(device.getSn())) {
+			logger.debug("device sn empty");
+
+			result.put("msg", requestContext.getMessage("device.create.error.sn"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (StringUtils.isEmpty(device.getBatch())) {
+			logger.debug("device sn empty");
+
+			result.put("msg", requestContext.getMessage("device.create.error.batch"));
+			result.put("status", false);
+			return result;
+		}
 
 		device.setId(IdGen.id32());
 
@@ -161,6 +177,22 @@ public class DeviceCo {
 			logger.debug("device input empty");
 
 			result.put("msg", requestContext.getMessage("device.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (StringUtils.isEmpty(device.getSn())) {
+			logger.debug("device sn empty");
+
+			result.put("msg", requestContext.getMessage("device.edit.error.sn"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (StringUtils.isEmpty(device.getBatch())) {
+			logger.debug("device sn empty");
+
+			result.put("msg", requestContext.getMessage("device.edit.error.batch"));
 			result.put("status", false);
 			return result;
 		}

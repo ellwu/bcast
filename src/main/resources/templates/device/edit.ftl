@@ -10,33 +10,25 @@
 			<form role="form" id="editForm" class="form-horizontal">
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="sn"><@spring.message "device.sn.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-3">
 			        <input type="text" class="form-control" id="sn" ng-model="editItem.sn" name="sn" placeholder="<@spring.message "device.sn.placeholder"/>">
-			   	  </div>
-			   </div>
-			   <div class="form-group">
+			   	  </div>			   	  
+			   	  
 			      <label class="col-sm-2 control-label"  for="batch"><@spring.message "device.batch.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-3">
 			        <input type="text" class="form-control" id="batch" ng-model="editItem.batch" name="batch" placeholder="<@spring.message "device.batch.placeholder"/>">
-			   	  </div>
-			   </div>
-			   <div class="form-group">
-			      <label class="col-sm-2 control-label"  for="status"><@spring.message "device.status.label"/></label>
-			      <div class="col-sm-10">
-			        <select class="form-control" id="status" name="status" ng-model="editItem.status" ng-options="l.value as l.desc for l in options.statusOptions"></select>	   	 
-			   	  </div>
-			   </div>
-			   <div class="form-group">
-			      <label class="col-sm-2 control-label"  for="bindStatus"><@spring.message "device.bindStatus.label"/></label>
-			      <div class="col-sm-10">
-			        <select class="form-control" id="status" name="status" ng-model="editItem.status" ng-options="l.value as l.desc for l in options.bindStatusOptions" disabled></select>	   	 
 			   	  </div>
 			   </div>
 			   
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="disableFlag"><@spring.message "disabled_enabled.label"/></label>
-			      <div class="col-sm-10">
-			   	  	<select class="form-control" id="disableFlag" name="disableFlag" ng-model="editItem.disableFlag" ng-options="l.value as l.desc for l in options.disableOptions"></select>	   	 
+			      <label class="col-sm-2 control-label"  for="status"><@spring.message "device.status.label"/></label>
+			      <div class="col-sm-3">
+			        <select class="form-control" id="status" name="status" ng-model="editItem.status" ng-options="l.value as l.desc for l in options.statusOptions"></select>	   	 
+			   	  </div>
+			   	  
+			      <label class="col-sm-2 control-label"  for="bindStatus"><@spring.message "device.bindStatus.label"/></label>
+			      <div class="col-sm-3">
+			        <select class="form-control" id="status" name="status" ng-model="editItem.status" ng-options="l.value as l.desc for l in options.bindStatusOptions" disabled></select>	   	 
 			   	  </div>
 			   </div>
 			</form>

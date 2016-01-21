@@ -18,7 +18,7 @@
 			   
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="category"><@spring.message "adver.category.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-2">
 			        <select class="form-control" id="category" name="category" ng-model="editItem.category" ng-options="l.value as l.desc for l in options.categoryOptions"></select>
 			   	  </div>
 			   </div>
@@ -32,52 +32,38 @@
 			   
 			    <div class="form-group">
 			      <label class="col-sm-2 control-label" for="province"><@spring.message "adver.province.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="province" ng-model="editItem.province" name="province" placeholder="<@spring.message "adver.province.placeholder"/>">
 			   	  </div>
-			   </div>
-			   
-			   <div class="form-group">
+			   	  
 			      <label class="col-sm-2 control-label" for="city"><@spring.message "adver.city.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="city" ng-model="editItem.city" name="city" placeholder="<@spring.message "adver.city.placeholder"/>">
 			   	  </div>
-			   </div>
-			   
-			   <div class="form-group">
+			   	  
 			      <label class="col-sm-2 control-label" for="district"><@spring.message "adver.district.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="district" ng-model="editItem.district" name="district" placeholder="<@spring.message "adver.district.placeholder"/>">
 			   	  </div>
 			   </div>
 			   
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="contactPerson"><@spring.message "adver.contactPerson.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="contactPerson" ng-model="editItem.contactPerson" name="contactPerson" placeholder="<@spring.message "adver.contactPerson.placeholder"/>">
 			   	  </div>
-			   </div>
-			   
-			   <div class="form-group">
+
 			      <label class="col-sm-2 control-label" for="contactPhone"><@spring.message "adver.contactPhone.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="contactPhone" ng-model="editItem.contactPhone" name="contactPhone" placeholder="<@spring.message "adver.contactPhone.placeholder"/>">
 			   	  </div>
-			   </div>
-			   
-			   <div class="form-group">
+
 			      <label class="col-sm-2 control-label" for="operationPerson"><@spring.message "adver.operationPerson.label"/></label>
-			      <div class="col-sm-10">
+			      <div class="col-sm-2">
 			        <input type="text" class="form-control" id="operationPerson" ng-model="editItem.operationPerson" name="operationPerson" placeholder="<@spring.message "adver.operationPerson.placeholder"/>">
 			   	  </div>
 			   </div>	
 			   
-			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="disableFlag"><@spring.message "disabled_enabled.label"/></label>
-			      <div class="col-sm-10">
-			   	  	<select class="form-control" id="disableFlag" name="disableFlag" ng-model="editItem.disableFlag" ng-options="l.value as l.desc for l in options.disableOptions"></select>	   	 
-			   	  </div>
-			   </div>	
 			</form>
          </div>
          <div class="modal-footer">

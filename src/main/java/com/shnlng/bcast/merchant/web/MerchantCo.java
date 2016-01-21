@@ -117,6 +117,14 @@ public class MerchantCo {
 			result.put("status", false);
 			return result;
 		}
+		
+		if (StringUtils.isEmpty(merchant.getName())) {
+			logger.debug("merchant name empty");
+
+			result.put("msg", requestContext.getMessage("merchant.create.error.name"));
+			result.put("status", false);
+			return result;
+		}
 
 		merchant.setId(IdGen.id32());
 		if(merchant.getMaxTargets() == 0){
@@ -200,6 +208,14 @@ public class MerchantCo {
 			logger.debug("merchant input empty");
 
 			result.put("msg", requestContext.getMessage("merchant.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (StringUtils.isEmpty(merchant.getName())) {
+			logger.debug("merchant name empty");
+
+			result.put("msg", requestContext.getMessage("merchant.edit.error.name"));
 			result.put("status", false);
 			return result;
 		}

@@ -128,6 +128,38 @@ public class TargetCo {
 			result.put("status", false);
 			return result;
 		}
+		
+		if (StringUtils.isEmpty(target.getResourceId())) {
+			logger.debug("target input empty");
+
+			result.put("msg", requestContext.getMessage("target.create.error.resource"));
+			result.put("status", false);
+			return result;
+		}
+
+		if (StringUtils.isEmpty(target.getMerchantId())) {
+			logger.debug("target input empty");
+
+			result.put("msg", requestContext.getMessage("target.create.error.merchant"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (target.getBeginTime() == null) {
+			logger.debug("target input empty");
+
+			result.put("msg", requestContext.getMessage("target.create.error.beginTime"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (target.getEndTime() == null) {
+			logger.debug("target input empty");
+
+			result.put("msg", requestContext.getMessage("target.create.error.endTime"));
+			result.put("status", false);
+			return result;
+		}
 
 		target.setId(IdGen.id32());
 
@@ -175,6 +207,38 @@ public class TargetCo {
 			logger.debug("target input empty");
 
 			result.put("msg", requestContext.getMessage("target.edit.error"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (StringUtils.isEmpty(target.getResourceId())) {
+			logger.debug("target input empty");
+
+			result.put("msg", requestContext.getMessage("target.edit.error.resource"));
+			result.put("status", false);
+			return result;
+		}
+
+		if (StringUtils.isEmpty(target.getMerchantId())) {
+			logger.debug("target input empty");
+
+			result.put("msg", requestContext.getMessage("target.edit.error.merchant"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (target.getBeginTime() == null) {
+			logger.debug("target input empty");
+
+			result.put("msg", requestContext.getMessage("target.edit.error.beginTime"));
+			result.put("status", false);
+			return result;
+		}
+		
+		if (target.getEndTime() == null) {
+			logger.debug("target input empty");
+
+			result.put("msg", requestContext.getMessage("target.edit.error.endTime"));
 			result.put("status", false);
 			return result;
 		}
