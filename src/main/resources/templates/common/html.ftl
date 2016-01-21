@@ -17,9 +17,6 @@
 	
 	<script src="${base}/js/bootstrap.min.js"></script>
 		
-	<link href="${base}/css/bootstrap-datepicker3.css" rel="stylesheet">
-	<script src="${base}/js/bootstrap-datepicker.js"></script>
-	<script src="${base}/js/bootstrap-datepicker.zh-CN.min.js" charset="UTF-8"></script>
 </#macro>
 
 <#macro topMenu>
