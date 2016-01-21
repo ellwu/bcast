@@ -1,12 +1,6 @@
 <div class="row">
 	<div class="col-xs-6 col-md-6">
 		<form role="form" id="queryForm" class="form-horizontal">
-			<div class="form-group">
-				  <label class="col-sm-3 control-label" for="sn"><@spring.message "target.sn.label"/></label>
-				  <div class="col-sm-9">
-					<input type="text" class="form-control" id="sn" name="sn" ng-model="queryItem.sn" placeholder="<@spring.message "target.sn.placeholder"/>">
-				  </div>
-			</div>
 			
 			<div class="form-group">
 				  <label class="col-sm-3 control-label" for="resource"><@spring.message "target.resource.label"/></label>

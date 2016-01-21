@@ -30,13 +30,20 @@ public class TargetSo {
 	public Page<TargetEo> queryActive(String sn, String resource, String merchant, Pageable pageable) {
 		if (StringUtils.isEmpty(merchant)) {
 			merchant = null;
+		}else{
+			merchant = "%" + merchant + "%";			
 		}
 
 		if (StringUtils.isEmpty(resource)) {
 			resource = null;
+		}else{
+			resource = "%" + resource + "%";			
 		}
+		
 		if (StringUtils.isEmpty(sn)) {
 			sn = null;
+		}else{
+			sn = "%" + sn + "%";			
 		}
 
 		Page<TargetEo> targets = targetRepo.queryActive(sn, resource, merchant, pageable);

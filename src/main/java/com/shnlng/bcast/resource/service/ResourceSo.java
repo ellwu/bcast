@@ -30,14 +30,20 @@ public class ResourceSo {
 	public Page<ResourceEo> queryActive(String adver, String originName, String category, Pageable pageable) {
 		if (StringUtils.isEmpty(adver)) {
 			adver = null;
+		}else{
+			adver = "%" + adver + "%";
 		}
 
 		if (StringUtils.isEmpty(originName)) {
 			originName = null;
+		}else{
+			originName = "%" + originName + "%";
 		}
 
 		if (StringUtils.isEmpty(category)) {
 			category = null;
+		}else{
+			category = "%" + category + "%";
 		}
 
 		Page<ResourceEo> resources = resourceRepo.queryActive(adver, originName, category, pageable);

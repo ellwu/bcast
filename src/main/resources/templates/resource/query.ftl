@@ -16,13 +16,6 @@
 			</div>
 			
 			<div class="form-group">
-				  <label class="col-sm-3 control-label" for="category"><@spring.message "resource.category.label"/></label>
-				  <div class="col-sm-9">
-					<input type="text" class="form-control" id="category" name="category" ng-model="queryItem.category" placeholder="<@spring.message "resource.category.placeholder"/>">
-				  </div>
-			</div>
-			
-			<div class="form-group">
 				  <label class="col-sm-3 control-label" for="name"></label>
 				  <div class="col-sm-9">
 					<button type="button" class="btn btn-primary" ng-click="query()"><@spring.message "prompt.query"/></button>

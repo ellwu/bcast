@@ -23,10 +23,14 @@ public class AdverService {
 	public Page<AdverEo> queryActive(String name, String category, Pageable pageable) {
 		if (StringUtils.isEmpty(name)) {
 			name = null;
+		}else{
+			name = "%" + name + "%";
 		}
 
 		if (StringUtils.isEmpty(category)) {
 			category = null;
+		}else{
+			category = "%" + category + "%";
 		}
 
 		Page<AdverEo> advers = adverRepo.queryActive(name, category, pageable);

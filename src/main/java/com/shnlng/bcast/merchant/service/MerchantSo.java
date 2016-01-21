@@ -23,14 +23,20 @@ public class MerchantSo {
 	public Page<MerchantEo> queryActive(String name, String level, String category, Pageable pageable) {
 		if (StringUtils.isEmpty(name)) {
 			name = null;
+		} else {
+			name = "%" + name + "%";
 		}
 
 		if (StringUtils.isEmpty(level)) {
 			level = null;
+		}else{
+			level = "%" + level + "%";
 		}
 
 		if (StringUtils.isEmpty(category)) {
 			category = null;
+		}else{
+			category = "%" + category + "%";
 		}
 
 		Page<MerchantEo> merchants = merchantRepo.queryActive(name, level, category, pageable);

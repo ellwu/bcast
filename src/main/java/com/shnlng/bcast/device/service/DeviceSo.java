@@ -23,10 +23,14 @@ public class DeviceSo {
 	public Page<DeviceEo> queryActive(String sn, String batch, Pageable pageable) {
 		if(StringUtils.isEmpty(sn)){
 			sn = null;
+		}else{
+			sn = "%" + sn + "%";
 		}
 		
 		if(StringUtils.isEmpty(batch)){
 			batch = null;
+		}else{
+			batch = "%" + batch + "%";
 		}
 
 		Page<DeviceEo> devices = deviceRepo.queryActive(sn, batch, pageable);
