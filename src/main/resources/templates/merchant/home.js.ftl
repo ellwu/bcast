@@ -322,4 +322,8 @@ app.controller('appCtl', function($scope, $http) {
 		});
     };
    //devices action end
+   
+   //init begin
+   $scope.getData();
+   //init end
 });

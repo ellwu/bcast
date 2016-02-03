@@ -118,4 +118,8 @@ app.controller('appCtl', function($scope, $http) {
     };
     
 	//query action end
+	
+	//init begin
+    $scope.getData();
+    //init end
 });

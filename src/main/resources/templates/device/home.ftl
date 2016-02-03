@@ -63,7 +63,6 @@
 									<th><@spring.message "device.batch.head"/></th> 
 									<th><@spring.message "device.status.head"/></th> 
 									<th><@spring.message "device.bindStatus.head"/></th> 
-									<th><@spring.message "disabled_enabled.head"/></th> 
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -75,7 +74,6 @@
 								    <td>{{ item.statusDesc }}</td>
 								    <td>{{ item.bindStatusDesc }}</td>
 								    
-								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
 								    	<a class="button glyphicon glyphicon-link" href="${base}/tofunc.do?key=F_BINDING_HOME&deviceId={{item.id}}"></a>
 								    	<a class="button glyphicon glyphicon-scissors" ng-click="release(item)"></a>

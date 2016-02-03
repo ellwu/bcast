@@ -67,7 +67,6 @@
 									<th><@spring.message "adver.contactPerson.head"/></th> 
 									<th><@spring.message "adver.contactPhone.head"/></th> 
 									
-									<th><@spring.message "disabled_enabled.head"/></th> 
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -81,7 +80,6 @@
 								    <td>{{ item.contactPerson }}</td>
 								    <td>{{ item.contactPhone }}</td>
 								    
-								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" ng-click="edit(item)"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>

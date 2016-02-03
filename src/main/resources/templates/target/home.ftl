@@ -67,7 +67,6 @@
 																
 									<!--<th><@spring.message "target.status.head"/></th> -->
 									
-									<th><@spring.message "disabled_enabled.head"/></th>
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 
@@ -81,7 +80,6 @@
 								    
 								   <!-- <td>{{ item.status }}</td> -->
 								    
-								    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" href="${base}/tofunc.do?key=F_EDIT_TARGET&targetId={{item.id}}"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>
