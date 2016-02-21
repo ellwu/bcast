@@ -326,4 +326,6 @@ app.controller('appCtl', function($scope, $http) {
    //init begin
    $scope.getData();
    //init end
+   
+   <#include "/common/address.ftl"/>
 });

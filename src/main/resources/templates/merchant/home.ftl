@@ -9,6 +9,7 @@
 		<@html.commonHead/>
 		<title><@spring.message "merchant.home.title"/></title>
 		<script src="${base}/js/angular.js"></script>
+			
 	</head>
 	<body>
 		<div ng-app="myApp" ng-controller="appCtl">

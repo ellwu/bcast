@@ -104,6 +104,7 @@
 							    <td>{{ item.contactPhone }}</td>
 							    
 							    <td>
+							    	<input type="checkbox"/>
 							    	<a class="button glyphicon glyphicon-share-alt" ng-click="query_Merchant.choose(item)"></a>
 							    </td>
 							  </tr>
@@ -119,6 +120,7 @@
 
 		</div>
          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><@spring.message "prompt.choose"/></button>
             <button type="button" class="btn btn-default" data-dismiss="modal"><@spring.message "prompt.close"/></button>
          </div>
       </div>

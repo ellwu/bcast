@@ -43,17 +43,17 @@
 			    <div class="form-group">
 			      <label class="col-sm-2 control-label" for="province"><@spring.message "merchant.province.label"/></label>
 			      <div class="col-sm-2">
-			        <input type="text" class="form-control" id="province" ng-model="createItem.province" name="province" placeholder="<@spring.message "merchant.province.placeholder"/>">
+			        <select class="form-control" id="province" ng-model="createItem.province" name="province" placeholder="<@spring.message "merchant.province.placeholder"/>" ng-options="p.name as p.name for p in provinceList"></select>
 			   	  </div>
 			   	  
 			      <label class="col-sm-2 control-label" for="city"><@spring.message "merchant.city.label"/></label>
 			      <div class="col-sm-2">
-			        <input type="text" class="form-control" id="city" ng-model="createItem.city" name="city" placeholder="<@spring.message "merchant.city.placeholder"/>">
+			        <select class="form-control" id="city" ng-model="createItem.city" name="city" placeholder="<@spring.message "merchant.city.placeholder"/>" ng-options="c.name as c.name for c in cityList"></select>
 			   	  </div>
 			   	  
 			      <label class="col-sm-2 control-label" for="district"><@spring.message "merchant.district.label"/></label>
 			      <div class="col-sm-2">
-			        <input type="text" class="form-control" id="district" ng-model="createItem.district" name="district" placeholder="<@spring.message "merchant.district.placeholder"/>">
+			        <select class="form-control" id="district" ng-model="createItem.district" name="district" placeholder="<@spring.message "merchant.district.placeholder"/>" ng-options="a as a for a in areaList"></select>
 			   	  </div>
 			   </div>
 			   
