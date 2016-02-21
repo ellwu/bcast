@@ -104,7 +104,6 @@
 							    <td>{{ item.contactPhone }}</td>
 							    
 							    <td>
-							    	<input type="checkbox"/>
 							    	<a class="button glyphicon glyphicon-share-alt" ng-click="query_Merchant.choose(item)"></a>
 							    </td>
 							  </tr>

@@ -29,6 +29,7 @@ import com.shnlng.bcast.base.util.FileUtil;
 import com.shnlng.bcast.base.util.IdGen;
 import com.shnlng.bcast.resource.domain.entity.ResourceEo;
 import com.shnlng.bcast.resource.service.ResourceSo;
+import com.shnlng.bcast.resource.service.TargetSo;
 import com.shnlng.bcast.system.domain.ProfileRepo;
 
 @Controller
@@ -39,6 +40,8 @@ public class ResourceCo {
 
 	@Autowired
 	private ResourceSo resourceSo;
+	@Autowired
+	private TargetSo targetSo;
 	@Autowired
 	private ProfileRepo profileRepo;
 
@@ -85,6 +88,43 @@ public class ResourceCo {
 		Page<ResourceEo> result = resourceSo.queryActive(adver, originName, category, pageable);
 
 		logger.debug("leave list");
+		return result;
+	}
+	
+	@RequestMapping("/off")
+	@ResponseBody
+	public Map<String, Object> off(HttpServletRequest req, HttpServletResponse resp, ResourceEo resource) {
+		logger.debug("enter delete resource");
+
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		RequestContext requestContext = new RequestContext(req);
+
+		if (resource == null || resource.getId() == null) {
+			logger.debug("resource input empty");
+
+			result.put("msg", requestContext.getMessage("resource.off.error"));
+			result.put("status", false);
+			return result;
+		}
+		
+		try {
+			
+			targetSo.targetRepo.deleteAndDisableByResource(resource.getId());
+
+			resourceSo.resourceRepo.deleteAndDisable(resource.getId());
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+
+			result.put("msg", requestContext.getMessage("resource.off.error"));
+			result.put("status", false);
+			return result;
+		}
+		result.put("msg", requestContext.getMessage("resource.off.ok"));
+		result.put("status", true);
+
+		logger.debug("enter delete resource");
 		return result;
 	}
 

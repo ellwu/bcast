@@ -17,6 +17,11 @@ public interface TargetRepo extends PagingAndSortingRepository<TargetEo, String>
 	@Modifying
 	@Query("update TargetEo t set t.status = 0, t.deleteFlag = 1, t.disableFlag = 1 where t.id = :id")
 	int deleteAndDisable(@Param("id") String id);
+	
+	@Transactional
+	@Modifying
+	@Query("update TargetEo t set t.status = 0, t.deleteFlag = 1, t.disableFlag = 1 where t.resourceId = :resourceId")
+	int deleteAndDisableByResource(@Param("resourceId") String resourceId);
 
 	@Query("select t from TargetEo t where t.deleteFlag = 0 and (:sn is null or t.sn like :sn) and (:merchant is null or t.merchantId in (select m.id from MerchantEo m where m.name like :merchant)) and (:resource is null or t.resourceId in (select r.id from ResourceEo r where r.originName like :resource))")
 	Page<TargetEo> queryActive(@Param("sn") String sn, @Param("resource") String resource,

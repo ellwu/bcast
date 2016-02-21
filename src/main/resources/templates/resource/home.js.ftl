@@ -95,6 +95,45 @@ app.controller('appCtl', function($scope, $http) {
 	
 	//delete action end
 	
+	//off action begin
+	$scope.offItem = {};
+	$scope.offMsg = "";
+	$scope.offOk = true;
+	
+	$scope.off = function(item){
+		$scope.offItem = item;
+		
+		$("#offModal").modal("show");
+	};
+	
+	$scope.offConfirm = function(){
+		console.info($scope.offItem);
+		
+		$.ajax({
+			cache: true,
+			type: 'POST',
+			url: "${base}/resource/off.do",
+			data: $scope.offItem,
+			async: false,
+			error: function(req){
+				$scope.offOk = false;
+				$scope.offMsg = "Internal error. Please contact your administrator.";
+			},
+			success: function(data){
+				if(data.status){
+					$("#offModal").modal('hide');
+					$scope.getData();
+					
+					$scope.showTopMsg(data.msg);
+				}else{
+					$scope.offMsg = data.msg;
+					$scope.offOk = false;
+				}
+			}
+		});
+	};
+	//off action end
+	
 	//query action begin
 	$scope.queryItem = {};
 	

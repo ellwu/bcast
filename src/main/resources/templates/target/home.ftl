@@ -65,7 +65,7 @@
 									<th><@spring.message "target.beginTime.head"/></th> 									
 									<th><@spring.message "target.endTime.head"/></th> 	
 																
-									<!--<th><@spring.message "target.status.head"/></th> -->
+									<th><@spring.message "target.status.head"/></th>
 									
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
@@ -78,7 +78,7 @@
 								    <td>{{ item.beginTime | ldate }}</td>
 								    <td>{{ item.endTime | ldate }}</td>
 								    
-								   <!-- <td>{{ item.status }}</td> -->
+								    <td>{{ item.endTime | targetStatus }}</td>
 								    
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" href="${base}/tofunc.do?key=F_EDIT_TARGET&targetId={{item.id}}"></a>
