@@ -149,4 +149,74 @@ app.controller('appCtl', function($scope, $http) {
 	//init begin
     $scope.getData();
     //init end
+    
+    //multi select begin
+	$scope.choseArr=[];
+	
+	var aFlag = '';
+	
+	$scope.x=false;
+	
+	$scope.all= function (box, items) {
+		if(box == true){
+			$scope.x = true;
+			
+			for(var i = 0; i < items.length; i++){
+    			$scope.choseArr.push(items[i]);
+    		}
+		}else{
+			$scope.x = false;
+			$scope.choseArr = [];
+		}
+    };
+    
+    $scope.chk= function (box, item) {
+    	
+    	for(var i = 0; i < $scope.choseArr.length; i++){
+    		if($scope.choseArr[i].id == item.id){
+    			$scope.choseArr.splice(i, 1);
+    			break;
+    		}
+    	}
+    	
+    	if(box == true){
+    		$scope.choseArr.push(item);
+    	}
+    };
+    
+    $scope.multiDelete = function(){
+    	
+    	$scope.mDeletePrompt = '';
+    	
+    	for(var i = 0; i < $scope.choseArr.length; i++){
+    		$scope.mDeletePrompt += ' ' + $scope.choseArr[i].resource;
+    	}
+    	
+    	$("#mDeleteModal").modal("show");
+    };
+    
+    
+	$scope.mDeleteConfirm = function(){
+		
+		for(var i = 0; i < $scope.choseArr.length; i++){
+			$.ajax({
+				cache: true,
+				type: 'POST',
+				url: "${base}/target/delete.do",
+				data: $scope.choseArr[i],
+				async: false,
+				error: function(req){
+				},
+				success: function(data){
+					if(data.status){
+						$scope.getData();
+					}
+				}
+			});
+		}
+		
+		$("#mDeleteModal").modal('hide');
+	};
+        
+    //multi select end
 });

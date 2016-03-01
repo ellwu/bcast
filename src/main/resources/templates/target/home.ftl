@@ -23,6 +23,7 @@
 					<div class="panel-heading">
 						<div class="btn-group" role="group" aria-label="...">
 							<a class="btn btn-default" href="${base}/tofunc.do?key=F_CREATE_TARGET"><@spring.message "prompt.create"/></a>
+							<a class="btn btn-default" ng-click="multiDelete()"><@spring.message "prompt.delete"/></a>
 						</div>
 						<div class="btn-group" role="group" aria-label="...">
 							<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" id="perPageBtn" aria-expanded="false">					
@@ -59,6 +60,7 @@
 					  	<table class="table table-bordered">
 							<thead> 
 								<tr> 
+									<th><input type="checkbox" ng-model="master" ng-click="all(master, page.content)"</th> 	
 									<th><@spring.message "target.resource.head"/></th> 									
 									<th><@spring.message "target.merchant.head"/></th> 
 									
@@ -72,6 +74,9 @@
 							</thead> 
 							<tbody> 
 								<tr ng-repeat="item in page.content">
+									<td>
+										<input id="{{item.id}}" type="checkbox" ng-model="x" ng-checked="master" ng-click="chk(x, item)">
+									</td>
 								    <td>{{ item.resource }}</td>
 								    <td>{{ item.merchant }}</td>
 								    
@@ -96,6 +101,7 @@
 				</div>
 								
 				<#include "/target/delete.ftl"/>
+				<#include "/target/multiSelect.ftl"/>
 				
 			</@html.content>
 			
