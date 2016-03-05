@@ -17,6 +17,11 @@ public interface ResourceRepo extends PagingAndSortingRepository<ResourceEo, Str
 	@Modifying
 	@Query("update ResourceEo r set r.deleteFlag = 1, r.disableFlag = 1 where r.id = :id")
 	int deleteAndDisable(@Param("id") String id);
+	
+	@Transactional
+	@Modifying
+	@Query("update ResourceEo r set r.deleteFlag = 1, r.disableFlag = 1 where r.adverId = :adverId")
+	int deleteAndDisableByAdver(@Param("adverId") String adverId);
 
 	@Query("select r from ResourceEo r where r.deleteFlag = 0")
 	Page<ResourceEo> findAllActive(Pageable pageable);

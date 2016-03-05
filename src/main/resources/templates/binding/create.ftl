@@ -59,7 +59,6 @@
 								<th><@spring.message "merchant.contactPerson.head"/></th> 
 								<th><@spring.message "merchant.contactPhone.head"/></th> 
 								
-								<th><@spring.message "disabled_enabled.head"/></th> 
 								<th><@spring.message "table.head.action"/></th>
 							</tr> 
 						</thead> 
@@ -75,7 +74,6 @@
 							    <td>{{ item.contactPerson }}</td>
 							    <td>{{ item.contactPhone }}</td>
 							    
-							    <td>{{ item.disableFlag == 1 ? '<@spring.message "prompt.disabled"/>': '<@spring.message "prompt.enabled"/>' }}</td>
 							    <td>
 							    	<a class="button glyphicon glyphicon-link" ng-click="merchant.bind(item.id)"></a>
 							    </td>

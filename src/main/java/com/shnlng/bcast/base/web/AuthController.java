@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.support.RequestContext;
 
+import com.shnlng.bcast.system.domain.RoleMenuRepo;
+import com.shnlng.bcast.system.domain.UserRoleRepo;
 import com.shnlng.bcast.system.domain.entity.MenuEo;
+import com.shnlng.bcast.system.domain.entity.RoleEo;
 import com.shnlng.bcast.system.domain.entity.UserEo;
 import com.shnlng.bcast.system.service.MenuSo;
 import com.shnlng.bcast.system.service.UserSo;
@@ -25,6 +28,10 @@ public class AuthController {
 
 	@Autowired
 	private MenuSo menuSo;
+	@Autowired
+	private RoleMenuRepo rmRepo;
+	@Autowired
+	private UserRoleRepo urRepo;
 
 	@RequestMapping("/login")
 	public String loginIndex() {
@@ -66,11 +73,26 @@ public class AuthController {
 	private void initSession(UserEo user, HttpServletRequest req, HttpServletResponse resp) {
 		logger.debug("enter initSession");
 
-		MenuEo rootMenu = menuSo.buildTree();
+		UserEo dbUser = userService.userRepository.findByName(user.getName());
+
+		RoleEo userRole = urRepo.findUserRole(dbUser.getId());
+
+		if (userRole == null) {
+			return;
+		}
+
+		MenuEo userMenu = rmRepo.findRoleMenu(userRole.getId());
+
+		if (userMenu == null) {
+			return;
+		}
+
+		MenuEo rootMenu = menuSo.getMenuTree(userMenu.getKey());
 
 		HttpSession session = req.getSession();
 
 		session.setAttribute("_MENU", rootMenu);
+		session.setAttribute("_ROLE", userRole.getName());
 
 		logger.debug("leave initSession");
 	}
@@ -79,7 +101,7 @@ public class AuthController {
 		logger.debug("enter resetSession");
 
 		HttpSession session = req.getSession();
-		
+
 		session.invalidate();
 
 		logger.debug("leave resetSession");

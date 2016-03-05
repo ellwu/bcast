@@ -1,6 +1,7 @@
 package com.shnlng.bcast.device.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import com.shnlng.bcast.device.domain.BindingRepo;
 import com.shnlng.bcast.device.domain.entity.BindingEo;
 import com.shnlng.bcast.merchant.domain.MerchantRepo;
 import com.shnlng.bcast.merchant.domain.entity.MerchantEo;
+import com.shnlng.bcast.system.domain.LookupRepo;
+import com.shnlng.bcast.system.domain.entity.LookupEo;
 
 @Service
 public class BindingSo {
@@ -19,6 +22,8 @@ public class BindingSo {
 	public BindingRepo bRepo;
 	@Autowired
 	private MerchantRepo mRepo;
+	@Autowired
+	private LookupRepo lRepo;
 
 	public Page<BindingEo> findBindingHistory(String deviceId, Pageable pageable) {
 		
@@ -38,6 +43,17 @@ public class BindingSo {
 		
 		for(BindingEo b : bindings){
 			b.setMerchant(merchantMaps.get(b.getMerchantId()));
+		}
+		
+		List<LookupEo> bindStatus = lRepo.findByCategoryKey("DEVICE_BIND_STATUS");
+
+		for(BindingEo b : bindings){
+			for (LookupEo bs : bindStatus) {
+				if (b.getStatus() != null && b.getStatus().equals(bs.getValue())) {
+					b.setStatusDesc(bs.getDesc());
+					break;
+				}
+			}
 		}
 		return bindings;
 	}

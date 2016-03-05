@@ -9,7 +9,7 @@
          	<div class="alert alert-danger" role="alert" ng-hide="createOk">{{ createMsg }}</div> 
 			<form role="form" id="createForm" class="form-horizontal">
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label" for="name"><@spring.message "role.key.label"/></label>
+			      <label class="col-sm-2 control-label" for="name"><@spring.message "role.name.label"/></label>
 			      <div class="col-sm-10">
 			        <input type="text" class="form-control" id="name" ng-model="createItem.name" name="name" placeholder="<@spring.message "role.name.placeholder"/>">
 			   	  </div>

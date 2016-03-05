@@ -13,7 +13,7 @@ public class UserSo {
 	private static final Logger logger = Logger.getLogger(UserSo.class);
 
 	@Autowired
-	private UserRepo userRepository;
+	public UserRepo userRepository;
 	
 	public boolean validateUserCredential(UserEo user){
 		logger.debug("enter validateUserCredential");

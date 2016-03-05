@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.shnlng.bcast.adver.domain.AdverRepo;
 import com.shnlng.bcast.adver.domain.entity.AdverEo;
+import com.shnlng.bcast.resource.domain.ResourceRepo;
+import com.shnlng.bcast.resource.domain.TargetRepo;
 import com.shnlng.bcast.system.domain.LookupRepo;
 import com.shnlng.bcast.system.domain.entity.LookupEo;
 
@@ -19,6 +21,10 @@ public class AdverService {
 	public AdverRepo adverRepo;
 	@Autowired
 	private LookupRepo lRepo;
+	@Autowired
+	public ResourceRepo resRepo;
+	@Autowired
+	public TargetRepo tRepo;
 
 	public Page<AdverEo> queryActive(String name, String category, Pageable pageable) {
 		if (StringUtils.isEmpty(name)) {
@@ -26,11 +32,9 @@ public class AdverService {
 		}else{
 			name = "%" + name + "%";
 		}
-
+		
 		if (StringUtils.isEmpty(category)) {
-			category = null;
-		}else{
-			category = "%" + category + "%";
+			name = null;
 		}
 
 		Page<AdverEo> advers = adverRepo.queryActive(name, category, pageable);

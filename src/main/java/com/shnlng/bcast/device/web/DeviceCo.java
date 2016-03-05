@@ -89,6 +89,14 @@ public class DeviceCo {
 			result.put("status", false);
 			return result;
 		}
+		
+		if(device.getBindStatus().equals("1")){
+			logger.debug("device still in bind");
+
+			result.put("msg", requestContext.getMessage("device.delete.error.release"));
+			result.put("status", false);
+			return result;
+		}
 
 		try {
 
@@ -146,6 +154,7 @@ public class DeviceCo {
 		try {
 			device.setCreationTime(new Date());
 			device.setStatus("1");
+			device.setBindStatus("2");
 
 			dso.deviceRepo.save(device);
 

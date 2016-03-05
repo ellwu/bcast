@@ -162,6 +162,9 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.release = function(item){
 		$scope.editItem = item;
 		
+		
+		$scope.editMsg = "";
+		$scope.editOk = true;
 		$("#releaseModal").modal("show");
 	};
 	
@@ -204,6 +207,8 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.delete = function(item){
 		$scope.deleteItem = item;
 		
+		$scope.deleteMsg = "";
+		$scope.deleteOk = true;
 		$("#deleteModal").modal("show");
 	};
 	

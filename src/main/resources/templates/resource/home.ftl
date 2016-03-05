@@ -77,7 +77,7 @@
 								    <td>
 								    	<a class="button glyphicon glyphicon-pencil" href="${base}/tofunc.do?key=F_EDIT_RESOURCE&resourceId={{item.id}}"></a>
 								    	<a class="button glyphicon glyphicon-remove" ng-click="delete(item)"></a>
-								    	<a class="button glyphicon glyphicon-off" ng-click="off(item)"></a>
+								    	<#if Session["_ROLE"] = 'administrator'><a class="button glyphicon glyphicon-off" ng-click="off(item)"></a></#if>
 								    </td>
 								  </tr>
 							</tbody> 

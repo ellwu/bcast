@@ -7,7 +7,7 @@
 <html lang="en">
 	<head>
 		<@html.commonHead/>
-		<title><@spring.message "profile.home.title"/></title>
+		<title><@spring.message "role.home.title"/></title>
 		<script src="${base}/js/angular.js"></script>
 	</head>
 	<body>

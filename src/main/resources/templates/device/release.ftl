@@ -6,7 +6,7 @@
             <h4 class="modal-title" id="releaseModalLabel"><@spring.message "device.release.title"/></h4>
          </div>
          <div class="modal-body">  
-         	<div class="alert alert-danger" role="alert" ng-hide="deleteOk">{{ deleteMsg }}</div>  
+         	<div class="alert alert-danger" role="alert" ng-hide="editOk">{{ editMsg }}</div>  
 			<p><@spring.message "prompt.release.confirm"/> "{{editItem.sn}}" ?</p>
          </div>
          <div class="modal-footer">

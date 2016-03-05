@@ -42,8 +42,6 @@ public class ResourceSo {
 
 		if (StringUtils.isEmpty(category)) {
 			category = null;
-		}else{
-			category = "%" + category + "%";
 		}
 
 		Page<ResourceEo> resources = resourceRepo.queryActive(adver, originName, category, pageable);

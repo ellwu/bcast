@@ -24,6 +24,7 @@ import com.shnlng.bcast.merchant.domain.entity.MerchantEo;
 import com.shnlng.bcast.merchant.service.MerchantSo;
 import com.shnlng.bcast.resource.domain.entity.TargetEo;
 import com.shnlng.bcast.resource.service.TargetSo;
+import com.shnlng.bcast.system.domain.ProfileRepo;
 
 @Controller
 @RequestMapping("/merchant")
@@ -35,6 +36,8 @@ public class MerchantCo {
 	private MerchantSo mSo;
 	@Autowired
 	private TargetSo tSo;
+	@Autowired
+	private ProfileRepo profileRepo;
 
 	@RequestMapping("/home")
 	public String home(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -128,7 +131,15 @@ public class MerchantCo {
 
 		merchant.setId(IdGen.id32());
 		if(merchant.getMaxTargets() == 0){
-			merchant.setMaxTargets(10);
+			String maxTarget = profileRepo.findValueByKey("MERCHANT_MAX_TARGETS");
+			int mt = 10;
+			try{
+				mt = Integer.parseInt(maxTarget);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+			merchant.setMaxTargets(mt);
 		}
 
 		try {

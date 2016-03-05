@@ -7,7 +7,7 @@
 <html lang="en">
 	<head>
 		<@html.commonHead/>
-		<title><@spring.message "profile.home.title"/></title>
+		<title><@spring.message "user.home.title"/></title>
 		<script src="${base}/js/angular.js"></script>
 	</head>
 	<body>
@@ -57,9 +57,9 @@
 					  	<table class="table table-bordered">
 							<thead> 
 								<tr> 
-									<th><@spring.message "profile.name.head"/></th> 
-									<th><@spring.message "profile.password.head"/></th> 
-									<th><@spring.message "profile.prompt.head"/></th> 
+									<th><@spring.message "user.name.head"/></th> 
+									<th><@spring.message "user.password.head"/></th> 
+									<th><@spring.message "user.prompt.head"/></th> 
 									<th><@spring.message "table.head.action"/></th>
 								</tr> 
 							</thead> 

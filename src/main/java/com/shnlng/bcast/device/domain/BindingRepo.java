@@ -14,11 +14,12 @@ import com.shnlng.bcast.device.domain.entity.BindingEo;
 
 public interface BindingRepo extends PagingAndSortingRepository<BindingEo, String> {
 
-	@Query("select b from BindingEo b where b.deviceId = :deviceId")
+	@Query("select b from BindingEo b where b.deviceId = :deviceId order by b.bindTime desc")
 	Page<BindingEo> findBindingHistory(@Param("deviceId") String deviceId, Pageable pageable);
 
 	@Transactional
 	@Modifying
 	@Query("update BindingEo b set b.status = '2', b.releaseTime = :releaseTime where b.releaseTime is null and b.deviceId = :deviceId")
 	int release(@Param("deviceId") String deviceId, @Param("releaseTime") Date releaseTime);
+	
 }

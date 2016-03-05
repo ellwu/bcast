@@ -9,13 +9,13 @@
          	<div class="alert alert-danger" role="alert" ng-hide="editOk">{{ editMsg }}</div>      
 			<form role="form" id="editForm" class="form-horizontal">
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label"  for="roleId"><@spring.message "roleMenu.roleId.label"/></label>
+			      <label class="col-sm-2 control-label"  for="roleId"><@spring.message "roleMenu.role.label"/></label>
 			      <div class="col-sm-4">
 			        <select class="form-control" id="funcId" name="roleId" ng-model="editItem.roleId" ng-options="u.id as u.name for u in options.roleOptions" disabled></select>
 			      </div>
 			   </div>	
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label"  for="menuId"><@spring.message "roleMenu.menuId.label"/></label>
+			      <label class="col-sm-2 control-label"  for="menuId"><@spring.message "roleMenu.menu.label"/></label>
 			      <div class="col-sm-4">
 			        <select class="form-control" id="funcId" name="menuId" ng-model="editItem.menuId" ng-options="r.id as r.prompt for r in options.menuOptions"></select>
 			      </div>

@@ -21,9 +21,9 @@
 			   	  </div>
 			   </div>
 			   <div class="form-group">
-			      <label class="col-sm-2 control-label"  for="desc"><@spring.message "user.desc.label"/></label>
+			      <label class="col-sm-2 control-label"  for="desc"><@spring.message "user.prompt.label"/></label>
 			      <div class="col-sm-10">
-			        <input type="text" class="form-control" id="desc" ng-model="editItem.desc" name="desc" placeholder="<@spring.message "user.desc.placeholder"/>">
+			        <input type="text" class="form-control" id="desc" ng-model="editItem.desc" name="desc" placeholder="<@spring.message "user.prompt.placeholder"/>">
 			   	  </div>
 			   </div>								   
 			</form>

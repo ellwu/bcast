@@ -66,7 +66,7 @@ public class BindingCo {
 		if (d == null || StringUtils.isEmpty(d.getId())) {
 			logger.debug("device input empty");
 
-			result.put("msg", requestContext.getMessage("bind.release.error"));
+			result.put("msg", requestContext.getMessage("binding.release.error"));
 			result.put("status", false);
 			return result;
 		}
@@ -85,11 +85,11 @@ public class BindingCo {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
-			result.put("msg", requestContext.getMessage("bind.release.error"));
+			result.put("msg", requestContext.getMessage("binding.release.error"));
 			result.put("status", false);
 			return result;
 		}
-		result.put("msg", requestContext.getMessage("bind.release.ok"));
+		result.put("msg", requestContext.getMessage("binding.release.ok"));
 		result.put("status", true);
 
 		logger.debug("leave release");
@@ -111,7 +111,7 @@ public class BindingCo {
 		if (StringUtils.isEmpty(deviceId)) {
 			logger.debug("device input empty");
 
-			result.put("msg", requestContext.getMessage("bind.create.error"));
+			result.put("msg", requestContext.getMessage("binding.create.error"));
 			result.put("status", false);
 			return result;
 		}
@@ -119,18 +119,23 @@ public class BindingCo {
 		if (StringUtils.isEmpty(merchantId)) {
 			logger.debug("device input empty");
 
-			result.put("msg", requestContext.getMessage("bind.create.error"));
+			result.put("msg", requestContext.getMessage("binding.create.error"));
 			result.put("status", false);
 			return result;
 		}
 
 		try {
+			Date now = new Date();
+			
+			//release this device first
+			bSo.bRepo.release(deviceId, now);
+			
 			BindingEo bind = new BindingEo();
 
 			bind.setId(IdGen.id32());
 			bind.setMerchantId(merchantId);
 			bind.setDeviceId(deviceId);
-			bind.setBindTime(new Date());
+			bind.setBindTime(now);
 			bind.setStatus("1");
 
 			bSo.bRepo.save(bind);
@@ -144,11 +149,11 @@ public class BindingCo {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
-			result.put("msg", requestContext.getMessage("bind.create.error"));
+			result.put("msg", requestContext.getMessage("binding.create.error"));
 			result.put("status", false);
 			return result;
 		}
-		result.put("msg", requestContext.getMessage("bind.create.ok"));
+		result.put("msg", requestContext.getMessage("binding.create.ok"));
 		result.put("status", true);
 
 		logger.debug("enter bind");

@@ -70,6 +70,10 @@ public class AdverCo {
 		try {
 
 			adverSo.adverRepo.deleteAndDisable(adver.getId());
+			
+			adverSo.resRepo.deleteAndDisableByAdver(adver.getId());
+			
+			adverSo.tRepo.deleteAndDisableByAdver(adver.getId());
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());

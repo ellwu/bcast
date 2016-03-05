@@ -71,7 +71,7 @@
 								    <td>{{ item.bindTime }}</td>
 								    
 								    <td>{{ item.releaseTime }}</td>
-								    <td>{{ item.status }}</td>
+								    <td>{{ item.statusDesc }}</td>
 								  </tr>
 							</tbody> 
 						</table>
