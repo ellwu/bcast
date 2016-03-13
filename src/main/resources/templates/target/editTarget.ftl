@@ -97,7 +97,7 @@
 			</form>
 			
 			<#include "/target/queryResource.ftl"/>
-			<#include "/target/queryMerchant.ftl"/>
+			<#include "/target/editQueryMerchant.ftl"/>
 				
 			</@html.content>
 			

@@ -1,5 +1,6 @@
 package com.shnlng.bcast.resource.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,6 +110,24 @@ public class TargetSo {
 	}
 
 	public List<TargetEo> findMerchantTargets(String merchantId) {
+
+		if (StringUtils.isEmpty(merchantId)) {
+			return null;
+		}
+
+		List<TargetEo> targets = targetRepo.findMerchantTargetsNow(merchantId, new Date());
+
+		for (TargetEo t : targets) {
+			ResourceEo resource = rRepo.findOne(t.getResourceId());
+			if (resource != null) {
+				t.setResource(resource.getOriginName());
+			}
+		}
+
+		return targets;
+	}
+	
+	public List<TargetEo> findMerchantTargetsAll(String merchantId) {
 
 		if (StringUtils.isEmpty(merchantId)) {
 			return null;

@@ -41,11 +41,18 @@
 			      <label class="col-sm-2 control-label" for="merchant"><@spring.message "target.merchant.label"/></label>
 			      <div class="col-sm-3">
 			      	<div class="input-group">
-			        	<input type="text" class="form-control" id="merchant" ng-model="createItem.merchant" name="merchant" placeholder="<@spring.message "target.merchant.placeholder"/>" readonly>
-			        	<span class="input-group-btn">
-				        	<button type="button" class="btn btn-default" ng-click="searchMerchant()"><@spring.message "prompt.search"/></button>
-				      	</span>
+			      		<!--<input type="text" class="form-control" id="merchant" ng-model="createItem.merchant" name="merchant" placeholder="<@spring.message "target.merchant.placeholder"/>" readonly>-->
+				        <button type="button" class="btn btn-default" ng-click="searchMerchant()"><@spring.message "prompt.search"/></button>
 			        </div>
+			   	  </div>
+			   </div>
+			   
+			   <div class="form-group">
+			      <label class="col-sm-2 control-label"></label>
+			   	  <div class="col-sm-3">
+			   	  	<ul ng-repeat="item in query_Merchant.choseArr">
+					  <li class="list-group-item"><a class="button glyphicon glyphicon-remove" ng-click="query_Merchant.multiDelete(item)"></a>{{ item.name }}</li>
+					</ul>
 			   	  </div>
 			   </div>
 			   
@@ -83,7 +90,7 @@
 				    	todayHighlight: true,
 				    	pickerPosition: 'bottom-left'
 				    });
-				</script>     
+				</script>
 			   
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label"></label>
@@ -96,7 +103,7 @@
 			</form>
 			
 			<#include "/target/queryResource.ftl"/>
-			<#include "/target/queryMerchant.ftl"/>
+			<#include "/target/createQueryMerchant.ftl"/>
 				
 			</@html.content>
 			

@@ -37,7 +37,7 @@ app.filter("targetStatus", function(){
 	return function(input){
 		input = input.replace(/\-/g,'').substring(0, 10);
 		var now = parseInt(new Date().Format('yyyyMMdd'));
-		return parseInt(input) >= now ? '<@spring.message "target.target.flag"/>' : '';
+		return parseInt(input) >= now ? '<@spring.message "target.target.flag"/>' : '<@spring.message "target.untarget.flag"/>';
 	};
 });
 

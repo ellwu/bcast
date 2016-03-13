@@ -14,6 +14,33 @@ app.filter("ldate", function(){
 	};
 });
 
+Date.prototype.Format = function(fmt)   
+{ //author: meizz   
+  var o = {   
+    "M+" : this.getMonth()+1,                 //月份   
+    "d+" : this.getDate(),                    //日   
+    "h+" : this.getHours(),                   //小时   
+    "m+" : this.getMinutes(),                 //分   
+    "s+" : this.getSeconds(),                 //秒   
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度   
+    "S"  : this.getMilliseconds()             //毫秒   
+  };   
+  if(/(y+)/.test(fmt))   
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+  for(var k in o)   
+    if(new RegExp("("+ k +")").test(fmt))   
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+  return fmt;   
+};
+
+app.filter("targetStatus", function(){
+	return function(input){
+		input = input.replace(/\-/g,'').substring(0, 10);
+		var now = parseInt(new Date().Format('yyyyMMdd'));
+		return parseInt(input) >= now ? '<@spring.message "target.target.flag"/>' : '<@spring.message "target.untarget.flag"/>';
+	};
+});
+
 app.controller('appCtl', function($scope, $http) {
 	$scope.noTopMsg = true;
 	$scope.topMsg = "";
@@ -213,9 +240,23 @@ app.controller('appCtl', function($scope, $http) {
 	
 	//target sequence action begin
 	$scope.targets = {};
+	$scope.targetsUrl = "${base}/merchant/targetSequence.do?merchantId=";
+	$scope.targetsShowNow = true;
+	
+	$scope.targetsNow = function(){
+		$scope.targetsUrl = "${base}/merchant/targetSequence.do?merchantId=";
+		$scope.targetsShowNow = true;
+		$scope.getTargets($scope.targetMerchantId);
+	};
+	
+	$scope.targetsAll = function(){
+		$scope.targetsUrl = "${base}/merchant/targetSequenceAll.do?merchantId=";
+		$scope.targetsShowNow = false;
+		$scope.getTargets($scope.targetMerchantId);
+	};
 	
 	$scope.getTargets = function(merchantId){
-		var listUrl = "${base}/merchant/targetSequence.do?merchantId=" + merchantId;
+		var listUrl = $scope.targetsUrl + merchantId;
 	    
 	    $.ajax({
 			cache: true,
@@ -235,9 +276,10 @@ app.controller('appCtl', function($scope, $http) {
 		
 		$scope.getTargets(item.id);
 		
+		$scope.targetMerchantId = item.id;
+		
 		$("#targetModal").modal("show");
 	};
-	
 	
 	//target sequence action end
 	
@@ -262,7 +304,7 @@ app.controller('appCtl', function($scope, $http) {
 		}
 	
 		var currentItem = $scope.targets.data[index];
-		var previousItem = $scope.targets	.data[index - 1];
+		var previousItem = $scope.targets.data[index - 1];
 		
 		$scope.switchSeq(currentItem, previousItem);
 	};

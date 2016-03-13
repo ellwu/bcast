@@ -57,6 +57,17 @@ public class MerchantCo {
 		logger.debug("leave list");
 		return result;
 	}
+	
+	@RequestMapping("/targetSequenceAll")
+	@ResponseBody
+	public List<TargetEo> targetSequenceAll(String merchantId) {
+		logger.debug("enter list");
+
+		List<TargetEo> result = tSo.findMerchantTargetsAll(merchantId);
+
+		logger.debug("leave list");
+		return result;
+	}
 
 	@RequestMapping("/list")
 	@ResponseBody

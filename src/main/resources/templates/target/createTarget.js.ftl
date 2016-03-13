@@ -13,26 +13,34 @@ app.controller('appCtl', function($scope, $http) {
 	
 	$scope.createConfirm = function(){
 		
-		$.ajax({
-			cache: true,
-			type: 'POST',
-			url: "${base}/target/create.do",
-			data: $scope.createItem,
-			async: false,
-			error: function(req){
-				$scope.createOk = false;
-				$scope.createMsg = "Internal error. Please contact your administrator.";
-			},
-			success: function(data){
-				if(data.status){
-					delete $scope.createItem;
-					$scope.createItem = {};
-				}
-				
-				$scope.hasMsg = true;
-				$scope.msg = data.msg;
+		var merchants = $scope.query_Merchant.choseArr;
+		
+		if(merchants && merchants.length > 0){
+			for(var i = 0; i < merchants.length; i++){
+				$scope.createItem.merchantId = merchants[i].id;
+			
+				$.ajax({
+					cache: true,
+					type: 'POST',
+					url: "${base}/target/create.do",
+					data: $scope.createItem,
+					async: false,
+					error: function(req){
+						$scope.createOk = false;
+						$scope.createMsg = "Internal error. Please contact your administrator.";
+					},
+					success: function(data){
+						
+						$scope.hasMsg = true;
+						$scope.msg = data.msg;
+					}
+				});
 			}
-		});
+			
+			delete $scope.createItem;
+			$scope.createItem = {};
+
+		}
 	};
 	//create action end
 	
@@ -50,6 +58,7 @@ app.controller('appCtl', function($scope, $http) {
 		$scope.query_Merchant.optionsInit();
 	
 		$("#searchMerchantModal").modal("show");
+		
 	};
 	
 	//search action end
@@ -154,6 +163,18 @@ app.controller('appCtl', function($scope, $http) {
 		$("#searchMerchantModal").modal("hide");
     };
     
+    $scope.query_Merchant.multiChoose = function(){
+    };
+    
+    $scope.query_Merchant.multiDelete = function(item){
+    	for(var i = 0; i < $scope.query_Merchant.choseArr.length; i++){
+    		if($scope.query_Merchant.choseArr[i].id == item.id){
+    			$scope.query_Merchant.choseArr.splice(i, 1);
+    			break;
+    		}
+    	}
+    };
+    
 	$scope.query_Merchant.next = function(){
 		$scope.query_Merchant.pageIndex += 1;
 		$scope.query_Merchant.getData();
@@ -206,4 +227,37 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	
 	//query option values end
+	
+	//multi select begin
+	$scope.query_Merchant.choseArr=[];
+	
+	$scope.query_Merchant.x=false;
+	
+	$scope.query_Merchant.all= function (box, items) {
+		if(box == true){
+			$scope.query_Merchant.x = true;
+			
+			for(var i = 0; i < items.length; i++){
+    			$scope.query_Merchant.choseArr.push(items[i]);
+    		}
+		}else{
+			$scope.query_Merchant.x = false;
+			$scope.query_Merchant.choseArr = [];
+		}
+    };
+    
+    $scope.query_Merchant.chk= function (box, item) {
+    	
+    	for(var i = 0; i < $scope.query_Merchant.choseArr.length; i++){
+    		if($scope.query_Merchant.choseArr[i].id == item.id){
+    			$scope.query_Merchant.choseArr.splice(i, 1);
+    			break;
+    		}
+    	}
+    	
+    	if(box == true){
+    		$scope.query_Merchant.choseArr.push(item);
+    	}
+    };
+    //multi select end
 });

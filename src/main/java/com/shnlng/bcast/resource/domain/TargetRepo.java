@@ -1,5 +1,6 @@
 package com.shnlng.bcast.resource.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -34,6 +35,9 @@ public interface TargetRepo extends PagingAndSortingRepository<TargetEo, String>
 	
 	@Query("select t from TargetEo t where t.deleteFlag = 0 and t.disableFlag = 0 and t.merchantId = :merchantId order by t.playSequence asc")
 	List<TargetEo> findMerchantTargets(@Param("merchantId") String merchantId);
+	
+	@Query("select t from TargetEo t where t.deleteFlag = 0 and t.disableFlag = 0 and t.merchantId = :merchantId and t.endTime >= :now  order by t.playSequence asc")
+	List<TargetEo> findMerchantTargetsNow(@Param("merchantId") String merchantId, @Param("now") Date time);
 	
 	@Query("select max(t.playSequence) from TargetEo t where t.merchantId = :merchantId")
 	Integer findMaxSequence(@Param("merchantId") String merchantId);
