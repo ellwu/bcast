@@ -79,6 +79,11 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('c039dc4cfc84431db0b30a3005ab13bf','M_BI','统计分析','79a627c7f9654d69954ef5ff756c175a',40000,null,0);
+insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
+	values('d2b99648adf24990a49026aefe58f7d6','M_BI_MERCHANT','商户','c039dc4cfc84431db0b30a3005ab13bf',41000,'438da4022f474fa5bcd7fe25575176be',0);
+insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
+	values('df4d5b7b6d4643c4ba17950506bab2dd','M_BI_ADVER','广告商','c039dc4cfc84431db0b30a3005ab13bf',42000,'6109e3e658b342b48419af79baad7526',0);
+
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('95e69d004bd249fb8f322544d9580ff6','M_SYS','系统管理','79a627c7f9654d69954ef5ff756c175a',50000,null,0);
@@ -199,6 +204,11 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('0cb066d3d7d943ee9a15e8c93aa3b758', 'F_BINDING_HOME', 'Binding Home', '/binding/home.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('0cb9c83db6074aabbbe9b462b39af1db', 'F_TARGET_HOME', 'Target Home', '/target/home.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('438da4022f474fa5bcd7fe25575176be', 'F_COUNT_BY_MERCHANT_HOME', 'Count by Merchant', '/count/byMerchant.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('6109e3e658b342b48419af79baad7526', 'F_COUNT_BY_ADVER_HOME', 'Count by Adver', '/count/byAdver.do', 0);
+
 	
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('a073984172134391bf5c0e97a8d849a1', 'F_CREATE_TARGET', 'Create Target', '/target/createTarget.do', 0);
@@ -281,10 +291,7 @@ random ids:
 
 
 
-438da4022f474fa5bcd7fe25575176be
-6109e3e658b342b48419af79baad7526
-d2b99648adf24990a49026aefe58f7d6
-df4d5b7b6d4643c4ba17950506bab2dd
+
 959c01ab10cd4ceface6865410fc375b
 3aae3d72f2a34eddac92389ddea9909f
 d1bfc36818e747ec8fbc18123df2a53a
