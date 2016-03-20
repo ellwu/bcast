@@ -71,4 +71,95 @@ app.controller('appCtl', function($scope, $http) {
 	//init begin
     $scope.getData();
     //init end
+    
+    //query action begin
+	$scope.merchant = {};
+	
+	$scope.merchant.queryItem = {};
+	
+    $scope.merchant.query = function(){
+    	$scope.merchant.getData();
+    };
+    
+    $scope.merchant.resetQuery = function(){
+    	$scope.merchant.queryItem = {};
+    };
+    
+	//query action end
+	
+	//pageable table begin
+	$scope.merchant.pageIndex = 0;
+	$scope.merchant.pageSize = 10;
+	
+	$scope.merchant.getData = function(){
+		var listUrl = "${base}/merchant/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+	    
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			data: $scope.merchant.queryItem,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.merchant.page = data;
+			}
+		});
+    };
+    
+	$scope.merchant.next = function(){
+		$scope.merchant.pageIndex += 1;
+		$scope.merchant.getData();
+	};
+	
+	$scope.merchant.previous = function(){
+		$scope.merchant.pageIndex -= 1;
+		$scope.merchant.getData();
+	};
+	
+	$scope.merchant.perPage = function(size){
+		$scope.merchant.pageSize = size;
+		$scope.merchant.pageIndex = 0;
+		
+		$scope.merchant.getData();
+	};
+	//pageable table end
+	
+	//select option values begin
+	$scope.merchant.options = {};
+	
+	$scope.merchant.optionsInit = function(){
+		var optionsUrl = "${base}/lookup/values.do?categoryKey=MERCHANT_LEVEL";
+	    
+	    $http.get(optionsUrl).success(function (response) {
+	    	$scope.merchant.options.levelOptions = response;
+	    });
+	    
+	    optionsUrl = "${base}/lookup/values.do?categoryKey=MERCHANT_CATEGORY";
+	    
+	    $http.get(optionsUrl).success(function (response) {
+	    	$scope.merchant.options.categoryOptions = response;
+	    });
+	    
+	    $scope.merchant.options.disableOptions = [{"value":0,"desc":"<@spring.message "prompt.enabled"/>"},{"value":1,"desc":"<@spring.message "prompt.disabled"/>"}];
+	};
+	
+	$scope.merchant.optionsInit();
+	
+	$scope.merchant.selectMerchant = function(item){
+		$scope.queryItem.merchantId = item.id;
+		$scope.queryItem.merchantName = item.name;
+		
+		console.info($scope.merchant.queryItem);
+		
+		$("#searchMerchantModal").modal("hide");
+	};
+	
+	$scope.searchMerchant = function(){
+		
+		$scope.merchant.optionsInit();
+	
+		$("#searchMerchantModal").modal("show");
+	};
 });

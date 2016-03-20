@@ -85,6 +85,9 @@
 					</div>
 				</div>
 				
+				
+				<#include "/count/queryMerchant.ftl"/>
+				
 			</@html.content>
 			
 			<script src="${base}/res.do?path=/count/byMerchant.js"></script>

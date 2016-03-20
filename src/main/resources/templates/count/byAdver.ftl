@@ -85,6 +85,8 @@
 					</div>
 				</div>
 				
+				<#include "/count/queryAdver.ftl"/>
+				
 			</@html.content>
 			
 			<script src="${base}/res.do?path=/count/byAdver.js"></script>

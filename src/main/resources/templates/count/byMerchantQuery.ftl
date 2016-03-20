@@ -4,8 +4,15 @@
 			<div class="form-group">
 				  <label class="col-sm-3 control-label" for="sn"><@spring.message "count.merchantId.label"/></label>
 				  <div class="col-sm-9">
-					<input type="text" class="form-control" id="merchantId" name="merchantId" ng-model="queryItem.merchantId" placeholder="<@spring.message "count.merchantId.placeholder"/>">
-				  </div>
+				  
+			      	<div class="input-group">
+						<input type="text" class="form-control" id="merchantName" ng-model="queryItem.merchantName" name="merchantName" placeholder="<@spring.message "count.merchantId.placeholder"/>" readonly>
+			        	<input type="hidden" class="form-control" id="merchantId" ng-model="queryItem.merchantId" name="merchantId">
+			        	<span class="input-group-btn">
+				        	<button type="button" class="btn btn-default" ng-click="searchMerchant()"><@spring.message "prompt.search"/></button>
+				      	</span>
+				    </div>
+				   </div>
 			</div>
 			
 			<div class="form-group">

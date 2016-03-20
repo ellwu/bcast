@@ -4,7 +4,13 @@
 			<div class="form-group">
 				  <label class="col-sm-3 control-label" for="sn"><@spring.message "count.adverId.label"/></label>
 				  <div class="col-sm-9">
-					<input type="text" class="form-control" id="adverId" name="adverId" ng-model="queryItem.adverId" placeholder="<@spring.message "count.adverId.placeholder"/>">
+					<div class="input-group">
+			        	<input type="text" class="form-control" id="adverName" ng-model="queryItem.adverName" name="adverName" placeholder="<@spring.message "count.adverId.placeholder"/>" readonly>
+			        	<input type="hidden" class="form-control" id="adverId" ng-model="queryItem.adverId" name="adverId">
+			        	<span class="input-group-btn">
+				        	<button type="button" class="btn btn-default" ng-click="searchAdver()"><@spring.message "prompt.search"/></button>
+				      	</span>
+		       		 </div>
 				  </div>
 			</div>
 			
