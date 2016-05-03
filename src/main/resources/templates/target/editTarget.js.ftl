@@ -92,7 +92,7 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.query_Resource.pageSize = 10;
 	
 	$scope.query_Resource.getData = function(){
-		var listUrl = "${base}/resource/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+		var listUrl = "${base}/resource/list.do?size=" + $scope.query_Resource.pageSize + "&page=" + $scope.query_Resource.pageIndex;
 	    
 	    $.ajax({
 			cache: true,
@@ -160,7 +160,7 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.query_Merchant.pageSize = 10;
 	
 	$scope.query_Merchant.getData = function(){
-		var listUrl = "${base}/merchant/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+		var listUrl = "${base}/merchant/list.do?size=" + $scope.query_Merchant.pageSize + "&page=" + $scope.query_Merchant.pageIndex;
 	    
 	    $.ajax({
 			cache: true,

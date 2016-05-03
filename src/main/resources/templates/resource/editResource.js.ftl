@@ -130,7 +130,7 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.query_Adver.pageSize = 10;
 	
 	$scope.query_Adver.getData = function(){
-		var listUrl = "${base}/adver/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+		var listUrl = "${base}/adver/list.do?size=" + $scope.query_Adver.pageSize + "&page=" + $scope.query_Adver.pageIndex;
 	    
 	    $.ajax({
 			cache: true,

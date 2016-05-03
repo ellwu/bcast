@@ -92,7 +92,7 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.merchant.pageSize = 10;
 	
 	$scope.merchant.getData = function(){
-		var listUrl = "${base}/merchant/list.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+		var listUrl = "${base}/merchant/list.do?size=" + $scope.merchant.pageSize + "&page=" + $scope.merchant.pageIndex;
 	    
 	    $.ajax({
 			cache: true,
