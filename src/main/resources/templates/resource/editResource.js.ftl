@@ -201,14 +201,11 @@ app.controller('appCtl', function($scope, $http) {
 	
 	//query option values end
 	
-	$scope.genQRCode = function(){
+	$scope.genQRCode = function(rid){
 		$('#qrCode').html("");
 		
-		var url = $("#redirectUrl").val();
-		if(url != ''){
-			$('#qrCode').qrcode(url);
-			$("#qrCodeModal").modal("show");
-		}
+		$('#qrCode').qrcode("http://shnlng.me:7090/echo?rid="+rid);
+		$("#qrCodeModal").modal("show");
 		
 	};
 });

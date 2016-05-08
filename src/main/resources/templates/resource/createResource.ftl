@@ -74,12 +74,7 @@
 			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="redirectUrl"><@spring.message "resource.redirectUrl.label"/></label>
 			      <div class="col-sm-4">
-			        	<div class="input-group">
-					      <input type="text" class="form-control" id="redirectUrl" ng-model="createItem.redirectUrl" name="redirectUrl" placeholder="<@spring.message "resource.redirectUrl.placeholder"/>">
-			   	  		  <span class="input-group-btn">
-					        <a class="btn glyphicon glyphicon-qrcode" ng-click="genQRCode()"></a>
-					      </span>
-					    </div>
+				  	<input type="text" class="form-control" id="redirectUrl" ng-model="createItem.redirectUrl" name="redirectUrl" placeholder="<@spring.message "resource.redirectUrl.placeholder"/>">
 			   	  </div>
 			   	  
 			   </div>
@@ -109,7 +104,6 @@
 			</form>
 			
 			<#include "/resource/queryAdvers.ftl"/>
-			<#include "/resource/qrCode.ftl"/>
 				
 			</@html.content>
 			

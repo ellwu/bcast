@@ -173,15 +173,4 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	
 	//query option values end
-	
-	$scope.genQRCode = function(){
-		$('#qrCode').html("");
-		
-		var url = $("#redirectUrl").val();
-		if(url != ''){
-			$('#qrCode').qrcode(url);
-			$("#qrCodeModal").modal("show");
-		}
-		
-	};
 });

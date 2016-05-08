@@ -77,7 +77,7 @@
 			        	<div class="input-group">
 					      <input type="text" class="form-control" id="redirectUrl" ng-model="editItem.redirectUrl" name="redirectUrl" placeholder="<@spring.message "resource.redirectUrl.placeholder"/>">
 			   	  		  <span class="input-group-btn">
-					        <a class="btn glyphicon glyphicon-qrcode" ng-click="genQRCode()"></a>
+					        <a class="btn glyphicon glyphicon-qrcode" ng-click="genQRCode(editItem.id)"></a>
 					      </span>
 					    </div>
 			   	  </div>
