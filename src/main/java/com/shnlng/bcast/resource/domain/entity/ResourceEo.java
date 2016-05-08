@@ -32,6 +32,9 @@ public class ResourceEo implements Serializable {
 
 	@Column(name = "resource_origin_name")
 	private String originName;
+	
+	@Column(name = "resource_redirect_url")
+	private String redirectUrl;
 
 	@Column(name = "resource_duration")
 	private int duration;
@@ -246,6 +249,14 @@ public class ResourceEo implements Serializable {
 
 	public void setTypeDesc(String typeDesc) {
 		this.typeDesc = typeDesc;
+	}
+
+	public String getRedirectUrl() {
+		return redirectUrl;
+	}
+
+	public void setRedirectUrl(String redirectUrl) {
+		this.redirectUrl = redirectUrl;
 	}
 
 }

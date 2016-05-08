@@ -72,6 +72,19 @@
 			   </div>
 			   
 			   <div class="form-group">
+			      <label class="col-sm-2 control-label" for="redirectUrl"><@spring.message "resource.redirectUrl.label"/></label>
+			      <div class="col-sm-4">
+			        	<div class="input-group">
+					      <input type="text" class="form-control" id="redirectUrl" ng-model="editItem.redirectUrl" name="redirectUrl" placeholder="<@spring.message "resource.redirectUrl.placeholder"/>">
+			   	  		  <span class="input-group-btn">
+					        <a class="btn glyphicon glyphicon-qrcode" ng-click="genQRCode()"></a>
+					      </span>
+					    </div>
+			   	  </div>
+			   	  
+			   </div>
+			   
+			   <div class="form-group">
 			      <label class="col-sm-2 control-label" for="rangeAge"><@spring.message "resource.rangeAge.label"/></label>
 			      <div class="col-sm-4">
 			        <input type="text" class="form-control" id="rangeAge" ng-model="editItem.rangeAge" name="rangeAge" placeholder="<@spring.message "resource.rangeAge.placeholder"/>">
@@ -96,6 +109,7 @@
 			</form>
 			
 			<#include "/resource/queryAdvers.ftl"/>
+			<#include "/resource/qrCode.ftl"/>
 				
 			</@html.content>
 			

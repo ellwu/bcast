@@ -1,4 +1,4 @@
-use demo;
+uuse demo;
 
 drop table if exists t_devices;
 create table t_devices(
@@ -100,6 +100,8 @@ create table t_resources(
 	resource_adver_id char(32),
 	
 	resource_type integer default 0,
+	
+	resource_redirect_url varchar(1000),
 	
 	resource_origin_name varchar(200),
 	resource_duration integer default 0,

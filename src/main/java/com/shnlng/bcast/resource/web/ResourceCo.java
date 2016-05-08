@@ -398,6 +398,7 @@ public class ResourceCo {
 		originResource.setType(resource.getType());
 		originResource.setCategory(resource.getCategory());
 		originResource.setDuration(resource.getDuration());
+		originResource.setRedirectUrl(resource.getRedirectUrl());
 		originResource.setRangeAge(resource.getRangeAge());
 		originResource.setRangeGroup(resource.getRangeGroup());
 		originResource.setUploadTime(new Date());

@@ -49,6 +49,9 @@ app.controller('appCtl', function($scope, $http) {
 		if($scope.createItem.duration){
 			formData.append('duration', $scope.createItem.duration);
 		}
+		if($scope.createItem.redirectUrl){
+			formData.append('redirectUrl', $scope.createItem.redirectUrl);
+		}
 		if($scope.createItem.rangeAge){
 			formData.append('rangeAge', encodeURI($scope.createItem.rangeAge));
 		}
@@ -170,4 +173,15 @@ app.controller('appCtl', function($scope, $http) {
 	};
 	
 	//query option values end
+	
+	$scope.genQRCode = function(){
+		$('#qrCode').html("");
+		
+		var url = $("#redirectUrl").val();
+		if(url != ''){
+			$('#qrCode').qrcode(url);
+			$("#qrCodeModal").modal("show");
+		}
+		
+	};
 });

@@ -10,6 +10,7 @@
 	<base id="base" href="${base}"/>
 	
 	<script src="${base}/js/jquery.min.js"></script>
+	<script src="${base}/js/jquery.qrcode.min.js"></script>
 	
 	<link href="${base}/css/jquery-ui.css" rel="stylesheet">
 	<link href="${base}/css/bootstrap.min.css" rel="stylesheet">
