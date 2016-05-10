@@ -202,6 +202,21 @@ insert into t_targets(target_id, target_sn, target_merchant_id, target_resource_
 	target_status, target_play_sequence, delete_flag, disable_flag, version)
 	values('19e440b7b20c4a05b5640ec1cfad0b55', 't002', '069bf1625a3e4fd3857511ee952d4777', '692404459fdd48abbee8c5a7d5c9c810', '2015-11-22 21:04:34', '2016-11-22 21:04:34', 1, 30, 0, 0, 0);
 
+drop table if exists t_qr_counts;
+create table t_qr_counts(
+	qr_count_id char(32) not null,
+	resource_id char(32),
+	qr_url varchar(1000),
+	
+	creation_time datetime,
+	created_by char(32),
+	update_time datetime,
+	updated_by char(32),
+	version integer default 0,
+	
+	primary key(qr_count_id)
+);
+	
 drop table if exists t_counts;
 create table t_counts(
 	count_id char(32) not null,

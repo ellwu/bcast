@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shnlng.bcast.count.domain.CountRepo;
+import com.shnlng.bcast.count.domain.QrCountRepo;
 import com.shnlng.bcast.count.domain.value.CountVo;
+import com.shnlng.bcast.count.domain.value.QrCountVo;
 
 @Controller
 @RequestMapping("/count")
@@ -23,6 +25,8 @@ public class CountCo {
 
 	@Autowired
 	private CountRepo countRepo;
+	@Autowired
+	private QrCountRepo qrCountRepo;
 	
 	@RequestMapping("/byMerchant")
 	public String byMerchant(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -30,6 +34,14 @@ public class CountCo {
 
 		logger.debug("enter byMerchant");
 		return "/count/byMerchant";
+	}	
+	
+	@RequestMapping("/byResource")
+	public String byResource(HttpServletRequest req, HttpServletResponse resp, Model model) {
+		logger.debug("enter byResource");
+
+		logger.debug("enter byResource");
+		return "/count/byResource";
 	}
 	
 	@RequestMapping("/byAdver")
@@ -59,6 +71,17 @@ public class CountCo {
 		Page<CountVo> result = countRepo.findByAdverId(adverId, pageable);
 
 		logger.debug("leave listByAdver");
+		return result;
+	}
+	
+	@RequestMapping("/listByResource")
+	@ResponseBody
+	public Page<QrCountVo> listByResource(String resourceId, Pageable pageable) {
+		logger.debug("enter listByResource");
+
+		Page<QrCountVo> result = qrCountRepo.findByResourceId(resourceId, pageable);
+
+		logger.debug("leave listByResource");
 		return result;
 	}
 

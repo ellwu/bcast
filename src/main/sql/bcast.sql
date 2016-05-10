@@ -83,6 +83,8 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 	values('d2b99648adf24990a49026aefe58f7d6','M_BI_MERCHANT','商户','c039dc4cfc84431db0b30a3005ab13bf',41000,'438da4022f474fa5bcd7fe25575176be',0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('df4d5b7b6d4643c4ba17950506bab2dd','M_BI_ADVER','广告商','c039dc4cfc84431db0b30a3005ab13bf',42000,'6109e3e658b342b48419af79baad7526',0);
+insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
+	values('3aae3d72f2a34eddac92389ddea9909f','M_BI_RESOURCE','资源扫码','c039dc4cfc84431db0b30a3005ab13bf',42000,'959c01ab10cd4ceface6865410fc375b',0);
 
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
@@ -208,6 +210,8 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('438da4022f474fa5bcd7fe25575176be', 'F_COUNT_BY_MERCHANT_HOME', 'Count by Merchant', '/count/byMerchant.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('6109e3e658b342b48419af79baad7526', 'F_COUNT_BY_ADVER_HOME', 'Count by Adver', '/count/byAdver.do', 0);
+insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
+	values('959c01ab10cd4ceface6865410fc375b', 'F_COUNT_BY_RESOURCE_HOME', 'Count by Resource', '/count/byResource.do', 0);
 
 	
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
@@ -292,8 +296,8 @@ random ids:
 
 
 
-959c01ab10cd4ceface6865410fc375b
-3aae3d72f2a34eddac92389ddea9909f
+
+
 d1bfc36818e747ec8fbc18123df2a53a
 14b23a40a69b4778823604c0414c50c6
 

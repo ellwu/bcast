@@ -1,5 +1,16 @@
-drop view if exists v_counts;
 
+drop view if exists v_qr_counts;
+create view v_qr_counts as
+select 
+	q.resource_id, 
+	count(1) as count,
+	r.resource_origin_name
+from t_qr_counts q
+left join t_resources r 
+	on q.resource_id = r.resource_id
+group by resource_id;
+
+drop view if exists v_counts;
 create view v_counts as
 select 
 	c.count_id,
