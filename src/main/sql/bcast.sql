@@ -80,11 +80,9 @@ insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequenc
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
 	values('c039dc4cfc84431db0b30a3005ab13bf','M_BI','统计分析','79a627c7f9654d69954ef5ff756c175a',40000,null,0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('d2b99648adf24990a49026aefe58f7d6','M_BI_MERCHANT','商户','c039dc4cfc84431db0b30a3005ab13bf',41000,'438da4022f474fa5bcd7fe25575176be',0);
+	values('d2b99648adf24990a49026aefe58f7d6','M_BI_PLAY','播放统计','c039dc4cfc84431db0b30a3005ab13bf',41000,'438da4022f474fa5bcd7fe25575176be',0);
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('df4d5b7b6d4643c4ba17950506bab2dd','M_BI_ADVER','广告商','c039dc4cfc84431db0b30a3005ab13bf',42000,'6109e3e658b342b48419af79baad7526',0);
-insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
-	values('3aae3d72f2a34eddac92389ddea9909f','M_BI_RESOURCE','资源扫码','c039dc4cfc84431db0b30a3005ab13bf',42000,'959c01ab10cd4ceface6865410fc375b',0);
+	values('df4d5b7b6d4643c4ba17950506bab2dd','M_BI_SCAN','扫码统计','c039dc4cfc84431db0b30a3005ab13bf',42000,'6109e3e658b342b48419af79baad7526',0);
 
 	
 insert into t_menus(menu_id, menu_key, menu_prompt, menu_parent_id, menu_sequence, func_id, version)
@@ -207,11 +205,9 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('0cb9c83db6074aabbbe9b462b39af1db', 'F_TARGET_HOME', 'Target Home', '/target/home.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
-	values('438da4022f474fa5bcd7fe25575176be', 'F_COUNT_BY_MERCHANT_HOME', 'Count by Merchant', '/count/byMerchant.do', 0);
+	values('438da4022f474fa5bcd7fe25575176be', 'F_PLAY_COUNT', 'Count by Merchant', '/count/playCount.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
-	values('6109e3e658b342b48419af79baad7526', 'F_COUNT_BY_ADVER_HOME', 'Count by Adver', '/count/byAdver.do', 0);
-insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
-	values('959c01ab10cd4ceface6865410fc375b', 'F_COUNT_BY_RESOURCE_HOME', 'Count by Resource', '/count/byResource.do', 0);
+	values('6109e3e658b342b48419af79baad7526', 'F_SCAN_COUNT', 'Count by Adver', '/count/scanCount.do', 0);
 
 	
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
