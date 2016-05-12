@@ -205,10 +205,11 @@ insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('0cb9c83db6074aabbbe9b462b39af1db', 'F_TARGET_HOME', 'Target Home', '/target/home.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
-	values('438da4022f474fa5bcd7fe25575176be', 'F_PLAY_COUNT', 'Count by Merchant', '/count/playCount.do', 0);
+	values('438da4022f474fa5bcd7fe25575176be', 'F_PLAY_COUNT', 'Play Count', '/count/playCount.do', 0);
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
-	values('6109e3e658b342b48419af79baad7526', 'F_SCAN_COUNT', 'Count by Adver', '/count/scanCount.do', 0);
+	values('6109e3e658b342b48419af79baad7526', 'F_SCAN_COUNT', 'Scan Count', '/count/scanCount.do', 0);
 
+delete from t_funcs where func_id in ('438da4022f474fa5bcd7fe25575176be','6109e3e658b342b48419af79baad7526');
 	
 insert into t_funcs(func_id, func_key, func_prompt, func_url, version)
 	values('a073984172134391bf5c0e97a8d849a1', 'F_CREATE_TARGET', 'Create Target', '/target/createTarget.do', 0);
