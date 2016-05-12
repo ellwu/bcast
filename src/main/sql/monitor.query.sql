@@ -3,12 +3,19 @@ drop view if exists v_qr_counts;
 create view v_qr_counts as
 select 
 	q.resource_id, 
-	count(1) as count,
-	r.resource_origin_name
-from t_qr_counts q
-left join t_resources r 
-	on q.resource_id = r.resource_id
-group by resource_id;
+	r.resource_origin_name,
+	a.adver_id,
+	a.adver_name,
+	q.creation_time,
+	m.merchant_id,
+	m.merchant_name
+from t_qr_counts q,
+t_resources r,
+t_advers a,
+t_merchants m
+where q.resource_id = r.resource_id
+and r.resource_adver_id = a.adver_id
+and q.merchant_id = m.merchant_id;
 
 drop view if exists v_counts;
 create view v_counts as

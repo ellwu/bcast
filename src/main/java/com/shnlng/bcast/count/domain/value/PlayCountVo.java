@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "v_counts")
-public class CountVo implements Serializable {
+public class PlayCountVo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id

@@ -21,7 +21,9 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.pageSize = 10;
 	
 	$scope.getData = function(){
-		var listUrl = "${base}/count/listByMerchant.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+		var listUrl = "${base}/count/findPlayCount.do?size=" + $scope.pageSize + "&page=" + $scope.pageIndex;
+	    
+	    console.info($scope.queryItem);
 	    
 	    $.ajax({
 			cache: true,
@@ -72,7 +74,94 @@ app.controller('appCtl', function($scope, $http) {
     $scope.getData();
     //init end
     
-    //query action begin
+    //search action begin
+	
+	$scope.searchAdver = function(){
+		
+		$scope.query_Adver.optionsInit();
+	
+		$("#searchAdverModal").modal("show");
+	};
+	
+	//search action end
+	
+	//adver query action begin
+	$scope.query_Adver = {};
+	
+	//pageable table begin
+	$scope.query_Adver.pageIndex = 0;
+	$scope.query_Adver.pageSize = 10;
+	
+	$scope.query_Adver.getData = function(){
+		var listUrl = "${base}/adver/list.do?size=" + $scope.query_Adver.pageSize + "&page=" + $scope.query_Adver.pageIndex;
+	    
+	    $.ajax({
+			cache: true,
+			type: 'POST',
+			url: listUrl,
+			data: $scope.query_Adver.queryItem,
+			async: false,
+			error: function(req){
+			},
+			success: function(data){
+				$scope.query_Adver.page = data;
+			}
+		});
+    };
+    
+    $scope.query_Adver.choose = function(selectedAdver){
+    	$scope.queryItem.adverName = selectedAdver.name;
+    	$scope.queryItem.adverId = selectedAdver.id;
+    	
+    	
+		$("#searchAdverModal").modal("hide");
+    };
+    
+	$scope.query_Adver.next = function(){
+		$scope.query_Adver.pageIndex += 1;
+		$scope.query_Adver.getData();
+	};
+	
+	$scope.query_Adver.previous = function(){
+		$scope.query_Adver.pageIndex -= 1;
+		$scope.query_Adver.getData();
+	};
+	
+	$scope.query_Adver.perPage = function(size){
+		$scope.query_Adver.pageSize = size;
+		$scope.query_Adver.pageIndex = 0;
+		
+		$scope.query_Adver.getData();
+	};
+	//pageable table end
+	
+	$scope.query_Adver.queryItem = {};
+	
+    $scope.query_Adver.query = function(){
+    	$scope.query_Adver.getData();
+    };
+    
+    $scope.query_Adver.resetQuery = function(){
+    	$scope.query_Adver.queryItem = {};
+    };
+    
+	//query action end
+	
+	//query option values begin
+	$scope.query_Adver.options = {};
+	
+	$scope.query_Adver.optionsInit = function(){
+		var optionsUrl = "${base}/lookup/values.do?categoryKey=ADVER_CATEGORY";
+	    
+	    $http.get(optionsUrl).success(function (response) {
+	    	$scope.query_Adver.options.categoryOptions = response;
+	    });
+	    
+	};
+	
+	//query option values end
+	
+	//query action begin
 	$scope.merchant = {};
 	
 	$scope.merchant.queryItem = {};
@@ -162,4 +251,5 @@ app.controller('appCtl', function($scope, $http) {
 	
 		$("#searchMerchantModal").modal("show");
 	};
+	
 });

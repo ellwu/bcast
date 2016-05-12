@@ -206,6 +206,7 @@ drop table if exists t_qr_counts;
 create table t_qr_counts(
 	qr_count_id char(32) not null,
 	resource_id char(32),
+	merchant_id char(32),
 	qr_url varchar(1000),
 	
 	creation_time datetime,
