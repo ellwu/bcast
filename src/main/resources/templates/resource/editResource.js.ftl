@@ -204,7 +204,7 @@ app.controller('appCtl', function($scope, $http) {
 	$scope.genQRCode = function(rid){
 		$('#qrCode').html("");
 		
-		$('#qrCode').qrcode("http://shnlng.me:7090/echo?rid="+rid);
+		$('#qrCode').qrcode("http://shnlng.me:7090/echo?rid="+rid+"&mid=0000");
 		$("#qrCodeModal").modal("show");
 		
 	};
